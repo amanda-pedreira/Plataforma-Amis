@@ -13,4 +13,11 @@ Perfil pessoal: criado para que cada usuária participe da comunidade. Nele é p
 
 Perfil de página: pensado para perfis voltados à publicação de conteúdo. Essas páginas poderão compartilhar dicas, reflexões, textos, funcionando como espaços de conteúdo para que outras usuárias acompanhem temas de seu interesse.
 
+## Principais funcionalidades
+1. Cadastro e login com perfil pessoal 
+2. Criação de perfil de página para publicações gerais
+3. Publicações anônimas ou pessoais
+4. Compartilhamento de conteúdos
+5. Seguir apenas páginas de conteúdo
+6. Itens salvos de postagens
 
