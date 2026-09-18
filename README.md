@@ -21,13 +21,13 @@ Ao acessar o AMIS pela primeira vez, a usuária encontra uma página inicial nã
 
 Durante o cadastro, a usuária escolhe entre dois tipos de perfil:
 
-Perfil pessoal
+* Perfil pessoal
 
 Nele é possível publicar desabafos, compartilhar experiências, comentar postagens e registrar momentos pessoais dentro do Journal.
 
 Esse perfil pode ser anônimo para as outras pessoas, a identidade não é exibida. O sistema utiliza apenas o e-mail para autenticação da conta.
 
-Perfil de página
+* Perfil de página
 
 Voltado para quem deseja publicar conteúdos sobre um tema específico, como carreira, tecnologia, saúde, autoestima ou qualquer outro assunto relevante. As páginas podem ser seguidas pelas usuárias, diferente dos perfis pessoais.
 
@@ -40,39 +40,31 @@ Isso muda quando a pessoa segue páginas e salva perfis, uma filtragem é feita 
 
 Também é possível:
 
-pesquisar publicações;
-filtrar os posts por tema;
-acessar rapidamente as páginas seguidas;
-visualizar o próprio perfil;
-entrar no Journal para registrar o dia.
+* pesquisar publicações;
+* filtrar os posts por tema;
+* acessar rapidamente as páginas seguidas;
+* visualizar o próprio perfil;
+* entrar no Journal para registrar o dia.
 
 No **Journal**, a usuária escolhe uma emoção e escreve uma breve descrição para uma data específica, formando um calendário pessoal de lembranças e conquistas.
-
-## Nossa proposta
-
-O AMIS foi pensado para quebrar a ideia de que um perfil “mais bonito”, “mais famoso” ou “mais seguido” vale mais do que outro.
-
-Por isso, perfis pessoais não possuem seguidores. Quando outra usuária gosta da forma como alguém escreve ou se identifica com seus posts, ela pode apenas **salvar aquele perfil** para encontrá-lo novamente depois. A autora nunca saberá que foi salva.
-
-Já as **páginas** podem ser seguidas normalmente, porque seu objetivo é compartilhar um conteúdo especifico.
 
 
 ## Principais funcionalidades
 
-Login e cadastro
-Criação de perfil pessoal ou página
-Feed de postagens
-Comentários em publicações
-Posts salvos
-Perfis pessoais salvos
-Páginas seguidas
-Journal (diário privado)
-Registro de emoção por data
-Pesquisa e filtragem de temas das postagens
+* Login e cadastro
+* Criação de perfil pessoal ou página
+* Feed de postagens
+* Comentários em publicações
+* Posts salvos
+* Perfis pessoais salvos
+* Páginas seguidas
+* Journal (diário privado)
+* Registro de emoção por data
+* Pesquisa e filtragem de temas das postagens
 
 
 
-### Imagens referen
+## Imagens referencia:
 
 ![Tela 2](imagens/2.PNG)
 
@@ -89,7 +81,6 @@ Pesquisa e filtragem de temas das postagens
 ![Tela prototipo-Amis](imagens/prototipo-Amis.PNG)
 
 ![Tela 9](imagens/9.PNG)
-
 
 
 
