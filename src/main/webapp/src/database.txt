@@ -1,0 +1,101 @@
+
+
+CREATE TABLE USUARIO (
+    ID_USUARIO INT PRIMARY KEY AUTO_INCREMENT,
+    TIPO VARCHAR(50),
+    FOTO VARCHAR(255),
+    BIO VARCHAR(1000),
+    DATA_CRIACAO DATE,
+    USERNAME VARCHAR(100),
+    NOME VARCHAR(255),
+    EMAIL VARCHAR(255),
+    SENHA VARCHAR(255)
+);
+
+
+
+CREATE TABLE CATEGORIA (
+    ID_CATEGORIA INT PRIMARY KEY AUTO_INCREMENT,
+    NOME VARCHAR(100) NOT NULL UNIQUE
+);
+
+
+
+CREATE TABLE FLAG (
+    ID_FLAG INT PRIMARY KEY AUTO_INCREMENT,
+    NOME VARCHAR(100) NOT NULL UNIQUE
+);
+
+
+
+CREATE TABLE POSTAGEM (
+    ID_POSTAGEM INT PRIMARY KEY AUTO_INCREMENT,
+    ID_USUARIO INT NOT NULL,
+    ID_CATEGORIA INT NOT NULL,
+    ID_FLAG INT NOT NULL,
+    TITULO VARCHAR(255),
+    TEXTO VARCHAR(4000) NOT NULL,
+    STATUS VARCHAR(50) DEFAULT 'PUBLICADO',
+    DATA_POSTAGEM TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (ID_USUARIO) REFERENCES USUARIO(ID_USUARIO),
+    FOREIGN KEY (ID_CATEGORIA) REFERENCES CATEGORIA(ID_CATEGORIA),
+    FOREIGN KEY (ID_FLAG) REFERENCES FLAG(ID_FLAG)
+);
+
+
+
+INSERT INTO CATEGORIA (NOME) VALUES ('Carreira');
+INSERT INTO CATEGORIA (NOME) VALUES ('Beleza');
+INSERT INTO CATEGORIA (NOME) VALUES ('Autoajuda');
+
+
+
+INSERT INTO FLAG (NOME) VALUES ('Só desabafo');
+INSERT INTO FLAG (NOME) VALUES ('Quero conselhos');
+
+
+
+
+INSERT INTO POSTAGEM
+    (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS)
+VALUES
+    (1, 1, 2,
+    'Tenho medo de mudar de carreira',
+    'Estou pensando em mudar de área, mas tenho medo de começar do zero. Alguém já passou por isso? Como vocês decidiram seguir em frente?',
+    'PUBLICADO');
+
+INSERT INTO POSTAGEM
+    (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS)
+VALUES
+    (1, 2, 1,
+    'Aprendendo a gostar de mim',
+    'Durante muito tempo fiquei tentando alcançar padrão de beleza e aos poucos estou aprendendo a cuidar de mim.....',
+    'PUBLICADO');
+
+INSERT INTO POSTAGEM
+    (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS)
+VALUES
+    (1, 3, 2,
+    'Como parar de me comparar?',
+    'Às vezes olho para a vida de outras pessoas nas redes sociais e sinto que estou atrasada......',
+    'PUBLICADO');
+
+INSERT INTO POSTAGEM
+    (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS)
+VALUES
+    (1, 1, 1,
+    'Hoje foi um dia difícil no trabalho',
+    'Hoje me esforcei muito e mesmo assim senti que nada foi suficiente. Só queria colocar isso para fora....',
+    'PUBLICADO');
+
+INSERT INTO POSTAGEM
+    (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS)
+VALUES
+    (1, 3, 1,
+    'Acabou a criatividade',
+    'Muita coisa pra pensar nossa............................',
+    'PUBLICADO');
+
+
+

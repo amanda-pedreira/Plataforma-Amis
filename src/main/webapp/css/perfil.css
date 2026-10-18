@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1, h2, h3 {
+    color: #9146aa;
+}
+
+.caixa {
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    overflow-wrap: anywhere;
+}
+
+.btn-roxo {
+    background-color: #9146aa;
+    color: white;
+}
+
+.bg-color-claro {
+    background-color: #f7f4fa;
+    color: black;
+}
+
+.bg-color-escuro {
+    background-color: #24202e;
+    color: white;
+}
+
+.bg-color-escuro .caixa {
+    background-color: #383044;
+    color: white;
+}
