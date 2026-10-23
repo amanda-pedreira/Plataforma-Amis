@@ -80,8 +80,7 @@ No **Journal**, a usuária escolhe uma emoção e escreve uma breve descrição 
 
 ![Tela prototipo-Amis](imagens/prototipo-Amis.PNG)
 
-![Tela 9](imagens/9.PNG)
-
+![Tela 9](imagens/9.png)
 
 
 
