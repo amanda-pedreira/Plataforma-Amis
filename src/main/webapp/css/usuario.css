@@ -1,40 +1,249 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
-}
-
-h1, h2 {
-    color: #9146aa;
-}
-
-.caixa {
-    background-color: white;
-    color: black;
-    border: 1px solid #ccc;
+    background: linear-gradient(135deg, #f7f3fb 0%, #ede6f5 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 20px;
-    margin-bottom: 20px;
+    color: #1A1A1A;
 }
 
-.btn-roxo {
-    background-color: #9146aa;
+.auth-container-wrapper {
+    width: 100%;
+    max-width: 950px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-topo {
+    font-size: 24px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #E640B2 0%, #8E44ED 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+}
+
+.auth-card {
+    background-color: #FFFFFF;
+    width: 100%;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(142, 68, 237, 0.08);
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    overflow: hidden;
+}
+
+/* Banner em Gradiente */
+.auth-banner {
+    background: linear-gradient(135deg, #E640B2 0%, #8E44ED 100%);
     color: white;
+    padding: 60px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-.bg-color-claro {
-    background-color: #f7f4fa;
-    color: black;
+.banner-conteudo h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 12px;
 }
 
-.bg-color-escuro {
-    background-color: #24202e;
+.banner-conteudo h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.banner-conteudo p {
+    font-size: 13px;
+    opacity: 0.9;
+    margin-bottom: 28px;
+    line-height: 1.5;
+}
+
+.btn-outline-branco {
+    text-decoration: none;
+    background: transparent;
     color: white;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    padding: 10px 32px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-block;
+    transition: all 0.2s;
 }
 
-.bg-color-escuro .caixa {
-    background-color: #383044;
-    color: white;
+.btn-outline-branco:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: white;
 }
 
-.bg-color-escuro .form-control {
-    background-color: #4b4059;
+/* Seção do Formulário */
+.auth-form-section {
+    padding: 36px 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1A202C;
+    margin-bottom: 2px;
+}
+
+.form-header p {
+    font-size: 13px;
+    color: #718096;
+    margin-bottom: 16px;
+}
+
+/* Abas de Seleção (Perfil Pessoal / Página) */
+.tabs-container {
+    display: flex;
+    background-color: #F1F5F9;
+    padding: 4px;
+    border-radius: 30px;
+    margin-bottom: 18px;
+    width: fit-content;
+}
+
+.tab-btn {
+    background: transparent;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #64748B;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.tab-btn.active {
+    background: #FFFFFF;
+    color: #1A202C;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Campos do Formulário */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.input-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #4A5568;
+}
+
+.input-group label .opcional {
+    font-weight: 400;
+    color: #A0AEC0;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 9px 12px;
+    border-radius: 10px;
+    border: 1px solid #E2E8F0;
+    background-color: #F8FAFC;
+    font-size: 14px;
+    color: #2D3748;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-group input:focus {
+    border-color: #8E44ED;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 0 3px rgba(142, 68, 237, 0.1);
+}
+
+.termos-grupo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 2px;
+}
+
+.termos-grupo input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    accent-color: #8E44ED;
+}
+
+.termos-grupo label {
+    font-size: 12px;
+    color: #4A5568;
+}
+
+.btn-submit {
+    background: linear-gradient(135deg, #E640B2 0%, #8E44ED 100%);
     color: white;
+    border: none;
+    padding: 11px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(230, 64, 178, 0.25);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 4px;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(230, 64, 178, 0.35);
+}
+
+.aviso-rodape-form {
+    margin-top: 16px;
+    background-color: #FFF5F7;
+    border: 1px solid #FFE3E8;
+    padding: 10px 12px;
+    border-radius: 12px;
+}
+
+.aviso-rodape-form p {
+    font-size: 11px;
+    color: #E53E3E;
+    line-height: 1.4;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .auth-card {
+        grid-template-columns: 1fr;
+    }
+    .auth-banner {
+        padding: 40px 20px;
+    }
+    .auth-form-section {
+        padding: 30px 20px;
+    }
 }

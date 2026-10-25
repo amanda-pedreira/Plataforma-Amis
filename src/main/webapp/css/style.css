@@ -1,35 +1,236 @@
-body {
-    font-family: Arial, sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
-h1, h2, h4 {
-    color: #9146aa;
+body.home-body {
+    background: linear-gradient(135deg, #f7f3fb 0%, #ede6f5 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #1A1A1A;
 }
 
-.postagem {
-    background-color: white;
-    color: black;
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin-bottom: 15px;
+/* Contentor Principal em Branco com Bordas Arredondadas */
+.main-card-wrapper {
+    background: #FFFFFF;
+    width: 100%;
+    max-width: 1100px;
+    border-radius: 32px;
+    padding: 48px 60px;
+    box-shadow: 0 20px 50px rgba(142, 68, 237, 0.08);
+    position: relative;
+    overflow: hidden;
 }
 
+/* Cabeçalho Interno */
+.header-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.logo-amis {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #E640B2 0%, #8E44ED 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.5px;
+}
+
+.nav-auth {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.link-entrar {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: #4A5568;
+    transition: color 0.2s;
+}
+
+.link-entrar:hover {
+    color: #8E44ED;
+}
+
+/* Grid de 2 Colunas (Hero Section) */
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.hero-texto-coluna {
+    display: flex;
+    flex-direction: column;
+}
+
+.tag-projeto {
+    font-size: 12px;
+    font-weight: 600;
+    color: #E640B2;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+.hero-texto-coluna h1 {
+    font-size: 44px;
+    font-weight: 700;
+    color: #1A202C;
+    margin-bottom: 16px;
+    line-height: 1.15;
+}
+
+.hero-texto-coluna p {
+    font-size: 15px;
+    color: #4A5568;
+    line-height: 1.6;
+    margin-bottom: 36px;
+    max-width: 480px;
+}
+
+.botoes-acao {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+/* Botões */
 .btn-roxo {
-    background-color: #9146aa;
+    background: linear-gradient(135deg, #E640B2 0%, #8E44ED 100%);
     color: white;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 8px 20px rgba(230, 64, 178, 0.25);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.bg-color-claro {
-    background-color: #f7f4fa;
-    color: black;
+.btn-roxo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(230, 64, 178, 0.35);
 }
 
-.bg-color-escuro {
-    background-color: #24202e;
-    color: white;
+.btn-secundario {
+    text-decoration: none;
+    background: #FFFFFF;
+    color: #4A5568;
+    border: 1px solid #E2E8F0;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s;
 }
 
-.bg-color-escuro .postagem {
-    background-color: #383044;
-    color: white;
+.btn-secundario:hover {
+    background: #F8FAFC;
+    border-color: #CBD5E1;
+}
+
+/* Coluna Direita (Ilustração e Cards Flutuantes do Figma) */
+.hero-ilustracao-coluna {
+    position: relative;
+    height: 340px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.esfera-bg {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    background: linear-gradient(135deg, rgba(230, 64, 178, 0.15) 0%, rgba(142, 68, 237, 0.2) 100%);
+    border-radius: 50%;
+    filter: blur(20px);
+    z-index: 1;
+}
+
+.card-flutuante {
+    position: absolute;
+    background: #FFFFFF;
+    border-radius: 16px;
+    padding: 18px 20px;
+    box-shadow: 0 15px 35px rgba(142, 68, 237, 0.12);
+    border: 1px solid rgba(237, 242, 247, 0.8);
+    z-index: 2;
+}
+
+.card-topo-direito {
+    top: 20px;
+    right: 10px;
+    width: 260px;
+}
+
+.card-baixo-direito {
+    bottom: 20px;
+    left: 20px;
+    width: 240px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.badge-apoio {
+    display: inline-block;
+    background-color: #F3E8FF;
+    color: #8E44ED;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.linha-esqueleto {
+    height: 8px;
+    background: #EDF2F7;
+    border-radius: 4px;
+    margin-bottom: 6px;
+}
+
+.w-90 { width: 90%; }
+.w-80 { width: 80%; }
+.w-60 { width: 60%; }
+
+.avatar-mini {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #E640B2 0%, #8E44ED 100%);
+    flex-shrink: 0;
+}
+
+.bloco-linhas {
+    flex-grow: 1;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 900px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+    .main-card-wrapper {
+        padding: 30px 20px;
+    }
+    .hero-ilustracao-coluna {
+        display: none;
+    }
 }

@@ -6,47 +6,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMIS</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>AMIS - Sua comunidade</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-color-claro">
+<body class="home-body">
 
-<div class="container mt-4">
+    <div class="main-card-wrapper">
+        <!-- Topo com Logo e Botões de Autenticação -->
+        <header class="header-topo">
+            <div class="logo-amis">AMIS</div>
+            <div class="nav-auth">
+                <a href="${pageContext.request.contextPath}/pages/login.jsp" class="link-entrar">Entrar</a>
+                <a href="${pageContext.request.contextPath}/pages/cadastro.jsp" class="btn-roxo">Criar conta</a>
+            </div>
+        </header>
 
-    <div class="row mb-4">
-        <div class="col">
-            <h1>AMIS</h1>
-        </div>
-        <div class="col-auto">
-            <a href="${pageContext.request.contextPath}/pages/login.jsp" class="btn btn-roxo">Login</a>
-            <button id="botao-tema" class="btn btn-outline-secondary" onclick="mudarTema()">Modo escuro</button>
-        </div>
-    </div>
+        <!-- Seção Principal dividida em 2 colunas (Figma) -->
+        <div class="hero-grid">
+            <!-- Coluna Esquerda: Texto e Chamada para Ação -->
+            <div class="hero-texto-coluna">
+                <span class="tag-projeto">• Projeto Integrador · 3 desenvolvedoras</span>
+                
+                <h1>Sua amis para todos os dias.</h1>
+                
+                <p>O AMIS é uma rede social só para mulheres: um lugar para desabafar, pedir conselhos, compartilhar experiências e acompanhar páginas de conteúdo — além de um diário privado só seu.</p>
 
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-
-            <h2>Feed</h2>
-
-            <c:forEach var="postagem" items="${postagens}">
-                <div class="postagem">
-                    <h4><c:out value="${postagem.titulo}" /></h4>
-                    <p><c:out value="${postagem.texto}" /></p>
-                    <p>Categoria: <c:out value="${postagem.categoria}" /></p>
-                    <p>Flag: <c:out value="${postagem.flag}" /></p>
+                <div class="botoes-acao">
+                    <a href="${pageContext.request.contextPath}/pages/cadastro.jsp" class="btn-roxo">Criar conta</a>
+                    <a href="${pageContext.request.contextPath}/pages/login.jsp" class="btn-secundario">Já tenho conta</a>
                 </div>
-            </c:forEach>
+            </div>
 
-            <c:if test="${empty postagens}">
-                <p>Nenhuma postagem encontrada.</p>
-            </c:if>
+            <!-- Coluna Direita: Elementos Decorativos e Cards Flutuantes -->
+            <div class="hero-ilustracao-coluna">
+                <div class="esfera-bg"></div>
+                
+                <!-- Card Flutuante Superior -->
+                <div class="card-flutuante card-topo-direito">
+                    <span class="badge-apoio">Quero apoio</span>
+                    <div class="linha-esqueleto w-80"></div>
+                    <div class="linha-esqueleto w-60"></div>
+                </div>
 
+                <!-- Card Flutuante Inferior -->
+                <div class="card-flutuante card-baixo-direito">
+                    <div class="avatar-mini"></div>
+                    <div class="bloco-linhas">
+                        <div class="linha-esqueleto w-90"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-</div>
-
-<script src="${pageContext.request.contextPath}/js/tema.js"></script>
 </body>
 </html>

@@ -1,99 +1,80 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro - AMIS</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>AMIS - Criar Conta</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/usuario.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-color-claro">
+<body>
 
-<div class="container mt-4">
-
-    <div class="row mb-4">
-        <div class="col">
-            <h1>AMIS</h1>
-        </div>
-        <div class="col-auto">
-            <button id="botao-tema" class="btn btn-outline-secondary" onclick="mudarTema()">Modo escuro</button>
-        </div>
-    </div>
-
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-
-            <div class="caixa">
-                <h2>Criar conta</h2>
-
-                <% if ("1".equals(request.getParameter("enviado"))) { %>
-                <p>Conta criada com sucesso!</p>
-                <% } %>
-
-                <% if ("1".equals(request.getParameter("erro"))) { %>
-                <p>Não foi possível criar a conta.</p>
-                <% } %>
-
-                <form action="${pageContext.request.contextPath}/create-usuario" method="post" id="form-cadastro">
-
-                    <label>Tipo de conta</label>
-                    <div class="mb-3">
-                        <input type="radio" name="tipo" value="PESSOAL" checked> Perfil pessoal
-                        <input type="radio" name="tipo" value="PAGINA"> Página
-                    </div>
-
-                    <label>Nome</label>
-                    <input type="text" name="nome" class="form-control mb-3" required>
-
-                    <label>Apelido</label>
-                    <input type="text" name="username" class="form-control mb-3" required>
-
-                    <label>E-mail</label>
-                    <input type="email" name="email" class="form-control mb-3" required>
-
-                    <label>Senha</label>
-                    <input type="password" name="senha" id="senha" class="form-control mb-3" required>
-
-                    <label>Confirmar senha</label>
-                    <input type="password" name="confirmar-senha" id="confirmar-senha" class="form-control mb-3" required>
-
-                    <label>Link da foto (opcional)</label>
-                    <input type="url" name="foto" class="form-control mb-3">
-
-                    <div class="mb-3">
-                        <input type="checkbox" required> Li as diretrizes da comunidade.
-                    </div>
-
-                    <button type="submit" class="btn btn-roxo">Criar conta</button>
-
-                </form>
-
-                <p class="mt-3">
-                    Já tem conta?
-                    <a href="${pageContext.request.contextPath}/pages/login.jsp">Entrar</a>
-                </p>
+    <div class="auth-container-wrapper">
+        <div class="logo-topo">AMIS</div>
+        
+        <div class="auth-card">
+            <!-- Coluna Esquerda: Banner em Gradiente (Ir para Login) -->
+            <div class="auth-banner">
+                <div class="banner-conteudo">
+                    <h2>AMIS</h2>
+                    <h3>Já faz parte da comunidade?</h3>
+                    <p>Entre com seu apelido e continue de onde parou.</p>
+                    <a href="${pageContext.request.contextPath}/login.jsp" class="btn-outline-branco">Entrar</a>
+                </div>
             </div>
 
+            <!-- Coluna Direita: Formulário de Cadastro -->
+            <div class="auth-form-section">
+                <div class="form-header">
+                    <h2>Criar conta</h2>
+                    <p>Leva menos de um minuto.</p>
+                </div>
+
+                <!-- Abas (Perfil Pessoal / Página) -->
+                <div class="tabs-container">
+                    <button type="button" class="tab-btn active">Perfil pessoal</button>
+                    <button type="button" class="tab-btn">Página</button>
+                </div>
+
+                <!-- Formulário com os names preservados para o Back-end -->
+                <form action="${pageContext.request.contextPath}/create-usuario" method="POST" class="auth-form">
+                    <div class="input-group">
+                        <label for="apelido">Apelido</label>
+                        <input type="text" id="apelido" name="apelido" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="email">E-mail <span class="opcional">(opcional — só para recuperar sua senha)</span></label>
+                        <input type="email" id="email" name="email">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="senha">Senha</label>
+                        <input type="password" id="senha" name="senha" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="confirmarSenha">Confirmar senha</label>
+                        <input type="password" id="confirmarSenha" name="confirmarSenha" required>
+                    </div>
+
+                    <div class="termos-grupo">
+                        <input type="checkbox" id="termos" name="termos" required>
+                        <label for="termos">Li as diretrizes da comunidade.</label>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Criar conta</button>
+                </form>
+
+                <div class="aviso-rodape-form">
+                    <p>Em perfis pessoais, o AMIS usa apenas um apelido — sua identidade não é exibida para outras usuárias.</p>
+                </div>
+            </div>
         </div>
     </div>
-
-</div>
-
-<script src="${pageContext.request.contextPath}/js/tema.js"></script>
-
-<script>
-    document.getElementById("form-cadastro").addEventListener("submit", function(event) {
-        let senha = document.getElementById("senha").value;
-        let confirmar = document.getElementById("confirmar-senha").value;
-
-        if (senha !== confirmar) {
-            event.preventDefault();
-            alert("As senhas não são iguais!");
-        }
-    });
-</script>
 
 </body>
 </html>
