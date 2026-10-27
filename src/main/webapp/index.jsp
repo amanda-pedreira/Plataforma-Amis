@@ -13,7 +13,6 @@
 <body class="home-body">
 
     <div class="main-card-wrapper">
-        <!-- Topo com Logo e Botões de Autenticação -->
         <header class="header-topo">
             <div class="logo-amis">AMIS</div>
             <div class="nav-auth">

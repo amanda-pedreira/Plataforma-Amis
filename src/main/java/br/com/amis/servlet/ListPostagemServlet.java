@@ -23,6 +23,6 @@ public class ListPostagemServlet extends HttpServlet {
 
         req.setAttribute("postagens", postagens);
 
-        req.getRequestDispatcher("/index.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/feed.jsp").forward(req, resp);
     }
 }
