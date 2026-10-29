@@ -46,6 +46,14 @@ CREATE TABLE POSTAGEM (
 
 
 
+INSERT INTO USUARIO (TIPO, FOTO, BIO, USERNAME, NOME, EMAIL, SENHA) VALUES
+('PESSOA', '', 'Vivendo e aprendendo.', 'amanda', 'Amanda', 'amanda@amis.com', '123'),
+('PESSOA', '', 'Um dia de cada vez.', 'emilly', 'Emilly', 'emilly@amis.com', '123'),
+('PESSOA', '', 'Tudo no seu tempo.', 'isabele', 'Isabele', 'isabele@amis.com', '123'),
+('PAGINA', '', 'Sobre carreira e trabalho.', 'carreira.amis', 'Carreira AMIS', 'carreira@amis.com', '123'),
+('PAGINA', '', 'Beleza e autocuidado.', 'beleza.amis', 'Beleza AMIS', 'beleza@amis.com', '123'),
+('PAGINA', '', 'Conversas e apoio.', 'apoio.amis', 'Apoio AMIS', 'apoio@amis.com', '123');
+
 INSERT INTO CATEGORIA (NOME) VALUES ('Carreira');
 INSERT INTO CATEGORIA (NOME) VALUES ('Beleza');
 INSERT INTO CATEGORIA (NOME) VALUES ('Autoajuda');
@@ -97,6 +105,17 @@ VALUES
     'Acabou a criatividade',
     'Muita coisa pra pensar nossa............................',
     'PUBLICADO');
+
+INSERT INTO POSTAGEM (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS) VALUES (2, 2, 1, 'Aprendendo a gostar de mim', 'Durante muito tempo fiquei tentando alcançar padrão de beleza e aos poucos estou aprendendo a cuidar de mim.....', 'PUBLICADO');
+INSERT INTO POSTAGEM (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS) VALUES (2, 3, 2, 'Como parar de me comparar?', 'Às vezes olho para a vida de outras pessoas nas redes sociais e sinto que estou atrasada......', 'PUBLICADO');
+INSERT INTO POSTAGEM (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS) VALUES (3, 1, 1, 'Hoje foi um dia difícil no trabalho', 'Hoje me esforcei muito e mesmo assim senti que nada foi suficiente. Só queria colocar isso para fora....', 'PUBLICADO');
+INSERT INTO POSTAGEM (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS) VALUES (3, 3, 1, 'Acabou a criatividade', 'Muita coisa pra pensar nossa............................', 'PUBLICADO');
+INSERT INTO POSTAGEM (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS) VALUES (4, 1, 2, 'Tenho medo de mudar de carreira', 'Estou pensando em mudar de área, mas tenho medo de começar do zero. Alguém já passou por isso? Como vocês decidiram seguir em frente?', 'PUBLICADO');
+INSERT INTO POSTAGEM (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS) VALUES (4, 1, 1, 'Hoje foi um dia difícil no trabalho', 'Hoje me esforcei muito e mesmo assim senti que nada foi suficiente. Só queria colocar isso para fora....', 'PUBLICADO');
+INSERT INTO POSTAGEM (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS) VALUES (5, 2, 1, 'Aprendendo a gostar de mim', 'Durante muito tempo fiquei tentando alcançar padrão de beleza e aos poucos estou aprendendo a cuidar de mim.....', 'PUBLICADO');
+INSERT INTO POSTAGEM (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS) VALUES (5, 3, 2, 'Como parar de me comparar?', 'Às vezes olho para a vida de outras pessoas nas redes sociais e sinto que estou atrasada......', 'PUBLICADO');
+INSERT INTO POSTAGEM (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS) VALUES (6, 3, 2, 'Como parar de me comparar?', 'Às vezes olho para a vida de outras pessoas nas redes sociais e sinto que estou atrasada......', 'PUBLICADO');
+INSERT INTO POSTAGEM (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS) VALUES (6, 3, 1, 'Acabou a criatividade', 'Muita coisa pra pensar nossa............................', 'PUBLICADO');
 
 CREATE TABLE COMENTARIO (
     ID_COMENTARIO INT PRIMARY KEY AUTO_INCREMENT,
@@ -152,3 +171,24 @@ CREATE TABLE IF NOT EXISTS DIARIO (
     DESCRICAO VARCHAR(4000) NOT NULL,
     FOREIGN KEY (ID_USUARIO) REFERENCES USUARIO(ID_USUARIO)
 );
+
+
+INSERT INTO PESSOA_SALVA (ID_USUARIO, ID_PESSOA) VALUES
+(1, 2), (1, 3), (2, 1), (2, 3), (3, 1), (3, 2);
+
+INSERT INTO PAGINA_SEGUIDA (ID_USUARIO, ID_PAGINA) VALUES
+(1, 4), (1, 5), (1, 6), (2, 4), (2, 6), (3, 5), (3, 6);
+
+INSERT INTO ITEM_SALVO (ID_USUARIO, ID_POSTAGEM) VALUES
+(1, 6), (1, 8), (1, 11), (2, 1), (2, 5), (2, 12), (3, 2), (3, 7), (3, 13);
+
+INSERT INTO DIARIO (ID_USUARIO, DATA, HUMOR, DESCRICAO) VALUES
+(1, '2026-07-30', 'Feliz', 'Dia bom'),
+(1, '2026-08-12', 'Neutra', 'Dia tranquilo'),
+(1, '2026-09-10', 'Feliz', 'Saí com minhas amigas'),
+(2, '2026-07-22', 'Feliz', 'Nesse dia fui divertida'),
+(2, '2026-08-03', 'Triste', 'Dia cansativo'),
+(2, '2026-09-15', 'Feliz', 'Gostei de hoje'),
+(3, '2026-07-18', 'Neutra', 'Fiquei em casa'),
+(3, '2026-08-21', 'Feliz', 'Dia bom'),
+(3, '2026-09-27', 'Feliz', 'Foi muito legal');

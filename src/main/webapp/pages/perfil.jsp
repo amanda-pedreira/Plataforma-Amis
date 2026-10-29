@@ -15,26 +15,26 @@
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/css/perfil.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/amis-visual.css">
 </head>
-<body class="bg-color-claro amis-organizado">
+<body class="bg-color-claro amis-organizado amis-tela">
 
-<div class="container mt-4">
-
-    <div class="row mb-4">
-        <div class="col">
-            <h1>AMIS</h1>
-            <a href="${pageContext.request.contextPath}/find-all-postagens" class="btn btn-outline-secondary btn-sm">Voltar ao feed</a>
-        </div>
-        <div class="col-auto">
-            <button id="botao-tema"
-                    class="btn btn-outline-secondary"
-                    onclick="mudarTema()">
-                Modo escuro
-            </button>
+<header class="amis-topo">
+    <div class="amis-menu container">
+        <a class="amis-marca" href="${pageContext.request.contextPath}/find-all-postagens">AMIS</a>
+        <nav class="amis-links">
+            <a href="${pageContext.request.contextPath}/find-all-postagens">▦ Feed</a>
+            <a href="${pageContext.request.contextPath}/journal">▤ Diário</a>
+            <a href="${pageContext.request.contextPath}/find-all-usuarios?pagina=perfil">♙ Perfil</a>
+        </nav>
+        <div class="amis-direita">
+            <button type="button" id="botao-tema" class="amis-tema" onclick="mudarTema()" title="Alternar tema" aria-label="Alternar tema">☾</button>
+            <a class="amis-admin-link" href="${pageContext.request.contextPath}/admin.jsp">Admin</a>
         </div>
     </div>
-
-    <div class="caixa">
+</header>
+<div class="container mt-4 amis-perfil-pagina" style="max-width:1050px">
+    <div class="amis-painel amis-busca-perfil">
         <h2>Meu perfil</h2>
         <div class="alert alert-info">Temporário: informe o ID do usuário ou da página. Depois do login verdadeiro, o perfil será identificado automaticamente e cada pessoa poderá alterar apenas a própria conta.</div>
 
@@ -60,15 +60,18 @@
 
         <c:if test="${usuario.idUsuario eq param.id}">
 
-            <div class="caixa">
+            <div class="amis-painel amis-perfil-principal">
 
-                <h2><c:out value="${usuario.nome}" /></h2>
+                <div class="amis-perfil-cabecalho">
+                    <div class="amis-avatar"><c:out value="${fn:substring(usuario.nome, 0, 1)}" /></div>
+                    <div>
+                        <h2 class="amis-perfil-nome"><c:out value="${usuario.nome}" /></h2>
+                        <p class="amis-perfil-usuario">@<c:out value="${usuario.username}" /></p>
+                        <p class="amis-perfil-bio"><c:out value="${usuario.bio}" /></p>
+                    </div>
+                </div>
 
-                <p>
-                    @<c:out value="${usuario.username}" />
-                </p>
-
-                <p>
+                <div class="amis-perfil-detalhes"><p>
                     ID: ${usuario.idUsuario}
                 </p>
 
@@ -89,23 +92,24 @@
                     <c:out value="${usuario.dataCriacao}" />
                 </p>
 
-                <div class="alert alert-warning">Temporário: as opções de editar e excluir ainda não verificam quem está logado.</div>
-                <div class="row mt-4">
-                    <div class="col-6 col-md-3">
+                </div>
+                <div class="alert alert-warning amis-aviso-perfil">Temporário: as opções de editar e excluir ainda não verificam quem está logado.</div>
+                <div class="amis-estatisticas">
+                    <div >
                         <strong>${fn:length(minhasPostagens)}</strong>
-                        <p>Postagens</p>
+                        <span>Postagens</span>
                     </div>
-                    <div class="col-6 col-md-3">
+                    <div >
                         <strong>0</strong>
-                        <p>Registros no diário</p>
+                        <span>Registros no diário</span>
                     </div>
-                    <div class="col-6 col-md-3">
+                    <div >
                         <strong>${fn:length(paginasSeguidas)}</strong>
-                        <p>Páginas seguidas</p>
+                        <span>Páginas seguidas</span>
                     </div>
-                    <div class="col-6 col-md-3">
+                    <div >
                         <strong>${fn:length(itensSalvos)}</strong>
-                        <p>Itens salvos</p>
+                        <span>Itens salvos</span>
                     </div>
                 </div>
 
@@ -120,7 +124,7 @@
                     <c:param name="status" value="${usuario.status}" />
                 </c:url>
 
-                <a href="${linkEditar}" class="btn btn-roxo">
+                <div class="amis-perfil-acoes"><a href="${linkEditar}" class="btn btn-roxo">
                     Editar conta
                 </a>
 
@@ -133,14 +137,20 @@
                     <button type="submit" class="btn btn-outline-danger">
                         Excluir conta
                     </button>
-                </form>
+                </form></div>
 
             </div>
 
-            <div class="caixa">
+            <div class="amis-abas">
+                <a href="#minhas-postagens">Minhas postagens</a>
+                <a href="#postagens-salvas">Salvos</a>
+                <a href="#pessoas-salvas">Pessoas salvas</a>
+                <a href="#paginas-seguidas">Páginas seguidas</a>
+            </div>
+            <div class="amis-painel amis-lista-perfil" id="minhas-postagens">
                 <h3>Minhas postagens</h3>
                 <c:forEach var="postagem" items="${minhasPostagens}">
-                    <div class="mb-3">
+                    <div class="amis-registro">
                         <strong><c:out value="${postagem.titulo}" /></strong>
                         <p><c:out value="${postagem.texto}" /></p>
                     </div>
@@ -150,10 +160,10 @@
                 </c:if>
             </div>
 
-            <div class="caixa">
+            <div class="amis-painel amis-lista-perfil" id="postagens-salvas">
                 <h3>Postagens salvas</h3>
                 <c:forEach var="post" items="${itensSalvos}">
-                    <div class="mb-3">
+                    <div class="amis-registro">
                         <strong><c:out value="${post.titulo}" /></strong>
                         <p><c:out value="${post.texto}" /></p>
                         <form action="${pageContext.request.contextPath}/item-salvo" method="post">
@@ -166,7 +176,7 @@
                 </c:forEach>
                 <c:if test="${empty itensSalvos}"><p>Nenhuma postagem salva.</p></c:if>
             </div>
-            <div class="caixa">
+            <div class="amis-painel amis-lista-perfil" id="pessoas-salvas">
                 <h3>Pessoas salvas</h3>
                 <c:forEach var="pessoa" items="${pessoasSalvas}">
                     <div class="mb-2">
@@ -182,7 +192,7 @@
                 </c:forEach>
                 <c:if test="${empty pessoasSalvas}"><p>Nenhuma pessoa salva.</p></c:if>
             </div>
-            <div class="caixa">
+            <div class="amis-painel amis-lista-perfil" id="paginas-seguidas">
                 <h3>Páginas seguidas</h3>
                 <c:forEach var="pagina" items="${paginasSeguidas}">
                     <div class="mb-2">

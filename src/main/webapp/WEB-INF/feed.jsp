@@ -1,6 +1,7 @@
 
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -15,64 +16,56 @@
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/amis-visual.css">
 </head>
-<body class="bg-color-claro amis-organizado">
+<body class="bg-color-claro amis-organizado amis-tela">
 
-<div class="container mt-4">
-
-    <div class="row mb-4">
-        <div class="col">
-            <h1>AMIS</h1>
-        </div>
-
-        <div class="col-auto">
-            <a href="${pageContext.request.contextPath}/find-all-usuarios?pagina=perfil"
-               class="btn btn-roxo">Perfil</a>
-            <a href="${pageContext.request.contextPath}/journal" class="btn btn-outline-secondary">Journal</a>
-            <a href="${pageContext.request.contextPath}/admin.jsp"
-               class="btn btn-outline-secondary" data-bs-toggle="tooltip"
-               title="Botão temporário: área administrativa sem login">Área administrativa</a>
-
-            <button id="botao-tema"
-                    class="btn btn-outline-secondary"
-                    onclick="mudarTema()">
-                Modo escuro
-            </button>
+<header class="amis-topo">
+    <div class="amis-menu container">
+        <a class="amis-marca" href="${pageContext.request.contextPath}/find-all-postagens">AMIS</a>
+        <nav class="amis-links">
+            <a href="${pageContext.request.contextPath}/find-all-postagens">▦ Feed</a>
+            <a href="${pageContext.request.contextPath}/journal">▤ Diário</a>
+            <a href="${pageContext.request.contextPath}/find-all-usuarios?pagina=perfil">♙ Perfil</a>
+        </nav>
+        <div class="amis-direita">
+            <button type="button" id="botao-tema" class="amis-tema" onclick="mudarTema()" title="Alternar tema" aria-label="Alternar tema">☾</button>
+            <a class="amis-admin-link" href="${pageContext.request.contextPath}/admin.jsp">Admin</a>
         </div>
     </div>
-
+</header>
+<div class="container mt-4 amis-feed">
+    <div class="amis-feed-titulo"><div><h2>Seu feed</h2><p>Um espaço para compartilhar e conversar.</p></div><a href="${pageContext.request.contextPath}/pages/postagem-form.jsp" class="btn btn-roxo">+ Nova postagem</a></div>
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-lg-9 col-xl-8">
 
-            <h2>Feed</h2>
+            <h2 class="visually-hidden">Feed</h2>
             <div class="alert alert-warning" role="alert">
                 Temporário: todos podem alterar e excluir postagens. Depois, cada usuário poderá alterar ou excluir apenas suas próprias postagens.
             </div>
 
-            <a href="${pageContext.request.contextPath}/pages/postagem-form.jsp"
-               class="btn btn-roxo mb-3">
-                Nova postagem
-            </a>
+
 
             <c:forEach var="postagem" items="${postagens}">
 
-                <div class="postagem">
+                <article class="postagem amis-post">
+                    <div class="amis-post-autor"><span class="amis-post-avatar"><c:out value="${fn:substring(nomesAutores[postagem.idUsuario], 0, 1)}" /></span><div>
 
-                    <p class="mb-2">Publicado por:
+                    <p class="mb-0 amis-post-nome">
                         <a href="${pageContext.request.contextPath}/perfil-publico?id=${postagem.idUsuario}">
                             <c:out value="${nomesAutores[postagem.idUsuario]}" />
                         </a>
-                    </p>
+                    </p><span class="amis-post-legenda">Publicação na AMIS</span></div></div>
                     <h4><c:out value="${postagem.titulo}" /></h4>
 
-                    <p><c:out value="${postagem.texto}" /></p>
+                    <p class="amis-post-texto"><c:out value="${postagem.texto}" /></p>
 
-                    <p>
+                    <p class="amis-post-categoria">
                         Categoria:
                         <c:out value="${postagem.categoria}" />
                     </p>
 
-                    <p>
+                    <p class="amis-post-flag">
                         Flag:
                         <c:out value="${postagem.flag}" />
                     </p>
@@ -86,7 +79,8 @@
                         <c:param name="texto" value="${postagem.texto}" />
                     </c:url>
 
-                    <a href="${editar}" class="btn btn-primary btn-sm">
+                    <div class="amis-post-acoes">
+                    <a href="${editar}" class="btn btn-outline-secondary btn-sm">
                         Editar
                     </a>
 
@@ -140,8 +134,9 @@
                         </button>
 
                     </form>
+                    </div>
 
-                </div>
+                </article>
 
             </c:forEach>
 

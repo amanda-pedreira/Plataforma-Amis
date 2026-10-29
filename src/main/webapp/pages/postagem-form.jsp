@@ -13,12 +13,28 @@
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/amis-visual.css">
 </head>
-<body class="bg-color-claro amis-organizado">
+<body class="bg-color-claro amis-organizado amis-tela">
 
-<div class="container mt-4">
+<header class="amis-topo">
+    <div class="amis-menu container">
+        <a class="amis-marca" href="${pageContext.request.contextPath}/find-all-postagens">AMIS</a>
+        <nav class="amis-links">
+            <a href="${pageContext.request.contextPath}/find-all-postagens">▦ Feed</a>
+            <a href="${pageContext.request.contextPath}/journal">▤ Diário</a>
+            <a href="${pageContext.request.contextPath}/find-all-usuarios?pagina=perfil">♙ Perfil</a>
+        </nav>
+        <div class="amis-direita">
+            <button type="button" id="botao-tema" class="amis-tema" onclick="mudarTema()" title="Alternar tema" aria-label="Alternar tema">☾</button>
+            <a class="amis-admin-link" href="${pageContext.request.contextPath}/admin.jsp">Admin</a>
+        </div>
+    </div>
+</header>
+<div class="container mt-4 amis-form-post">
+<div class="amis-painel">
 
-    <h2>Postagem</h2>
+    <h2>Nova postagem</h2>
 
     <form action="${pageContext.request.contextPath}/create-postagem"
           method="post">
@@ -71,6 +87,8 @@
     </form>
 
 </div>
+</div>
 
+<script src="${pageContext.request.contextPath}/js/tema.js"></script>
 </body>
 </html>
