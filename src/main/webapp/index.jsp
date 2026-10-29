@@ -18,6 +18,7 @@
             <div class="nav-auth">
                 <a href="${pageContext.request.contextPath}/pages/login.jsp" class="link-entrar">Entrar</a>
                 <a href="${pageContext.request.contextPath}/pages/cadastro.jsp" class="btn-roxo">Criar conta</a>
+                <a href="${pageContext.request.contextPath}/admin.jsp" class="link-entrar" title="Botão temporário: área administrativa sem login">Área administrativa</a>
             </div>
         </header>
 

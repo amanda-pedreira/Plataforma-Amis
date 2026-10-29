@@ -13,9 +13,43 @@ import java.util.List;
 
 public class PostagemDAO {
 
+    public void createPostagem(Postagem postagem) {
+
+        String SQL = "INSERT INTO POSTAGEM " +
+                "(ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO) " +
+                "VALUES (?, ?, ?, ?, ?)";
+
+        try {
+
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:h2:~/test", "sa", "sa");
+
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement(SQL);
+
+            preparedStatement.setInt(1, postagem.getIdUsuario());
+            preparedStatement.setInt(2, postagem.getIdCategoria());
+            preparedStatement.setInt(3, postagem.getIdFlag());
+            preparedStatement.setString(4, postagem.getTitulo());
+            preparedStatement.setString(5, postagem.getTexto());
+
+            preparedStatement.execute();
+
+            System.out.println("Postagem cadastrada com sucesso");
+
+            connection.close();
+
+        } catch (Exception e) {
+
+            System.out.println("Erro ao cadastrar postagem: " + e.getMessage());
+
+        }
+    }
+
     public List<Postagem> findAllPostagens() {
 
-        String SQL = "SELECT P.ID_POSTAGEM, P.TITULO, P.TEXTO, " +
+        String SQL = "SELECT P.ID_POSTAGEM, P.ID_USUARIO, " +
+                "P.ID_CATEGORIA, P.ID_FLAG, P.TITULO, P.TEXTO, " +
                 "C.NOME AS CATEGORIA, F.NOME AS FLAG " +
                 "FROM POSTAGEM P " +
                 "INNER JOIN CATEGORIA C ON P.ID_CATEGORIA = C.ID_CATEGORIA " +
@@ -26,8 +60,6 @@ public class PostagemDAO {
 
             Connection connection = DriverManager.getConnection(
                     "jdbc:h2:~/test", "sa", "sa");
-
-            System.out.println("success in database connection");
 
             PreparedStatement preparedStatement =
                     connection.prepareStatement(SQL);
@@ -47,10 +79,12 @@ public class PostagemDAO {
                 Postagem postagem = new Postagem(
                         idPostagem, titulo, texto, categoria, flag);
 
+                postagem.setIdUsuario(resultSet.getInt("ID_USUARIO"));
+                postagem.setIdCategoria(resultSet.getInt("ID_CATEGORIA"));
+                postagem.setIdFlag(resultSet.getInt("ID_FLAG"));
+
                 postagens.add(postagem);
             }
-
-            System.out.println("success in select * postagem");
 
             connection.close();
 
@@ -58,10 +92,71 @@ public class PostagemDAO {
 
         } catch (Exception e) {
 
-            System.out.println("fail in database connection");
-            e.printStackTrace();
+            System.out.println("Erro ao listar postagens: " + e.getMessage());
 
-            return Collections.emptyList();
+        }
+
+        return Collections.emptyList();
+    }
+
+    public void updatePostagem(Postagem postagem) {
+
+        String SQL = "UPDATE POSTAGEM SET ID_USUARIO = ?, " +
+                "ID_CATEGORIA = ?, ID_FLAG = ?, TITULO = ?, " +
+                "TEXTO = ? WHERE ID_POSTAGEM = ?";
+
+        try {
+
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:h2:~/test", "sa", "sa");
+
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement(SQL);
+
+            preparedStatement.setInt(1, postagem.getIdUsuario());
+            preparedStatement.setInt(2, postagem.getIdCategoria());
+            preparedStatement.setInt(3, postagem.getIdFlag());
+            preparedStatement.setString(4, postagem.getTitulo());
+            preparedStatement.setString(5, postagem.getTexto());
+            preparedStatement.setInt(6, postagem.getIdPostagem());
+
+            preparedStatement.execute();
+
+            System.out.println("Postagem atualizada com sucesso");
+
+            connection.close();
+
+        } catch (Exception e) {
+
+            System.out.println("Erro ao atualizar postagem: " + e.getMessage());
+
+        }
+    }
+
+    public void deletePostagemById(int id) {
+
+        String SQL = "DELETE FROM POSTAGEM WHERE ID_POSTAGEM = ?";
+
+        try {
+
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:h2:~/test", "sa", "sa");
+
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement(SQL);
+
+            preparedStatement.setInt(1, id);
+
+            preparedStatement.execute();
+
+            System.out.println("Postagem excluida com sucesso");
+
+            connection.close();
+
+        } catch (Exception e) {
+
+            System.out.println("Erro ao excluir postagem: " + e.getMessage());
+
         }
     }
 }

@@ -21,18 +21,19 @@
                 <div class="form-header">
                     <h2>Entrar</h2>
                     <p>Que bom te ver de novo por aqui.</p>
+                    <p style="margin-top: 12px; color: #9146aa; font-size: 13px;">Temporário: não existe login. Qualquer pessoa entra clicando no botão Entrar.</p>
                 </div>
 
                 <!-- Formulário com os names preservados para o Back-end -->
-                <form action="${pageContext.request.contextPath}/login" method="POST" class="auth-form">
+                <form action="${pageContext.request.contextPath}/find-all-postagens" method="GET" class="auth-form">
                     <div class="input-group">
                         <label for="apelido">Apelido</label>
-                        <input type="text" id="apelido" name="apelido" required>
+                        <input type="text" id="apelido" name="apelido">
                     </div>
 
                     <div class="input-group">
                         <label for="senha">Senha</label>
-                        <input type="password" id="senha" name="senha" required>
+                        <input type="password" id="senha" name="senha">
                     </div>
 
                     <button type="submit" class="btn-submit">Entrar</button>
@@ -45,11 +46,14 @@
                     <h2>AMIS</h2>
                     <h3>Ainda não tem conta?</h3>
                     <p>Crie a sua em menos de um minuto e comece a fazer parte.</p>
-                    <a href="${pageContext.request.contextPath}/cadastro.jsp" class="btn-outline-branco">Criar conta</a>
+                    <a href="${pageContext.request.contextPath}/pages/cadastro.jsp" class="btn-outline-branco">Criar conta</a>
                 </div>
             </div>
         </div>
     </div>
 
+<c:if test="${param.cadastrado == '1'}">
+<script>alert("Cadastro realizado com sucesso! Agora você pode entrar.");</script>
+</c:if>
 </body>
 </html>

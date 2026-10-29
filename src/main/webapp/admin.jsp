@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -12,6 +13,8 @@
 
     <h2>Administração AMIS</h2>
     <p>Gerenciamento da plataforma</p>
+    <div class="alert alert-warning">Sem login temporariamente. A área administrativa está liberada apenas para testes.</div>
+    <a href="${pageContext.request.contextPath}/find-all-postagens" class="btn btn-outline-secondary btn-sm">Voltar ao feed</a>
 
     <div class="row mt-4">
 
@@ -44,13 +47,16 @@
         </div>
 
         <div class="col-md-4 mb-3">
-            <a href="#" class="text-decoration-none">
+            <a href="${pageContext.request.contextPath}/find-all-usuarios"
+               class="text-decoration-none">
+
                 <div class="card">
                     <div class="card-body">
-                        <h5>Usuárias</h5>
-                        <p>Gerenciar usuárias cadastradas</p>
+                        <h5>Usuários e páginas</h5>
+                        <p>Visualizar cadastros e gerenciar status</p>
                     </div>
                 </div>
+
             </a>
         </div>
 

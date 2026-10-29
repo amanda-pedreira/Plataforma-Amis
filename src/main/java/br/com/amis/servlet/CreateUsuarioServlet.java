@@ -15,41 +15,56 @@ import java.io.IOException;
 public class CreateUsuarioServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
 
         req.setCharacterEncoding("UTF-8");
 
+        String id = req.getParameter("id");
         String tipo = req.getParameter("tipo");
         String foto = req.getParameter("foto");
         String username = req.getParameter("username");
         String nome = req.getParameter("nome");
         String email = req.getParameter("email");
         String senha = req.getParameter("senha");
-        String confirmarSenha = req.getParameter("confirmar-senha");
+        String bio = req.getParameter("bio");
+        String status = req.getParameter("status");
+        String origem = req.getParameter("origem");
 
-        if (tipo == null || (!tipo.equals("PESSOAL") && !tipo.equals("PAGINA"))
-                || username == null || username.trim().isEmpty()
-                || nome == null || nome.trim().isEmpty()
-                || email == null || email.trim().isEmpty()
-                || senha == null || senha.isEmpty()
-                || confirmarSenha == null || !senha.equals(confirmarSenha)) {
+        UsuarioDAO dao = new UsuarioDAO();
 
-            resp.sendRedirect(req.getContextPath() + "/pages/cadastro.jsp?erro=1");
-            return;
-        }
+        Usuario usuario = new Usuario(
+                tipo, foto, username, nome, email, senha
+        );
 
-        if (foto != null && foto.trim().isEmpty()) {
-            foto = null;
-        }
+        if (id != null && !id.isEmpty()) {
 
-        Usuario usuario = new Usuario(tipo, foto, username.trim(), nome.trim(), email.trim(), senha);
+            usuario.setIdUsuario(Integer.parseInt(id));
+            usuario.setBio(bio);
+            usuario.setStatus(status);
 
-        boolean cadastrado = new UsuarioDAO().createUsuario(usuario);
+            dao.updateUsuario(usuario);
 
-        if (cadastrado) {
-            resp.sendRedirect(req.getContextPath() + "/pages/cadastro.jsp?enviado=1");
+            if ("perfil".equals(origem)) {
+                resp.sendRedirect(
+                        req.getContextPath() +
+                                "/find-all-usuarios?pagina=perfil&id=" + id
+                );
+            } else {
+                resp.sendRedirect(
+                        req.getContextPath() + "/find-all-usuarios"
+                );
+            }
+
         } else {
-            resp.sendRedirect(req.getContextPath() + "/pages/cadastro.jsp?erro=1");
+
+            boolean cadastrado = dao.createUsuario(usuario);
+
+            if (cadastrado) {
+                resp.sendRedirect(req.getContextPath() + "/pages/login.jsp?cadastrado=1");
+            } else {
+                resp.sendRedirect(req.getContextPath() + "/pages/cadastro.jsp?erro=1");
+            }
         }
     }
 }

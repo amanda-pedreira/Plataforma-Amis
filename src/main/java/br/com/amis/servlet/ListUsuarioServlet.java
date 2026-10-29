@@ -19,11 +19,20 @@ public class ListUsuarioServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        List<Usuario> usuarios = new UsuarioDAO().findAllUsuarios();
+        UsuarioDAO dao = new UsuarioDAO();
+
+        List<Usuario> usuarios = dao.findAllUsuarios();
 
         req.setAttribute("usuarios", usuarios);
 
-        req.getRequestDispatcher("/pages/perfil.jsp")
-                .forward(req, resp);
+        String pagina = req.getParameter("pagina");
+
+        if ("perfil".equals(pagina)) {
+            req.getRequestDispatcher("/pages/perfil.jsp")
+                    .forward(req, resp);
+        } else {
+            req.getRequestDispatcher("/pages/usuarios.jsp")
+                    .forward(req, resp);
+        }
     }
 }
