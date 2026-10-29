@@ -16,7 +16,7 @@
         <div class="logo-topo">AMIS</div>
         
         <div class="auth-card">
-            <!-- Coluna Esquerda: Formulário de Login -->
+            
             <div class="auth-form-section">
                 <div class="form-header">
                     <h2>Entrar</h2>
@@ -24,7 +24,6 @@
                     <p style="margin-top: 12px; color: #9146aa; font-size: 13px;">Temporário: não existe login. Qualquer pessoa entra clicando no botão Entrar.</p>
                 </div>
 
-                <!-- Formulário com os names preservados para o Back-end -->
                 <form action="${pageContext.request.contextPath}/find-all-postagens" method="GET" class="auth-form">
                     <div class="input-group">
                         <label for="apelido">Apelido</label>
@@ -40,7 +39,6 @@
                 </form>
             </div>
 
-            <!-- Coluna Direita: Banner em Gradiente (Ir para Cadastro) -->
             <div class="auth-banner">
                 <div class="banner-conteudo">
                     <h2>AMIS</h2>

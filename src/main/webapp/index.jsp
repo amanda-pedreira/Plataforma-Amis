@@ -22,9 +22,8 @@
             </div>
         </header>
 
-        <!-- Seção Principal dividida em 2 colunas (Figma) -->
         <div class="hero-grid">
-            <!-- Coluna Esquerda: Texto e Chamada para Ação -->
+            
             <div class="hero-texto-coluna">
                 <span class="tag-projeto">• Projeto Integrador · 3 desenvolvedoras</span>
                 
@@ -38,18 +37,15 @@
                 </div>
             </div>
 
-            <!-- Coluna Direita: Elementos Decorativos e Cards Flutuantes -->
             <div class="hero-ilustracao-coluna">
                 <div class="esfera-bg"></div>
-                
-                <!-- Card Flutuante Superior -->
+
                 <div class="card-flutuante card-topo-direito">
                     <span class="badge-apoio">Quero apoio</span>
                     <div class="linha-esqueleto w-80"></div>
                     <div class="linha-esqueleto w-60"></div>
                 </div>
 
-                <!-- Card Flutuante Inferior -->
                 <div class="card-flutuante card-baixo-direito">
                     <div class="avatar-mini"></div>
                     <div class="bloco-linhas">

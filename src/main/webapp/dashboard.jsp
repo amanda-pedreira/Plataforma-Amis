@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 </head>
-<body>
+<body class="amis-organizado">
 <div>
     <h1>Amis</h1>
     <table>

@@ -1,0 +1,93 @@
+body.amis-organizado {
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+}
+
+.amis-organizado .container {
+    max-width: 1050px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.amis-organizado h1,
+.amis-organizado h2,
+.amis-organizado h3,
+.amis-organizado h4 {
+    margin-bottom: 16px;
+}
+
+.amis-organizado .row {
+    row-gap: 16px;
+}
+
+.amis-organizado .card,
+.amis-organizado .caixa,
+.amis-organizado .postagem,
+.amis-organizado .journal-registro {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: none;
+}
+
+.amis-organizado .card .card,
+.amis-organizado .caixa .caixa {
+    margin-top: 12px;
+}
+
+.amis-organizado .card-body {
+    padding: 20px;
+}
+
+.amis-organizado form {
+    margin-bottom: 16px;
+}
+
+.amis-organizado label {
+    display: inline-block;
+    margin-bottom: 6px;
+}
+
+.amis-organizado input,
+.amis-organizado select,
+.amis-organizado textarea {
+    max-width: 100%;
+}
+
+.amis-organizado .form-control,
+.amis-organizado .form-select {
+    margin-bottom: 8px;
+}
+
+.amis-organizado .btn {
+    margin: 3px 4px 3px 0;
+    border-radius: 4px;
+}
+
+.amis-organizado .alert {
+    margin-top: 12px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.amis-organizado table {
+    width: 100%;
+    margin-top: 12px;
+    margin-bottom: 20px;
+}
+
+.amis-organizado th,
+.amis-organizado td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    vertical-align: top;
+}
+
+.amis-organizado hr {
+    margin: 24px 0;
+}
+
+.amis-organizado .list-group-item {
+    padding: 14px;
+}

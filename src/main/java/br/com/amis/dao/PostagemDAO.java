@@ -99,6 +99,18 @@ public class PostagemDAO {
         return Collections.emptyList();
     }
 
+    public List<Postagem> findPostagensByUsuario(int idUsuario) {
+        List<Postagem> minhasPostagens = new ArrayList<>();
+
+        for (Postagem postagem : findAllPostagens()) {
+            if (postagem.getIdUsuario() == idUsuario) {
+                minhasPostagens.add(postagem);
+            }
+        }
+
+        return minhasPostagens;
+    }
+
     public void updatePostagem(Postagem postagem) {
 
         String SQL = "UPDATE POSTAGEM SET ID_USUARIO = ?, " +

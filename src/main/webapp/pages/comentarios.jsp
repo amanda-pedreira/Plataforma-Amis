@@ -3,8 +3,9 @@
 <!DOCTYPE html>
 <html lang="pt-br"><head><meta charset="UTF-8"><title>Comentários - AMIS</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"></head>
-<body class="bg-color-claro"><div class="container mt-4">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
+</head>
+<body class="bg-color-claro amis-organizado"><div class="container mt-4">
 <h2>Comentários</h2>
 <c:if test="${not empty param.idPostagem}"><p>Comentários da postagem nº <c:out value="${param.idPostagem}" /></p></c:if>
 <div class="alert alert-warning">Temporário: qualquer pessoa pode excluir comentários. Depois, isso dependerá do usuário logado.</div>

@@ -1,5 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
-
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,14 +7,16 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin.css">
 </head>
-<body>
+<body class="amis-organizado admin-area">
 
-<div class="container mt-5">
+<div class="container admin-container admin-interna">
 
     <h2>Cadastrar / Editar Flag</h2>
 
-    <form action="${pageContext.request.contextPath}/create-flag"
+    <div class="admin-panel admin-form-panel"><form action="${pageContext.request.contextPath}/create-flag"
           method="post">
 
         <div class="mb-3">
@@ -40,11 +41,11 @@
         </button>
 
         <a href="${pageContext.request.contextPath}/find-all-flags"
-           class="btn btn-secondary">
+           class="btn btn-outline-secondary">
             Cancelar
         </a>
 
-    </form>
+    </form></div>
 
 </div>
 

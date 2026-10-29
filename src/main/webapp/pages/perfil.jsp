@@ -1,6 +1,7 @@
 
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -13,8 +14,9 @@
           rel="stylesheet">
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/css/perfil.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 </head>
-<body class="bg-color-claro">
+<body class="bg-color-claro amis-organizado">
 
 <div class="container mt-4">
 
@@ -90,7 +92,7 @@
                 <div class="alert alert-warning">Temporário: as opções de editar e excluir ainda não verificam quem está logado.</div>
                 <div class="row mt-4">
                     <div class="col-6 col-md-3">
-                        <strong>0</strong>
+                        <strong>${fn:length(minhasPostagens)}</strong>
                         <p>Postagens</p>
                     </div>
                     <div class="col-6 col-md-3">
@@ -98,11 +100,11 @@
                         <p>Registros no diário</p>
                     </div>
                     <div class="col-6 col-md-3">
-                        <strong>0</strong>
+                        <strong>${fn:length(paginasSeguidas)}</strong>
                         <p>Páginas seguidas</p>
                     </div>
                     <div class="col-6 col-md-3">
-                        <strong>0</strong>
+                        <strong>${fn:length(itensSalvos)}</strong>
                         <p>Itens salvos</p>
                     </div>
                 </div>
@@ -135,14 +137,66 @@
 
             </div>
 
-            <div class="mb-3">
-                <button class="btn btn-roxo">Minhas postagens</button>
-                <button class="btn btn-outline-secondary">Salvos</button>
-                <button class="btn btn-outline-secondary">Páginas seguidas</button>
+            <div class="caixa">
+                <h3>Minhas postagens</h3>
+                <c:forEach var="postagem" items="${minhasPostagens}">
+                    <div class="mb-3">
+                        <strong><c:out value="${postagem.titulo}" /></strong>
+                        <p><c:out value="${postagem.texto}" /></p>
+                    </div>
+                </c:forEach>
+                <c:if test="${empty minhasPostagens}">
+                    <p>Nenhuma postagem cadastrada.</p>
+                </c:if>
             </div>
 
             <div class="caixa">
-                <p>As postagens e os itens salvos serão conectados depois.</p>
+                <h3>Postagens salvas</h3>
+                <c:forEach var="post" items="${itensSalvos}">
+                    <div class="mb-3">
+                        <strong><c:out value="${post.titulo}" /></strong>
+                        <p><c:out value="${post.texto}" /></p>
+                        <form action="${pageContext.request.contextPath}/item-salvo" method="post">
+                            <input type="hidden" name="acao" value="remover">
+                            <input type="hidden" name="idUsuario" value="${usuario.idUsuario}">
+                            <input type="hidden" name="idPostagem" value="${post.idPostagem}">
+                            <button class="btn btn-outline-danger btn-sm">Remover dos salvos</button>
+                        </form>
+                    </div>
+                </c:forEach>
+                <c:if test="${empty itensSalvos}"><p>Nenhuma postagem salva.</p></c:if>
+            </div>
+            <div class="caixa">
+                <h3>Pessoas salvas</h3>
+                <c:forEach var="pessoa" items="${pessoasSalvas}">
+                    <div class="mb-2">
+                        <a href="${pageContext.request.contextPath}/perfil-publico?id=${pessoa.idUsuario}"><c:out value="${pessoa.nome}" /></a>
+                        <form action="${pageContext.request.contextPath}/relacionamento" method="post" class="d-inline">
+                            <input type="hidden" name="tipo" value="pessoa">
+                            <input type="hidden" name="acao" value="remover">
+                            <input type="hidden" name="idUsuario" value="${usuario.idUsuario}">
+                            <input type="hidden" name="idDestino" value="${pessoa.idUsuario}">
+                            <button class="btn btn-outline-danger btn-sm">Remover</button>
+                        </form>
+                    </div>
+                </c:forEach>
+                <c:if test="${empty pessoasSalvas}"><p>Nenhuma pessoa salva.</p></c:if>
+            </div>
+            <div class="caixa">
+                <h3>Páginas seguidas</h3>
+                <c:forEach var="pagina" items="${paginasSeguidas}">
+                    <div class="mb-2">
+                        <a href="${pageContext.request.contextPath}/perfil-publico?id=${pagina.idUsuario}"><c:out value="${pagina.nome}" /></a>
+                        <form action="${pageContext.request.contextPath}/relacionamento" method="post" class="d-inline">
+                            <input type="hidden" name="tipo" value="pagina">
+                            <input type="hidden" name="acao" value="remover">
+                            <input type="hidden" name="idUsuario" value="${usuario.idUsuario}">
+                            <input type="hidden" name="idDestino" value="${pagina.idUsuario}">
+                            <button class="btn btn-outline-danger btn-sm">Deixar de seguir</button>
+                        </form>
+                    </div>
+                </c:forEach>
+                <c:if test="${empty paginasSeguidas}"><p>Nenhuma página seguida.</p></c:if>
             </div>
 
         </c:if>

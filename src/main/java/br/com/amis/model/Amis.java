@@ -18,7 +18,6 @@ public class Amis {
         return color;
     }
 
-
     public String getModel() {
         return model;
     }

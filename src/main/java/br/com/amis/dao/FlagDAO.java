@@ -11,8 +11,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class FlagDAO {
-
-    // INSERT - Lab 2
     public void createFlag(Flag flag) {
 
         String SQL = "INSERT INTO FLAG (NOME) VALUES (?)";
@@ -37,8 +35,6 @@ public class FlagDAO {
             System.out.println(e.getMessage());
         }
     }
-
-    // SELECT - Lab 3
     public List<Flag> findAllFlags() {
 
         String SQL = "SELECT * FROM FLAG";
@@ -76,8 +72,6 @@ public class FlagDAO {
             return Collections.emptyList();
         }
     }
-
-    // DELETE - Lab 4
     public void deleteFlagById(String id) {
 
         String SQL = "DELETE FROM FLAG WHERE ID_FLAG = ?";
@@ -100,8 +94,6 @@ public class FlagDAO {
             System.out.println(e.getMessage());
         }
     }
-
-    // UPDATE - Lab 5
     public void updateFlag(Flag flag) {
 
         String SQL = "UPDATE FLAG SET NOME = ? WHERE ID_FLAG = ?";

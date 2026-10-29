@@ -44,7 +44,6 @@ body {
     overflow: hidden;
 }
 
-/* Banner em Gradiente */
 .auth-banner {
     background: linear-gradient(135deg, #E640B2 0%, #8E44ED 100%);
     color: white;
@@ -93,7 +92,6 @@ body {
     border-color: white;
 }
 
-/* Seção do Formulário */
 .auth-form-section {
     padding: 36px 44px;
     display: flex;
@@ -114,7 +112,6 @@ body {
     margin-bottom: 16px;
 }
 
-/* Abas de Seleção (Perfil Pessoal / Página) */
 .tabs-container {
     display: flex;
     background-color: #F1F5F9;
@@ -142,7 +139,6 @@ body {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-/* Campos do Formulário */
 .auth-form {
     display: flex;
     flex-direction: column;
@@ -240,10 +236,13 @@ body {
     .auth-card {
         grid-template-columns: 1fr;
     }
+
     .auth-banner {
         padding: 40px 20px;
     }
+
     .auth-form-section {
         padding: 30px 20px;
     }
+
 }

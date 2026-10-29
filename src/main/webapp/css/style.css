@@ -15,7 +15,6 @@ body.home-body {
     color: #1A1A1A;
 }
 
-/* Contentor Principal em Branco com Bordas Arredondadas */
 .main-card-wrapper {
     background: #FFFFFF;
     width: 100%;
@@ -27,7 +26,6 @@ body.home-body {
     overflow: hidden;
 }
 
-/* Cabeçalho Interno */
 .header-topo {
     display: flex;
     justify-content: space-between;
@@ -62,7 +60,6 @@ body.home-body {
     color: #8E44ED;
 }
 
-/* Grid de 2 Colunas (Hero Section) */
 .hero-grid {
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
@@ -106,7 +103,6 @@ body.home-body {
     align-items: center;
 }
 
-/* Botões */
 .btn-roxo {
     background: linear-gradient(135deg, #E640B2 0%, #8E44ED 100%);
     color: white;
@@ -144,7 +140,6 @@ body.home-body {
     border-color: #CBD5E1;
 }
 
-/* Coluna Direita (Ilustração e Cards Flutuantes do Figma) */
 .hero-ilustracao-coluna {
     position: relative;
     height: 340px;
@@ -206,9 +201,17 @@ body.home-body {
     margin-bottom: 6px;
 }
 
-.w-90 { width: 90%; }
-.w-80 { width: 80%; }
-.w-60 { width: 60%; }
+.w-90 {
+    width: 90%;
+}
+
+.w-80 {
+    width: 80%;
+}
+
+.w-60 {
+    width: 60%;
+}
 
 .avatar-mini {
     width: 36px;
@@ -222,15 +225,17 @@ body.home-body {
     flex-grow: 1;
 }
 
-/* Responsividade para telas menores */
 @media (max-width: 900px) {
     .hero-grid {
         grid-template-columns: 1fr;
     }
+
     .main-card-wrapper {
         padding: 30px 20px;
     }
+
     .hero-ilustracao-coluna {
         display: none;
     }
+
 }

@@ -9,10 +9,12 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin.css">
 </head>
-<body>
+<body class="amis-organizado admin-area">
 
-<div class="container mt-5">
+<div class="container admin-container admin-interna">
 
     <h2>Editar usuário ou página</h2>
 
@@ -21,7 +23,7 @@
         DE ATIVO PARA INATIVO.
     </div>
 
-    <form action="${pageContext.request.contextPath}/create-usuario"
+    <div class="admin-panel admin-form-panel"><form action="${pageContext.request.contextPath}/create-usuario"
           method="post">
 
         <input type="hidden" name="id" value="${param.id}">
@@ -88,11 +90,11 @@
         </button>
 
         <a href="${pageContext.request.contextPath}/find-all-usuarios"
-           class="btn btn-secondary">
+           class="btn btn-outline-secondary">
             Voltar
         </a>
 
-    </form>
+    </form></div>
 
 </div>
 

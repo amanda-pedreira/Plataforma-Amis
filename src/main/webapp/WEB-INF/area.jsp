@@ -7,15 +7,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AMIS - Sua amis para todos os dias</title>
-    <!-- Bootstrap 5 CDN -->
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Folha de estilos personalizada -->
+    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 </head>
-<body class="landing-body">
+<body class="landing-body amis-organizado">
 
     <div class="container py-4">
-        <!-- Cabeçalho (Header) -->
+        
         <header class="d-flex justify-content-between align-items-center mb-5">
             <div class="logo-area">
                 <h2 class="fw-bold text-dark m-0">AM<span class="text-gradient">IS</span></h2>
@@ -27,9 +28,8 @@
             </div>
         </header>
 
-        <!-- Conteúdo Principal (Hero Section) -->
         <main class="row align-items-center min-vh-75 mt-4">
-            <!-- Lado Esquerdo: Textos e Chamada para Ação -->
+            
             <div class="col-lg-6 mb-5 mb-lg-0">
                 <div class="badge-projeto mb-3">
                     <span class="dot-pink"></span> Projeto Integrador · 3 desenvolvedoras
@@ -49,7 +49,6 @@
                 </div>
             </div>
 
-            <!-- Lado Direito: Cartões Ilustrativos -->
             <div class="col-lg-6 position-relative text-center">
                 <div class="bg-blob"></div>
 

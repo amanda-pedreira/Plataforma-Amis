@@ -11,8 +11,9 @@
           rel="stylesheet">
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/css/perfil.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 </head>
-<body class="bg-color-claro">
+<body class="bg-color-claro amis-organizado">
 
 <div class="container mt-5">
 

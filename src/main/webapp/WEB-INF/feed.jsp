@@ -14,8 +14,9 @@
 
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 </head>
-<body class="bg-color-claro">
+<body class="bg-color-claro amis-organizado">
 
 <div class="container mt-4">
 
@@ -27,6 +28,7 @@
         <div class="col-auto">
             <a href="${pageContext.request.contextPath}/find-all-usuarios?pagina=perfil"
                class="btn btn-roxo">Perfil</a>
+            <a href="${pageContext.request.contextPath}/journal" class="btn btn-outline-secondary">Journal</a>
             <a href="${pageContext.request.contextPath}/admin.jsp"
                class="btn btn-outline-secondary" data-bs-toggle="tooltip"
                title="Botão temporário: área administrativa sem login">Área administrativa</a>
@@ -56,6 +58,11 @@
 
                 <div class="postagem">
 
+                    <p class="mb-2">Publicado por:
+                        <a href="${pageContext.request.contextPath}/perfil-publico?id=${postagem.idUsuario}">
+                            <c:out value="${nomesAutores[postagem.idUsuario]}" />
+                        </a>
+                    </p>
                     <h4><c:out value="${postagem.titulo}" /></h4>
 
                     <p><c:out value="${postagem.texto}" /></p>
@@ -82,6 +89,17 @@
                     <a href="${editar}" class="btn btn-primary btn-sm">
                         Editar
                     </a>
+
+                    <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#salvar${postagem.idPostagem}">Salvar postagem</button>
+                    <div class="collapse mt-2" id="salvar${postagem.idPostagem}">
+                        <form action="${pageContext.request.contextPath}/item-salvo" method="post" class="card card-body">
+                            <p>Salvar: <strong><c:out value="${postagem.titulo}" /></strong></p>
+                            <input type="hidden" name="idPostagem" value="${postagem.idPostagem}">
+                            <label>Seu ID (temporário)</label>
+                            <input type="number" name="idUsuario" min="1" class="form-control mb-2" required>
+                            <button class="btn btn-primary btn-sm">Salvar</button>
+                        </form>
+                    </div>
 
                     <button class="btn btn-outline-secondary btn-sm" type="button"
                             data-bs-toggle="collapse" data-bs-target="#comentar${postagem.idPostagem}">

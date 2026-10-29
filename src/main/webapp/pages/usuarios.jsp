@@ -10,10 +10,12 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin.css">
 </head>
-<body>
+<body class="amis-organizado admin-area">
 
-<div class="container mt-5">
+<div class="container admin-container admin-interna">
 
     <h2>Usuários e páginas</h2>
     <p>Gerenciamento dos cadastros da plataforma</p>
@@ -24,11 +26,11 @@
     </div>
 
     <a href="${pageContext.request.contextPath}/admin.jsp"
-       class="btn btn-secondary mb-3">
+       class="btn btn-outline-secondary mb-3">
         Voltar
     </a>
 
-    <table class="table table-bordered">
+    <div class="admin-panel admin-table-panel"><div class="table-responsive"><table class="table table-hover align-middle admin-table">
 
         <tr>
             <th>ID</th>
@@ -71,7 +73,7 @@
 
         </c:forEach>
 
-    </table>
+    </table></div></div>
 
 </div>
 

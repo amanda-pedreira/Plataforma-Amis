@@ -11,8 +11,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class CategoriaDAO {
-
-    // INSERT - Lab 2
     public void createCategoria(Categoria categoria) {
 
         String SQL = "INSERT INTO CATEGORIA (NOME) VALUES (?)";
@@ -37,8 +35,6 @@ public class CategoriaDAO {
             System.out.println(e.getMessage());
         }
     }
-
-    // SELECT - Lab 3
     public List<Categoria> findAllCategorias() {
 
         String SQL = "SELECT * FROM CATEGORIA";
@@ -76,8 +72,6 @@ public class CategoriaDAO {
             return Collections.emptyList();
         }
     }
-
-    // DELETE - Lab 4
     public void deleteCategoriaById(String id) {
 
         String SQL = "DELETE FROM CATEGORIA WHERE ID_CATEGORIA = ?";
@@ -100,8 +94,6 @@ public class CategoriaDAO {
             System.out.println(e.getMessage());
         }
     }
-
-    // UPDATE - Lab 5
     public void updateCategoria(Categoria categoria) {
 
         String SQL = "UPDATE CATEGORIA SET NOME = ? WHERE ID_CATEGORIA = ?";

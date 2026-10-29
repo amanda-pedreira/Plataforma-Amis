@@ -2,6 +2,9 @@
 package br.com.amis.servlet;
 
 import br.com.amis.dao.UsuarioDAO;
+import br.com.amis.dao.RelacionamentoDAO;
+import br.com.amis.dao.ItemSalvoDAO;
+import br.com.amis.dao.PostagemDAO;
 import br.com.amis.model.Usuario;
 
 import javax.servlet.ServletException;
@@ -28,6 +31,15 @@ public class ListUsuarioServlet extends HttpServlet {
         String pagina = req.getParameter("pagina");
 
         if ("perfil".equals(pagina)) {
+            try {
+                int id = Integer.parseInt(req.getParameter("id"));
+                RelacionamentoDAO relacao = new RelacionamentoDAO();
+                req.setAttribute("pessoasSalvas", relacao.listar("PESSOA_SALVA", "ID_PESSOA", id));
+                req.setAttribute("paginasSeguidas", relacao.listar("PAGINA_SEGUIDA", "ID_PAGINA", id));
+                req.setAttribute("itensSalvos", new ItemSalvoDAO().listar(id));
+                req.setAttribute("minhasPostagens", new PostagemDAO().findPostagensByUsuario(id));
+            } catch (Exception e) {
+            }
             req.getRequestDispatcher("/pages/perfil.jsp")
                     .forward(req, resp);
         } else {
