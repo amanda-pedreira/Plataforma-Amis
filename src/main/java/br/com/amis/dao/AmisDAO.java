@@ -1,4 +1,5 @@
 package br.com.amis.dao;
+import br.com.amis.servlet.config.ConnectionPoolConfig;
 
 import br.com.amis.model.Amis;
 
@@ -18,9 +19,9 @@ public class AmisDAO {
 
         try {
 
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
 
-            System.out.println("Sucesso ao conectar no banco de dados!");
+
+            Connection connection = ConnectionPoolConfig.getConnection();
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
 
@@ -46,7 +47,7 @@ public class AmisDAO {
 
         try {
 
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            Connection connection = ConnectionPoolConfig.getConnection();
 
             System.out.println("Sucesso ao abrir a conexão com DB");
 

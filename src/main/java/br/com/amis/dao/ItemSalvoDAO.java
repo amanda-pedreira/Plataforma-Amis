@@ -1,5 +1,7 @@
 package br.com.amis.dao;
 
+import br.com.amis.servlet.config.ConnectionPoolConfig;
+
 import br.com.amis.model.Postagem;
 import java.sql.*;
 import java.util.*;
@@ -7,7 +9,7 @@ import java.util.*;
 public class ItemSalvoDAO {
     public void salvar(int idUsuario, int idPostagem) {
         String sql = "INSERT INTO ITEM_SALVO (ID_USUARIO, ID_POSTAGEM) VALUES (?, ?)";
-        try (Connection c = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+        try (Connection c = ConnectionPoolConfig.getConnection();
              PreparedStatement ps = c.prepareStatement(sql)) {
             ps.setInt(1, idUsuario);
             ps.setInt(2, idPostagem);
@@ -17,7 +19,7 @@ public class ItemSalvoDAO {
 
     public void remover(int idUsuario, int idPostagem) {
         String sql = "DELETE FROM ITEM_SALVO WHERE ID_USUARIO = ? AND ID_POSTAGEM = ?";
-        try (Connection c = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+        try (Connection c = ConnectionPoolConfig.getConnection();
              PreparedStatement ps = c.prepareStatement(sql)) {
             ps.setInt(1, idUsuario);
             ps.setInt(2, idPostagem);
@@ -31,7 +33,7 @@ public class ItemSalvoDAO {
                 "FROM POSTAGEM P INNER JOIN ITEM_SALVO S ON P.ID_POSTAGEM = S.ID_POSTAGEM " +
                 "INNER JOIN CATEGORIA C ON P.ID_CATEGORIA = C.ID_CATEGORIA " +
                 "INNER JOIN FLAG F ON P.ID_FLAG = F.ID_FLAG WHERE S.ID_USUARIO = ? ORDER BY P.ID_POSTAGEM DESC";
-        try (Connection c = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+        try (Connection c = ConnectionPoolConfig.getConnection();
              PreparedStatement ps = c.prepareStatement(sql)) {
             ps.setInt(1, idUsuario);
             ResultSet rs = ps.executeQuery();

@@ -24,7 +24,7 @@
                 <h2>AMIS</h2>
                 <h3>Já faz parte da comunidade?</h3>
                 <p>Entre com seu apelido e continue de onde parou.</p>
-                <a href="${pageContext.request.contextPath}/pages/login.jsp"
+                <a href="${pageContext.request.contextPath}/login"
                    class="btn-outline-branco">Entrar</a>
             </div>
         </div>

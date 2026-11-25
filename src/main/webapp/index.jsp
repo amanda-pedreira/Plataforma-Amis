@@ -16,9 +16,9 @@
         <header class="header-topo">
             <div class="logo-amis">AMIS</div>
             <div class="nav-auth">
-                <a href="${pageContext.request.contextPath}/pages/login.jsp" class="link-entrar">Entrar</a>
+                <a href="${pageContext.request.contextPath}/login" class="link-entrar">Entrar</a>
                 <a href="${pageContext.request.contextPath}/pages/cadastro.jsp" class="btn-roxo">Criar conta</a>
-                <a href="${pageContext.request.contextPath}/admin.jsp" class="link-entrar" title="Botão temporário: área administrativa sem login">Área administrativa</a>
+                <a href="${pageContext.request.contextPath}/admin.jsp" class="link-entrar">Área administrativa</a>
             </div>
         </header>
 
@@ -33,7 +33,7 @@
 
                 <div class="botoes-acao">
                     <a href="${pageContext.request.contextPath}/pages/cadastro.jsp" class="btn-roxo">Criar conta</a>
-                    <a href="${pageContext.request.contextPath}/pages/login.jsp" class="btn-secundario">Já tenho conta</a>
+                    <a href="${pageContext.request.contextPath}/login" class="btn-secundario">Já tenho conta</a>
                 </div>
             </div>
 

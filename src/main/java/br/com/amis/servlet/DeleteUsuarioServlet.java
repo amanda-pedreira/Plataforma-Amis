@@ -17,15 +17,27 @@ public class DeleteUsuarioServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        String id = req.getParameter("id");
+        if (req.getSession().getAttribute("idUsuario") == null) {
+            resp.sendRedirect(req.getContextPath() + "/login");
+            return;
+        }
+        int id = (Integer) req.getSession().getAttribute("idUsuario");
+        if (!"perfil".equals(req.getParameter("origem"))) {
+            resp.sendRedirect(req.getContextPath() + "/find-all-postagens");
+            return;
+        }
 
         UsuarioDAO dao = new UsuarioDAO();
 
-        dao.deleteUsuario(Integer.parseInt(id));
+        if (dao.deleteUsuario(id)) {
+            req.getSession().invalidate();
+            resp.sendRedirect(req.getContextPath() + "/login");
+            return;
+        }
 
         resp.sendRedirect(
                 req.getContextPath() +
-                        "/find-all-usuarios?pagina=perfil"
+                        "/find-all-usuarios?pagina=perfil&erro=1"
         );
     }
 }

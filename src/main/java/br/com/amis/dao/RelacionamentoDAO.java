@@ -1,5 +1,7 @@
 package br.com.amis.dao;
 
+import br.com.amis.servlet.config.ConnectionPoolConfig;
+
 import br.com.amis.model.Usuario;
 import java.sql.*;
 import java.util.*;
@@ -8,7 +10,7 @@ public class RelacionamentoDAO {
     public boolean salvar(String tabela, String coluna, int idUsuario, int idDestino) {
         if (!tabela.equals("PESSOA_SALVA") && !tabela.equals("PAGINA_SEGUIDA")) return false;
         String sql = "INSERT INTO " + tabela + " (ID_USUARIO, " + coluna + ") VALUES (?, ?)";
-        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+        try (Connection connection = ConnectionPoolConfig.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, idUsuario);
             ps.setInt(2, idDestino);
@@ -22,7 +24,7 @@ public class RelacionamentoDAO {
     public boolean remover(String tabela, String coluna, int idUsuario, int idDestino) {
         if (!tabela.equals("PESSOA_SALVA") && !tabela.equals("PAGINA_SEGUIDA")) return false;
         String sql = "DELETE FROM " + tabela + " WHERE ID_USUARIO = ? AND " + coluna + " = ?";
-        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+        try (Connection connection = ConnectionPoolConfig.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, idUsuario);
             ps.setInt(2, idDestino);
@@ -39,7 +41,7 @@ public class RelacionamentoDAO {
         String sql = "SELECT U.ID_USUARIO, U.NOME, U.USERNAME, U.TIPO, U.BIO, U.FOTO " +
                 "FROM USUARIO U INNER JOIN " + tabela + " R ON U.ID_USUARIO = R." + coluna +
                 " WHERE R.ID_USUARIO = ? ORDER BY U.NOME";
-        try (Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+        try (Connection connection = ConnectionPoolConfig.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, idUsuario);
             ResultSet rs = ps.executeQuery();

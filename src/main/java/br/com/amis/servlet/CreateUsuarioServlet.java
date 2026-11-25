@@ -28,7 +28,6 @@ public class CreateUsuarioServlet extends HttpServlet {
         String email = req.getParameter("email");
         String senha = req.getParameter("senha");
         String bio = req.getParameter("bio");
-        String status = req.getParameter("status");
         String origem = req.getParameter("origem");
 
         UsuarioDAO dao = new UsuarioDAO();
@@ -37,31 +36,44 @@ public class CreateUsuarioServlet extends HttpServlet {
                 tipo, foto, username, nome, email, senha
         );
 
-        if (id != null && !id.isEmpty()) {
-
-            usuario.setIdUsuario(Integer.parseInt(id));
-            usuario.setBio(bio);
-            usuario.setStatus(status);
-
-            dao.updateUsuario(usuario);
-
-            if ("perfil".equals(origem)) {
-                resp.sendRedirect(
-                        req.getContextPath() +
-                                "/find-all-usuarios?pagina=perfil&id=" + id
-                );
-            } else {
-                resp.sendRedirect(
-                        req.getContextPath() + "/find-all-usuarios"
-                );
+        if ("perfil".equals(origem)) {
+            if (req.getSession().getAttribute("idUsuario") == null) {
+                resp.sendRedirect(req.getContextPath() + "/login");
+                return;
             }
+            int idUsuario = (Integer) req.getSession().getAttribute("idUsuario");
+            usuario = dao.findUsuarioById(idUsuario);
+            if (usuario == null) {
+                resp.sendRedirect(req.getContextPath() + "/logout");
+                return;
+            }
+            usuario.setNome(nome);
+            usuario.setUsername(username);
+            usuario.setEmail(email);
+            usuario.setFoto(foto);
+            usuario.setBio(bio);
+            if (dao.updateUsuario(usuario)) {
+                req.getSession().setAttribute("loggedUser", username);
+                resp.sendRedirect(req.getContextPath() + "/find-all-usuarios?pagina=perfil");
+            } else {
+                resp.sendRedirect(req.getContextPath() + "/find-all-usuarios?pagina=perfil&erro=1");
+            }
+            return;
+        }
+        if (id != null && !id.isEmpty()) {
+            resp.sendRedirect(req.getContextPath() + "/find-all-postagens");
+            return;
+        }
+        if (!"PESSOAL".equals(tipo) && !"PAGINA".equals(tipo)) {
+            resp.sendRedirect(req.getContextPath() + "/pages/cadastro.jsp?erro=1");
+            return;
+        }
 
-        } else {
-
+        {
             boolean cadastrado = dao.createUsuario(usuario);
 
             if (cadastrado) {
-                resp.sendRedirect(req.getContextPath() + "/pages/login.jsp?cadastrado=1");
+                resp.sendRedirect(req.getContextPath() + "/login?cadastrado=1");
             } else {
                 resp.sendRedirect(req.getContextPath() + "/pages/cadastro.jsp?erro=1");
             }

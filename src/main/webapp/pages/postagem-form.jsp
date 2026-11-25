@@ -1,6 +1,7 @@
 
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -39,44 +40,49 @@
     <form action="${pageContext.request.contextPath}/create-postagem"
           method="post">
 
-        <input type="hidden" name="id" value="${param.id}">
+
+
+        
 
         <div class="mb-3">
-            <label class="form-label">ID do usuário</label>
-            <input type="number" name="idUsuario"
-                   class="form-control"
-                   value="${param.idUsuario}" required>
+            <label class="form-label">Categoria</label>
+            <div class="amis-opcoes">
+                <c:forEach var="categoria" items="${categorias}">
+                    <label class="amis-opcao">
+                        <input type="radio" name="idCategoria" value="${categoria.id}" required>
+                        <span><c:out value="${categoria.nome}"/></span>
+                    </label>
+                </c:forEach>
+            </div>
         </div>
 
         <div class="mb-3">
-            <label class="form-label">ID da categoria</label>
-            <input type="number" name="idCategoria"
-                   class="form-control"
-                   value="${param.idCategoria}" required>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">ID da flag</label>
-            <input type="number" name="idFlag"
-                   class="form-control"
-                   value="${param.idFlag}" required>
+            <label class="form-label">Flag</label>
+            <div class="amis-opcoes">
+                <c:forEach var="flag" items="${flags}">
+                    <label class="amis-opcao">
+                        <input type="radio" name="idFlag" value="${flag.id}" required>
+                        <span><c:out value="${flag.nome}"/></span>
+                    </label>
+                </c:forEach>
+            </div>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Título</label>
             <input type="text" name="titulo"
                    class="form-control"
-                   value="${param.titulo}">
+                   >
         </div>
 
         <div class="mb-3">
             <label class="form-label">Texto</label>
             <textarea name="texto" class="form-control"
-                      rows="5" required>${param.texto}</textarea>
+                      rows="5" required></textarea>
         </div>
 
         <button type="submit" class="btn btn-roxo">
-            Salvar
+            Publicar
         </button>
 
         <a href="${pageContext.request.contextPath}/find-all-postagens"

@@ -505,3 +505,18 @@ body.amis-tela.bg-color-escuro {
     background: #393441;
     border-color: #504858;
 }
+
+.amis-opcoes { display: flex; flex-wrap: wrap; gap: 10px; }
+.amis-opcao { cursor: pointer; position: relative; }
+.amis-opcao input { position: absolute; opacity: 0; }
+.amis-opcao span { display: block; padding: 12px 18px; border: 1px solid #d7c5d0; border-radius: 8px; }
+.amis-opcao input:checked + span { background: #f3d8e9; color: #773b60; border-color: #a75a89; }
+.amis-opcao input:focus + span { outline: 2px solid #a75a89; outline-offset: 2px; }
+
+.perfil-social { overflow: hidden; }
+.perfil-capa { height: 100px; background: #efc9df; border-radius: 12px; margin-bottom: 20px; }
+.perfil-social .amis-perfil-bio { margin-top: 12px; }
+.perfil-social .amis-perfil-desde { font-size: 13px; margin-top: 15px; }
+.amis-abas a.aba-ativa { background: #fce9f4; color: #a45183; border-color: #e6b5d3; }
+.perfil-opcoes { display: inline-block; margin-left: 12px; }
+.perfil-opcoes summary { cursor: pointer; font-size: 24px; list-style: none; }

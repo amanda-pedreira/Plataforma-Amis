@@ -1,5 +1,7 @@
 package br.com.amis.dao;
 
+import br.com.amis.servlet.config.ConnectionPoolConfig;
+
 import br.com.amis.model.Comentario;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,7 +14,7 @@ public class ComentarioDAO {
     public void createComentario(Comentario comentario) {
         String SQL = "INSERT INTO COMENTARIO (ID_POSTAGEM, ID_USUARIO, TEXTO) VALUES (?, ?, ?)";
         try {
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            Connection connection = ConnectionPoolConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setInt(1, comentario.getIdPostagem());
             preparedStatement.setInt(2, comentario.getIdUsuario());
@@ -28,7 +30,7 @@ public class ComentarioDAO {
         List<Comentario> comentarios = new ArrayList<>();
         String SQL = "SELECT * FROM COMENTARIO ORDER BY ID_COMENTARIO DESC";
         try {
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            Connection connection = ConnectionPoolConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -46,7 +48,7 @@ public class ComentarioDAO {
     public void deleteComentarioById(int id) {
         String SQL = "DELETE FROM COMENTARIO WHERE ID_COMENTARIO = ?";
         try {
-            Connection connection = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+            Connection connection = ConnectionPoolConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setInt(1, id);
             preparedStatement.execute();

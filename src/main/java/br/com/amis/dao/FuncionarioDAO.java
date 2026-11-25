@@ -1,5 +1,7 @@
 package br.com.amis.dao;
 
+import br.com.amis.servlet.config.ConnectionPoolConfig;
+
 import br.com.amis.model.Funcionario;
 import java.sql.*;
 import java.util.*;
@@ -9,7 +11,7 @@ public class FuncionarioDAO {
         String sql = f.getIdFuncionario() == 0
                 ? "INSERT INTO FUNCIONARIO (NOME, EMAIL, CARGO, STATUS, PERMISSAO) VALUES (?, ?, ?, ?, ?)"
                 : "UPDATE FUNCIONARIO SET NOME=?, EMAIL=?, CARGO=?, STATUS=?, PERMISSAO=? WHERE ID_FUNCIONARIO=?";
-        try (Connection c = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+        try (Connection c = ConnectionPoolConfig.getConnection();
              PreparedStatement ps = c.prepareStatement(sql)) {
             ps.setString(1, f.getNome()); ps.setString(2, f.getEmail());
             ps.setString(3, f.getCargo()); ps.setString(4, f.getStatus());
@@ -19,14 +21,14 @@ public class FuncionarioDAO {
         } catch (Exception e) { System.out.println("Erro ao salvar funcionário: " + e.getMessage()); }
     }
     public void excluir(int id) {
-        try (Connection c = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+        try (Connection c = ConnectionPoolConfig.getConnection();
              PreparedStatement ps = c.prepareStatement("DELETE FROM FUNCIONARIO WHERE ID_FUNCIONARIO=?")) {
             ps.setInt(1, id); ps.executeUpdate();
         } catch (Exception e) { System.out.println("Erro ao excluir funcionário: " + e.getMessage()); }
     }
     public List<Funcionario> listar() {
         List<Funcionario> lista = new ArrayList<>();
-        try (Connection c = DriverManager.getConnection("jdbc:h2:~/test", "sa", "sa");
+        try (Connection c = ConnectionPoolConfig.getConnection();
              PreparedStatement ps = c.prepareStatement("SELECT * FROM FUNCIONARIO ORDER BY ID_FUNCIONARIO");
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {

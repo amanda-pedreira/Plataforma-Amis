@@ -1,5 +1,7 @@
 package br.com.amis.dao;
 
+import br.com.amis.servlet.config.ConnectionPoolConfig;
+
 import br.com.amis.model.Categoria;
 
 import java.sql.Connection;
@@ -17,8 +19,7 @@ public class CategoriaDAO {
 
         try {
 
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:h2:~/test", "sa", "sa");
+            Connection connection = ConnectionPoolConfig.getConnection();
 
             System.out.println("Sucesso ao conectar no banco de dados!");
 
@@ -41,8 +42,7 @@ public class CategoriaDAO {
 
         try {
 
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:h2:~/test", "sa", "sa");
+            Connection connection = ConnectionPoolConfig.getConnection();
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -78,8 +78,7 @@ public class CategoriaDAO {
 
         try {
 
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:h2:~/test", "sa", "sa");
+            Connection connection = ConnectionPoolConfig.getConnection();
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setString(1, id);
@@ -100,8 +99,7 @@ public class CategoriaDAO {
 
         try {
 
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:h2:~/test", "sa", "sa");
+            Connection connection = ConnectionPoolConfig.getConnection();
 
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
 

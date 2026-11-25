@@ -1,6 +1,8 @@
 
 package br.com.amis.dao;
 
+import br.com.amis.servlet.config.ConnectionPoolConfig;
+
 import br.com.amis.model.Usuario;
 
 import java.sql.Connection;
@@ -19,9 +21,7 @@ public class UsuarioDAO {
                 "VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:h2:~/test", "sa", "sa"
-            );
+            Connection connection = ConnectionPoolConfig.getConnection();
 
             PreparedStatement preparedStatement =
                     connection.prepareStatement(SQL);
@@ -51,9 +51,7 @@ public class UsuarioDAO {
         String SQL = "SELECT * FROM USUARIO ORDER BY ID_USUARIO";
 
         try {
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:h2:~/test", "sa", "sa"
-            );
+            Connection connection = ConnectionPoolConfig.getConnection();
 
             PreparedStatement preparedStatement =
                     connection.prepareStatement(SQL);
@@ -95,9 +93,7 @@ public class UsuarioDAO {
         String SQL = "SELECT * FROM USUARIO WHERE ID_USUARIO = ?";
 
         try {
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:h2:~/test", "sa", "sa"
-            );
+            Connection connection = ConnectionPoolConfig.getConnection();
 
             PreparedStatement preparedStatement =
                     connection.prepareStatement(SQL);
@@ -144,9 +140,7 @@ public class UsuarioDAO {
                 "STATUS = ? WHERE ID_USUARIO = ?";
 
         try {
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:h2:~/test", "sa", "sa"
-            );
+            Connection connection = ConnectionPoolConfig.getConnection();
 
             PreparedStatement preparedStatement =
                     connection.prepareStatement(SQL);
@@ -176,9 +170,7 @@ public class UsuarioDAO {
         String SQL = "DELETE FROM USUARIO WHERE ID_USUARIO = ?";
 
         try {
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:h2:~/test", "sa", "sa"
-            );
+            Connection connection = ConnectionPoolConfig.getConnection();
 
             PreparedStatement preparedStatement =
                     connection.prepareStatement(SQL);

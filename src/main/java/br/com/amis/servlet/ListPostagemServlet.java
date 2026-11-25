@@ -1,11 +1,11 @@
 
 package br.com.amis.servlet;
 
+import br.com.amis.dao.ItemSalvoDAO;
+
 import br.com.amis.dao.PostagemDAO;
 import br.com.amis.dao.UsuarioDAO;
-import br.com.amis.model.Usuario;
-import java.util.Map;
-import java.util.HashMap;
+import br.com.amis.dao.ComentarioDAO;
 import br.com.amis.model.Postagem;
 
 import javax.servlet.ServletException;
@@ -25,16 +25,13 @@ public class ListPostagemServlet extends HttpServlet {
 
         List<Postagem> postagens = new PostagemDAO().findAllPostagens();
 
-        req.setAttribute("postagens", postagens);
-        Map<Integer, String> nomes = new HashMap<>();
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        for (Postagem postagem : postagens) {
-            if (!nomes.containsKey(postagem.getIdUsuario())) {
-                Usuario usuario = usuarioDAO.findUsuarioById(postagem.getIdUsuario());
-                nomes.put(postagem.getIdUsuario(), usuario == null ? "Usuário" : usuario.getNome());
-            }
+        if (req.getSession().getAttribute("idUsuario") != null) {
+            int idUsuario = (Integer) req.getSession().getAttribute("idUsuario");
+            req.setAttribute("itensSalvos", new ItemSalvoDAO().listar(idUsuario));
         }
-        req.setAttribute("nomesAutores", nomes);
+        req.setAttribute("postagens", postagens);
+        req.setAttribute("usuarios", new UsuarioDAO().findAllUsuarios());
+        req.setAttribute("comentarios", new ComentarioDAO().findAllComentarios());
 
         req.getRequestDispatcher("/WEB-INF/feed.jsp").forward(req, resp);
     }

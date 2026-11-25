@@ -2,6 +2,8 @@
 package br.com.amis.servlet;
 
 import br.com.amis.dao.PostagemDAO;
+import br.com.amis.dao.CategoriaDAO;
+import br.com.amis.dao.FlagDAO;
 import br.com.amis.model.Postagem;
 
 import javax.servlet.ServletException;
@@ -15,15 +17,30 @@ import java.io.IOException;
 public class CreatePostagemServlet extends HttpServlet {
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        if (req.getSession().getAttribute("idUsuario") == null) {
+            resp.sendRedirect(req.getContextPath() + "/login");
+            return;
+        }
+        req.setAttribute("categorias", new CategoriaDAO().findAllCategorias());
+        req.setAttribute("flags", new FlagDAO().findAllFlags());
+        req.getRequestDispatcher("/pages/postagem-form.jsp").forward(req, resp);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
         req.setCharacterEncoding("UTF-8");
 
-        String id = req.getParameter("id");
         String titulo = req.getParameter("titulo");
         String texto = req.getParameter("texto");
-        int idUsuario = Integer.parseInt(req.getParameter("idUsuario"));
+        if (req.getSession().getAttribute("idUsuario") == null) {
+            resp.sendRedirect(req.getContextPath() + "/login");
+            return;
+        }
+        int idUsuario = (Integer) req.getSession().getAttribute("idUsuario");
         int idCategoria = Integer.parseInt(req.getParameter("idCategoria"));
         int idFlag = Integer.parseInt(req.getParameter("idFlag"));
 
@@ -35,17 +52,7 @@ public class CreatePostagemServlet extends HttpServlet {
         postagem.setIdCategoria(idCategoria);
         postagem.setIdFlag(idFlag);
 
-        if (id != null && !id.isEmpty()) {
-
-            postagem.setIdPostagem(Integer.parseInt(id));
-
-            dao.updatePostagem(postagem);
-
-        } else {
-
-            dao.createPostagem(postagem);
-
-        }
+        dao.createPostagem(postagem);
 
         resp.sendRedirect(req.getContextPath() + "/find-all-postagens");
     }

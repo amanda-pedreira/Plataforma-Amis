@@ -1,5 +1,6 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <head>
     <meta charset="UTF-8">
@@ -8,18 +9,26 @@
 </head>
 <body class="amis-organizado">
 <div>
+
+    <c:if test="${sessionScope.loggedUser != null}">
+        <span>${sessionScope.loggedUser}</span>
+        <a href="${pageContext.request.contextPath}/logout">Logout</a>
+    </c:if>
+
     <h1>Amis</h1>
+
     <table>
         <tr>
-                        <th>Name</th>
+            <th>Name</th>
         </tr>
+
         <c:forEach var="amisItem" items="${amis}">
             <tr>
-                <td></td>
                 <td>${amisItem.name}</td>
             </tr>
         </c:forEach>
     </table>
+
 </div>
 </body>
 </html>

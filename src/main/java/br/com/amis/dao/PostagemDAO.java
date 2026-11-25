@@ -1,6 +1,8 @@
 
 package br.com.amis.dao;
 
+import br.com.amis.servlet.config.ConnectionPoolConfig;
+
 import br.com.amis.model.Postagem;
 
 import java.sql.Connection;
@@ -21,8 +23,7 @@ public class PostagemDAO {
 
         try {
 
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:h2:~/test", "sa", "sa");
+            Connection connection = ConnectionPoolConfig.getConnection();
 
             PreparedStatement preparedStatement =
                     connection.prepareStatement(SQL);
@@ -58,8 +59,7 @@ public class PostagemDAO {
 
         try {
 
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:h2:~/test", "sa", "sa");
+            Connection connection = ConnectionPoolConfig.getConnection();
 
             PreparedStatement preparedStatement =
                     connection.prepareStatement(SQL);
@@ -111,48 +111,13 @@ public class PostagemDAO {
         return minhasPostagens;
     }
 
-    public void updatePostagem(Postagem postagem) {
-
-        String SQL = "UPDATE POSTAGEM SET ID_USUARIO = ?, " +
-                "ID_CATEGORIA = ?, ID_FLAG = ?, TITULO = ?, " +
-                "TEXTO = ? WHERE ID_POSTAGEM = ?";
-
-        try {
-
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:h2:~/test", "sa", "sa");
-
-            PreparedStatement preparedStatement =
-                    connection.prepareStatement(SQL);
-
-            preparedStatement.setInt(1, postagem.getIdUsuario());
-            preparedStatement.setInt(2, postagem.getIdCategoria());
-            preparedStatement.setInt(3, postagem.getIdFlag());
-            preparedStatement.setString(4, postagem.getTitulo());
-            preparedStatement.setString(5, postagem.getTexto());
-            preparedStatement.setInt(6, postagem.getIdPostagem());
-
-            preparedStatement.execute();
-
-            System.out.println("Postagem atualizada com sucesso");
-
-            connection.close();
-
-        } catch (Exception e) {
-
-            System.out.println("Erro ao atualizar postagem: " + e.getMessage());
-
-        }
-    }
-
     public void deletePostagemById(int id) {
 
         String SQL = "DELETE FROM POSTAGEM WHERE ID_POSTAGEM = ?";
 
         try {
 
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:h2:~/test", "sa", "sa");
+            Connection connection = ConnectionPoolConfig.getConnection();
 
             PreparedStatement preparedStatement =
                     connection.prepareStatement(SQL);

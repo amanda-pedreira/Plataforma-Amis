@@ -31,130 +31,106 @@
         <div class="amis-direita">
             <button type="button" id="botao-tema" class="amis-tema" onclick="mudarTema()" title="Alternar tema" aria-label="Alternar tema">☾</button>
             <a class="amis-admin-link" href="${pageContext.request.contextPath}/admin.jsp">Admin</a>
+            <c:if test="${sessionScope.loggedUser != null}">
+                <a href="${pageContext.request.contextPath}/logout">Sair</a>
+            </c:if>
+            <c:if test="${sessionScope.loggedUser == null}">
+                <a href="${pageContext.request.contextPath}/login">Entrar</a>
+            </c:if>
         </div>
     </div>
 </header>
-<div class="container mt-4 amis-feed">
-    <div class="amis-feed-titulo"><div><h2>Seu feed</h2><p>Um espaço para compartilhar e conversar.</p></div><a href="${pageContext.request.contextPath}/pages/postagem-form.jsp" class="btn btn-roxo">+ Nova postagem</a></div>
-    <div class="row justify-content-center">
-        <div class="col-lg-9 col-xl-8">
-
-            <h2 class="visually-hidden">Feed</h2>
-            <div class="alert alert-warning" role="alert">
-                Temporário: todos podem alterar e excluir postagens. Depois, cada usuário poderá alterar ou excluir apenas suas próprias postagens.
+<main class="container mt-4 amis-feed">
+    <div class="row">
+        <section class="col-lg-8">
+            <div class="amis-feed-titulo">
+                <div><h2>Seu feed</h2><p>Um espaço para compartilhar e conversar.</p></div>
+                <a href="${pageContext.request.contextPath}/create-postagem" class="btn btn-roxo">+ Nova postagem</a>
             </div>
-
-
-
             <c:forEach var="postagem" items="${postagens}">
-
                 <article class="postagem amis-post">
-                    <div class="amis-post-autor"><span class="amis-post-avatar"><c:out value="${fn:substring(nomesAutores[postagem.idUsuario], 0, 1)}" /></span><div>
-
-                    <p class="mb-0 amis-post-nome">
-                        <a href="${pageContext.request.contextPath}/perfil-publico?id=${postagem.idUsuario}">
-                            <c:out value="${nomesAutores[postagem.idUsuario]}" />
-                        </a>
-                    </p><span class="amis-post-legenda">Publicação na AMIS</span></div></div>
-                    <h4><c:out value="${postagem.titulo}" /></h4>
-
-                    <p class="amis-post-texto"><c:out value="${postagem.texto}" /></p>
-
-                    <p class="amis-post-categoria">
-                        Categoria:
-                        <c:out value="${postagem.categoria}" />
-                    </p>
-
-                    <p class="amis-post-flag">
-                        Flag:
-                        <c:out value="${postagem.flag}" />
-                    </p>
-
-                    <c:url var="editar" value="/pages/postagem-form.jsp">
-                        <c:param name="id" value="${postagem.idPostagem}" />
-                        <c:param name="idUsuario" value="${postagem.idUsuario}" />
-                        <c:param name="idCategoria" value="${postagem.idCategoria}" />
-                        <c:param name="idFlag" value="${postagem.idFlag}" />
-                        <c:param name="titulo" value="${postagem.titulo}" />
-                        <c:param name="texto" value="${postagem.texto}" />
-                    </c:url>
-
+                    <c:forEach var="usuario" items="${usuarios}">
+                        <c:if test="${usuario.idUsuario eq postagem.idUsuario}">
+                            <div class="amis-post-autor">
+                                <span class="amis-post-avatar"><c:out value="${fn:substring(usuario.nome, 0, 1)}"/></span>
+                                <div>
+                                    <p class="mb-0 amis-post-nome"><a href="${pageContext.request.contextPath}/perfil-publico?id=${usuario.idUsuario}"><c:out value="${usuario.nome}"/></a></p>
+                                    <span class="amis-post-legenda">@<c:out value="${usuario.username}"/></span>
+                                </div>
+                            </div>
+                        </c:if>
+                    </c:forEach>
+                    <details class="mb-2 text-end">
+                        <summary style="cursor:pointer; list-style:none" aria-label="Opções da postagem">•••</summary>
+                        <a href="${pageContext.request.contextPath}/perfil-publico?id=${postagem.idUsuario}">Visitar perfil</a>
+                            <c:if test="${sessionScope.idUsuario eq postagem.idUsuario}">
+                                <form action="${pageContext.request.contextPath}/delete-postagem" method="post">
+                                    <input type="hidden" name="id" value="${postagem.idPostagem}">
+                                    <button class="btn btn-outline-danger btn-sm">Excluir</button>
+                                </form>
+                            </c:if>
+                    </details>
+                    <p class="amis-post-flag"><c:out value="${postagem.flag}"/></p>
+                    <h4><c:out value="${postagem.titulo}"/></h4>
+                    <p class="amis-post-texto"><c:out value="${postagem.texto}"/></p>
+                    <p class="amis-post-categoria"><c:out value="${postagem.categoria}"/></p>
                     <div class="amis-post-acoes">
-                    <a href="${editar}" class="btn btn-outline-secondary btn-sm">
-                        Editar
-                    </a>
-
-                    <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#salvar${postagem.idPostagem}">Salvar postagem</button>
-                    <div class="collapse mt-2" id="salvar${postagem.idPostagem}">
-                        <form action="${pageContext.request.contextPath}/item-salvo" method="post" class="card card-body">
-                            <p>Salvar: <strong><c:out value="${postagem.titulo}" /></strong></p>
-                            <input type="hidden" name="idPostagem" value="${postagem.idPostagem}">
-                            <label>Seu ID (temporário)</label>
-                            <input type="number" name="idUsuario" min="1" class="form-control mb-2" required>
-                            <button class="btn btn-primary btn-sm">Salvar</button>
-                        </form>
+                        <c:if test="${not empty sessionScope.idUsuario}">
+                            <form action="${pageContext.request.contextPath}/item-salvo" method="post">
+                                <input type="hidden" name="idPostagem" value="${postagem.idPostagem}">
+                                <c:set var="salvo" value="${false}"/>
+                                <c:forEach var="item" items="${itensSalvos}">
+                                    <c:if test="${item.idPostagem eq postagem.idPostagem}"><c:set var="salvo" value="${true}"/></c:if>
+                                </c:forEach>
+                                <c:if test="${salvo}">
+                                    <input type="hidden" name="acao" value="remover">
+                                    <button class="btn btn-roxo btn-sm">Salvo</button>
+                                </c:if>
+                                <c:if test="${not salvo}"><button class="btn btn-outline-secondary btn-sm">Salvar</button></c:if>
+                            </form>
+                        </c:if>
                     </div>
-
-                    <button class="btn btn-outline-secondary btn-sm" type="button"
-                            data-bs-toggle="collapse" data-bs-target="#comentar${postagem.idPostagem}">
-                        Comentar
-                    </button>
-                    <a class="btn btn-outline-secondary btn-sm"
-                       href="${pageContext.request.contextPath}/find-all-comentarios?idPostagem=${postagem.idPostagem}">
-                        Ver comentários
-                    </a>
-
-                    <div class="collapse mt-3" id="comentar${postagem.idPostagem}">
-                        <div class="card card-body">
-                            <p class="mb-2"><strong>Comentando na postagem:</strong>
-                                <c:out value="${postagem.titulo}" /></p>
+                    <details class="mt-3" <c:if test="${param.comentarios eq postagem.idPostagem}">open</c:if>>
+                        <summary style="cursor:pointer">Comentários</summary>
+                        <div class="mt-3">
+                        <c:if test="${not empty sessionScope.idUsuario}">
                             <form action="${pageContext.request.contextPath}/create-comentario" method="post">
                                 <input type="hidden" name="idPostagem" value="${postagem.idPostagem}">
-                                <div class="mb-2">
-                                    <label class="form-label">ID do usuário (temporário)</label>
-                                    <input type="number" name="idUsuario" min="1" class="form-control" required>
-                                </div>
-                                <div class="mb-2">
-                                    <label class="form-label">Seu comentário</label>
-                                    <textarea name="texto" rows="3" class="form-control" required></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-roxo btn-sm">Publicar comentário</button>
+                                <textarea name="texto" class="form-control mb-2" rows="2" placeholder="Escreva um comentário" required></textarea>
+                                <button class="btn btn-roxo btn-sm">Comentar</button>
                             </form>
-                        </div>
+                        </c:if>
+                        <c:if test="${empty sessionScope.idUsuario}"><a href="${pageContext.request.contextPath}/login">Entre para comentar ou salvar.</a></c:if>
+                        <c:forEach var="comentario" items="${comentarios}">
+                            <c:if test="${comentario.idPostagem eq postagem.idPostagem}">
+                                <div class="border-top mt-3 pt-3">
+                                    <c:forEach var="usuario" items="${usuarios}">
+                                        <c:if test="${usuario.idUsuario eq comentario.idUsuario}"><strong><c:out value="${usuario.nome}"/></strong></c:if>
+                                    </c:forEach>
+                                    <p class="mb-0"><c:out value="${comentario.texto}"/></p>
+                                </div>
+                            </c:if>
+                        </c:forEach>
                     </div>
-
-                    <form action="${pageContext.request.contextPath}/delete-postagem"
-                          method="post" class="d-inline">
-
-                        <input type="hidden" name="id"
-                               value="${postagem.idPostagem}">
-
-                        <button type="submit" class="btn btn-danger btn-sm">
-                            Excluir
-                        </button>
-
-                    </form>
-                    </div>
-
+                    </details>
                 </article>
-
             </c:forEach>
-
-            <c:if test="${empty postagens}">
-                <p>Nenhuma postagem encontrada.</p>
-            </c:if>
-
-        </div>
+            <c:if test="${empty postagens}"><p>Nenhuma postagem cadastrada.</p></c:if>
+        </section>
+        <aside class="col-lg-4">
+            <div class="amis-painel p-3 mb-3">
+                <h5>Pesquisa</h5>
+                <input class="form-control" placeholder="Pesquisar na AMIS" disabled>
+                <small>Em breve</small>
+            </div>
+            <div class="amis-painel p-3 mb-3">
+                <h5>Filtros</h5>
+                <select class="form-select" disabled><option>Todas as categorias</option></select>
+                <small>Em breve</small>
+            </div>
+        </aside>
     </div>
-
-</div>
-
+</main>
 <script src="${pageContext.request.contextPath}/js/tema.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    var botoes = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-    botoes.forEach(function(botao) { new bootstrap.Tooltip(botao); });
-</script>
 </body>
 </html>

@@ -21,18 +21,21 @@
                 <div class="form-header">
                     <h2>Entrar</h2>
                     <p>Que bom te ver de novo por aqui.</p>
-                    <p style="margin-top: 12px; color: #9146aa; font-size: 13px;">Temporário: não existe login. Qualquer pessoa entra clicando no botão Entrar.</p>
+
                 </div>
 
-                <form action="${pageContext.request.contextPath}/find-all-postagens" method="GET" class="auth-form">
+                <form action="${pageContext.request.contextPath}/login" method="post" class="auth-form">
+                    <c:if test="${not empty requestScope.message}">
+                        <p style="color: #9146aa;">${requestScope.message}</p>
+                    </c:if>
                     <div class="input-group">
-                        <label for="apelido">Apelido</label>
-                        <input type="text" id="apelido" name="apelido">
+                        <label for="username">Apelido</label>
+                        <input type="text" id="username" name="username">
                     </div>
 
                     <div class="input-group">
-                        <label for="senha">Senha</label>
-                        <input type="password" id="senha" name="senha">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" name="password">
                     </div>
 
                     <button type="submit" class="btn-submit">Entrar</button>

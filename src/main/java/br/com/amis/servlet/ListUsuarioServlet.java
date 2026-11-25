@@ -24,27 +24,47 @@ public class ListUsuarioServlet extends HttpServlet {
 
         UsuarioDAO dao = new UsuarioDAO();
 
-        List<Usuario> usuarios = dao.findAllUsuarios();
-
-        req.setAttribute("usuarios", usuarios);
-
         String pagina = req.getParameter("pagina");
 
         if ("perfil".equals(pagina)) {
-            try {
-                int id = Integer.parseInt(req.getParameter("id"));
-                RelacionamentoDAO relacao = new RelacionamentoDAO();
-                req.setAttribute("pessoasSalvas", relacao.listar("PESSOA_SALVA", "ID_PESSOA", id));
-                req.setAttribute("paginasSeguidas", relacao.listar("PAGINA_SEGUIDA", "ID_PAGINA", id));
-                req.setAttribute("itensSalvos", new ItemSalvoDAO().listar(id));
-                req.setAttribute("minhasPostagens", new PostagemDAO().findPostagensByUsuario(id));
-            } catch (Exception e) {
+
+            if (req.getSession().getAttribute("idUsuario") == null) {
+
+                resp.sendRedirect(req.getContextPath() + "/login");
+                return;
+
             }
-            req.getRequestDispatcher("/pages/perfil.jsp")
-                    .forward(req, resp);
+
+            int id = (Integer) req.getSession().getAttribute("idUsuario");
+
+            List<Usuario> usuarios = dao.findAllUsuarios();
+
+            req.setAttribute("usuarios", usuarios);
+
+            RelacionamentoDAO relacao = new RelacionamentoDAO();
+
+            req.setAttribute("pessoasSalvas", relacao.listar("PESSOA_SALVA", "ID_PESSOA", id));
+
+            req.setAttribute("paginasSeguidas", relacao.listar("PAGINA_SEGUIDA", "ID_PAGINA", id));
+
+            req.setAttribute("itensSalvos", new ItemSalvoDAO().listar(id));
+
+            req.setAttribute("registrosDiario", new br.com.amis.dao.JournalDAO().listar(id));
+
+            req.setAttribute("minhasPostagens", new PostagemDAO().findPostagensByUsuario(id));
+
+            req.getRequestDispatcher("/pages/perfil.jsp").forward(req, resp);
+
         } else {
-            req.getRequestDispatcher("/pages/usuarios.jsp")
-                    .forward(req, resp);
+
+            List<Usuario> usuarios = dao.findAllUsuarios();
+
+            req.setAttribute("usuarios", usuarios);
+
+            req.getRequestDispatcher("/pages/usuarios.jsp").forward(req, resp);
+
         }
+
     }
+
 }

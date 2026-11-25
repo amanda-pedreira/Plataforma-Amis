@@ -16,10 +16,14 @@ public class CreateComentarioServlet extends HttpServlet {
             throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         int idPostagem = Integer.parseInt(req.getParameter("idPostagem"));
-        int idUsuario = Integer.parseInt(req.getParameter("idUsuario"));
+        if (req.getSession().getAttribute("idUsuario") == null) {
+            resp.sendRedirect(req.getContextPath() + "/login");
+            return;
+        }
+        int idUsuario = (Integer) req.getSession().getAttribute("idUsuario");
         String texto = req.getParameter("texto");
         Comentario comentario = new Comentario(0, idPostagem, idUsuario, texto);
         new ComentarioDAO().createComentario(comentario);
-        resp.sendRedirect(req.getContextPath() + "/find-all-comentarios?idPostagem=" + idPostagem);
+        resp.sendRedirect(req.getContextPath() + "/find-all-postagens?comentarios=" + idPostagem);
     }
 }
