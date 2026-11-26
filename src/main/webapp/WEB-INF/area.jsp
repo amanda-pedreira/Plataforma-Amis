@@ -14,10 +14,7 @@
         <div class="container py-4">
             <header class="d-flex justify-content-between align-items-center mb-5">
                 <div class="logo-area">
-                    <h2 class="fw-bold text-dark m-0">
-                        AM
-                        <span class="text-gradient">IS</span>
-                    </h2>
+                    <img src="${pageContext.request.contextPath}/img/visual/logo.png" alt="amis." style="width:110px;height:auto;display:block;">
                 </div>
                 <div class="d-flex align-items-center gap-3">
                     <a href="${pageContext.request.contextPath}/pages/login.jsp" class="btn btn-link text-dark text-decoration-none fw-medium">Entrar</a>

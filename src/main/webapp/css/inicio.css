@@ -1,0 +1,233 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font: 16px/1.7 Arial, sans-serif;
+    color: #30213d;
+    background: white;
+}
+
+header {
+    max-width: 1180px;
+    margin: auto;
+    padding: 24px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo img {
+    width: 110px;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: #783698;
+}
+
+.botao {
+    display: inline-block;
+    background: #9845b8;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.botao:hover {
+    background: #80359f;
+}
+
+#botao-tema {
+    width: 42px;
+    height: 42px;
+    border: 1px solid #e1d5ed;
+    border-radius: 50%;
+    background: #f7f3fa;
+    color: #8842ac;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.secao-1 {
+    max-width: 900px;
+    margin: auto;
+    padding: 70px 5% 35px;
+    text-align: center;
+}
+
+.secao-1 h1 {
+    font-family: Georgia, serif;
+    font-weight: normal;
+    font-size: clamp(42px, 6vw, 76px);
+}
+
+.secao-1 p {
+    max-width: 650px;
+    margin: 0 auto 22px;
+}
+
+.texto, .arte {
+    flex: 1;
+    min-width: 0;
+}
+
+h1, h2 {
+    line-height: 1.12;
+    letter-spacing: -1.5px;
+    margin: 0 0 22px;
+}
+
+h1 {
+    font-size: 64px;
+}
+
+h2 {
+    font-size: 46px;
+}
+
+p {
+    color: #665970;
+    margin: 0 0 22px;
+    font-size: 18px;
+}
+
+.arte img, .servico img {
+    width: 100%;
+    display: block;
+    border-radius: 18px;
+    box-shadow: 0 18px 55px #45235b22;
+}
+
+.arte img {
+    transform: rotate(-3deg);
+}
+
+.arte .imagem-menor {
+    width: 65%;
+    margin: -18% -5% 0 auto;
+    position: relative;
+    transform: rotate(5deg);
+}
+
+.secao-2 {
+    background: #f9f1fb;
+    text-align: center;
+    padding: 80px 8%;
+    margin-top: 60px;
+}
+
+.secao-2 p, .contato p {
+    max-width: 760px;
+    margin: 0 auto 24px;
+}
+
+.servicos {
+    max-width: 1180px;
+    margin: auto;
+    padding: 70px 5%;
+}
+
+.servico {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    margin: 55px 0 100px;
+}
+
+.servico:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.servico img {
+    width: 50%;
+}
+
+.contato {
+    text-align: center;
+    padding: 75px 6%;
+    background: #382344;
+    color: white;
+}
+
+.contato p {
+    color: #ead9f1;
+}
+
+.bg-color-escuro {
+    background: #201b29;
+    color: #f4edf9;
+}
+
+.bg-color-escuro .secao-2 {
+    background: #342847;
+}
+
+.bg-color-escuro p {
+    color: #d2c5dc;
+}
+
+.bg-color-escuro header a:not(.botao) {
+    color: #d9a6f2;
+}
+
+.bg-color-escuro #botao-tema {
+    background: #483551;
+    color: #e4b8f7;
+    border-color: #624d70;
+}
+
+@media (max-width: 760px) {
+    .secao-1, .servico, .servico:nth-child(even) {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .secao-1 {
+        margin: 10px;
+        padding: 30px;
+    }
+
+    .servico {
+        margin: 40px 0;
+    }
+
+    .servico img {
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 42px;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+
+    header div {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    .botao {
+        padding: 10px 16px;
+    }
+}
+
+.secao-1 .arte {
+    display: none;
+}
+
+.contato {
+    border-radius: 0;
+}

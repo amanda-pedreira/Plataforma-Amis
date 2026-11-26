@@ -371,3 +371,190 @@
 .admin-funcionario-card .form-control,.admin-funcionario-card .form-select {
     padding: 9px;
 }
+
+.admin-area {
+    background: #f4f5f7;
+    color: #20263a;
+}
+
+.admin-area .admin-navbar,.admin-area .admin-card,.admin-area .admin-bloco,.admin-area .admin-panel,.admin-area .admin-funcionario-card {
+    background: #fff;
+    border-color: #e5e1eb;
+    box-shadow: 0 2px 8px #24132f06;
+}
+
+.admin-area .admin-heading h1,.admin-area .admin-interna>h2,.admin-area .admin-card h3,.admin-area .admin-bloco h4 {
+    color: #20263a;
+}
+
+.admin-area .admin-card {
+    min-height: 220px;
+}
+
+.admin-area .admin-card-icon {
+    background: #f3e4f8;
+    color: #9844bd;
+}
+
+.admin-area .admin-card-action {
+    color: #9844bd;
+    border-color: #eee9f2;
+}
+
+.admin-area .admin-card-link:hover .admin-card {
+    border-color: #c9a4df;
+    transform: none;
+}
+
+.admin-area .btn-primary {
+    background: #a34cc6;
+    border-color: #a34cc6;
+    color: #fff;
+}
+
+.admin-area .btn-primary:hover {
+    background: #8738ac;
+    border-color: #8738ac;
+}
+
+.admin-area .btn-outline-primary,.admin-area .btn-outline-secondary {
+    color: #9343b7;
+    border-color: #d8c5e6;
+}
+
+.admin-area .btn-outline-primary:hover,.admin-area .btn-outline-secondary:hover {
+    background: #f3e4f8;
+    color: #8434a6;
+    border-color: #c6a3dc;
+}
+
+.admin-area .form-control,.admin-area .form-select {
+    border-color: #ded5e8;
+    color: #20263a;
+    background: #faf9fc;
+    min-height: 42px;
+}
+
+.admin-area .form-control:focus,.admin-area .form-select:focus {
+    border-color: #b77bd1;
+    box-shadow: 0 0 0 3px #a34cc61a;
+}
+
+.admin-area label,.admin-area .form-label {
+    color: #303047;
+}
+
+.admin-area .table thead th,.admin-area .table tr:first-child th {
+    background: #f6f1fa;
+    color: #76528d;
+    border-color: #e9e2ef;
+}
+
+.admin-area .table td {
+    border-color: #eeeaf2;
+    color: #303047;
+}
+
+.admin-area .table tbody tr:hover td {
+    background: #faf8fc;
+}
+
+.admin-marca {
+    width: 110px;
+    height: auto;
+    object-fit: contain;
+}
+
+.admin-post-texto {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    text-align: left;
+    text-indent: 0;
+    padding: 0;
+    margin: 12px 0 22px;
+    line-height: 1.65;
+}
+
+.admin-area .admin-post h4 {
+    margin: 12px 0 0;
+}
+
+.admin-post-meta {
+    font-size: 13px;
+    color: #81748d;
+    margin: 6px 0;
+}
+
+.admin-post form {
+    border-top: 1px solid #eee9f2;
+    padding-top: 16px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.admin-conteudos {
+    max-width: 900px;
+    margin: auto;
+    padding: 0 20px 40px;
+}
+
+.admin-conteudo-nav {
+    max-width: 1240px;
+    margin: 24px auto 30px;
+}
+
+.admin-conteudos h1 {
+    font-size: 28px;
+    margin: 0 0 24px;
+}
+
+.admin-conteudos h2 {
+    font-size: 19px;
+    margin: 0 0 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #eee9f2;
+}
+
+.admin-conteudos label {
+    display: block;
+    margin-bottom: 18px;
+}
+
+.admin-conteudos input:not([type=hidden]),.admin-conteudos textarea {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    margin-top: 7px;
+    border: 1px solid #ded5e8;
+    border-radius: 9px;
+    background: #faf9fc;
+    font: inherit;
+    color: #20263a;
+}
+
+.admin-conteudos textarea {
+    resize: vertical;
+}
+
+.admin-conteudos .btn {
+    cursor: pointer;
+    border: 1px solid #a34cc6;
+}
+
+.admin-conteudos a,.admin-conteudo-nav a {
+    color: #9343b7;
+    text-decoration: none;
+}
+
+.admin-conteudos .admin-bloco {
+    display: flow-root;
+}
+
+.admin-conteudos .btn {
+    float: right;
+}
+
+.admin-area .admin-heading p,.admin-area .admin-card p,.admin-area .admin-section-title p {
+    color: #756b82;
+}

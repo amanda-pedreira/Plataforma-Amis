@@ -19,7 +19,7 @@
                 <a class="btn btn-outline-secondary" href="${pageContext.request.contextPath}/admin/postagens">Todos</a>
             </form>
             <c:forEach var="p" items="${postagens}">
-                <section class="admin-bloco">
+                <section class="admin-bloco admin-post">
                     <c:forEach var="u" items="${usuarios}">
                         <c:if test="${u.idUsuario eq p.idUsuario}">
                             <strong>
@@ -29,7 +29,7 @@
                             <c:out value="${u.username}"/>
                         </c:if>
                     </c:forEach>
-                    <p>
+                    <p class="admin-post-meta">
                         <c:out value="${p.dataPostagem}"/>
                         ·
                         <c:out value="${p.categoria}"/>
@@ -39,9 +39,7 @@
                     <h4>
                         <c:out value="${p.titulo}"/>
                     </h4>
-                    <p style="white-space:pre-wrap;overflow-wrap:anywhere">
-                        <c:out value="${p.texto}"/>
-                    </p>
+                    <p class="admin-post-texto"><c:out value="${p.texto}"/></p>
                     <form method="post" action="${pageContext.request.contextPath}/admin/postagens" onsubmit="return confirm('Excluir postagem?')">
                         <input type="hidden" name="id" value="${p.idPostagem}">
                         <button class="btn btn-outline-danger">Excluir publicação</button>

@@ -7,13 +7,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>AMIS - Entrar</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/usuario.css">
-        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     </head>
     <body>
+        <header class="auth-top">
+            <nav class="auth-nav">
+                <a class="logo-topo" href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/img/visual/logo.png" alt="AMIS"></a>
+                <div class="auth-nav-actions">
+                    <a href="${pageContext.request.contextPath}/">Voltar ao início</a>
+                    <button type="button" id="botao-tema" onclick="mudarTema()" aria-label="Alternar tema">☾</button>
+                </div>
+            </nav>
+        </header>
         <div class="auth-container-wrapper">
-            <div class="logo-topo">
-                AMIS
-            </div>
             <div class="auth-card">
                 <div class="auth-form-section">
                     <div class="form-header">
@@ -39,7 +44,7 @@
                 </div>
                 <div class="auth-banner">
                     <div class="banner-conteudo">
-                        <h2>AMIS</h2>
+                        <h2>amis.</h2>
                         <h3>Ainda não tem conta?</h3>
                         <p>Crie a sua em menos de um minuto e comece a fazer parte.</p>
                         <a href="${pageContext.request.contextPath}/pages/cadastro.jsp" class="btn-outline-branco">Criar conta</a>
@@ -53,5 +58,6 @@
         <c:if test="${requestScope.inativo}">
             <script>alert("Sua conta está inativa. Entre em contato com a administração da AMIS.");</script>
         </c:if>
+        <script src="${pageContext.request.contextPath}/js/tema.js"></script>
     </body>
 </html>

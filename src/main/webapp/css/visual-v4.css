@@ -1,0 +1,346 @@
+body.visual-v4 {
+    background: #f6f7f9;
+    color: #252434;
+    font-family: Arial,sans-serif;
+}
+
+.visual-v4 .container {
+    max-width: 1200px;
+}
+
+.visual-v4 .amis-topo {
+    margin-bottom: 20px;
+}
+
+.logo-nova {
+    width: 110px;
+    height: auto;
+}
+
+.avatar-novo {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.perfil-menu {
+    position: relative;
+}
+
+.perfil-menu summary {
+    cursor: pointer;
+    list-style: none;
+    font-weight: bold;
+}
+
+.perfil-menu a {
+    display: block;
+    padding: 8px;
+    color: #8545a8;
+}
+
+.visual-v4 .amis-tema {
+    color: #7951a7;
+    background: #f8f5fc;
+    border: 1px solid #e1dce9;
+    width: 42px;
+    height: 42px;
+}
+
+.banner-v4 {
+    background: #ead6ef url("../img/visual/arte-0.png") center/cover no-repeat;
+    min-height: 210px;
+    border-radius: 14px;
+    padding: 55px 30px;
+    margin-bottom: 18px;
+    color: #42214f;
+}
+
+.banner-v4 h1 {
+    font-size: 30px;
+    font-weight: bold;
+    text-shadow: 0 1px 5px white;
+}
+
+.banner-v4 p {
+    text-shadow: 0 1px 5px white;
+}
+
+.compose-v4,.welcome-v4 {
+    background: white;
+    border: 1px solid #e9ebef;
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 18px;
+}
+
+.compose-v4 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.prompt-v4 {
+    flex: 1;
+    background: #f5f3f8;
+    padding: 12px;
+    border-radius: 9px;
+    color: #74677e;
+    text-decoration: none;
+}
+
+.welcome-v4 {
+    text-align: center;
+    padding: 38px 24px;
+    background: white url("../img/visual/decoracao.png") right bottom/90px auto no-repeat;
+}
+
+.welcome-v4 h2 {
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.welcome-v4 p {
+    font-size: 14px;
+    margin: 18px 0;
+}
+
+.visual-v4 .btn-roxo,.visual-v4 .guardar {
+    background: #a34cc6;
+    border: 1px solid #a34cc6;
+    color: white;
+    border-radius: 9px;
+    padding: 10px 18px;
+}
+
+.visual-v4 .amis-post {
+    padding: 26px 30px;
+    margin-bottom: 18px;
+    background: white;
+    border: 1px solid #e9ebef;
+    border-radius: 14px;
+}
+
+.visual-v4 .amis-post-texto {
+    white-space: pre-line;
+    margin: 14px 0;
+    line-height: 1.65;
+}
+
+.visual-v4 .amis-post-categoria {
+    background: none;
+    color: #8550b2;
+    padding: 0;
+    font-weight: bold;
+    margin: 12px 0;
+}
+
+.visual-v4 .amis-post-flag {
+    background: #fce7f2;
+    color: #a62c73;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: table;
+}
+
+.visual-v4 .amis-painel {
+    padding: 26px !important;
+}
+
+.visual-v4 .form-control,.visual-v4 .form-select,.diario-v4 input:not([type=radio]),.diario-v4 textarea {
+    border: 1px solid #ddd5e7;
+    border-radius: 9px;
+    padding: 12px;
+    background: #faf9fc;
+    color: inherit;
+}
+
+.visual-v4 .amis-form-post {
+    max-width: 1000px;
+}
+
+.visual-v4 .amis-form-post .amis-painel {
+    padding: 36px 48px !important;
+}
+
+.formhead-v4 {
+    background: url("../img/visual/decoracao.png") right center/auto 100% no-repeat;
+    padding: 28px 145px 28px 0;
+    border-bottom: 1px solid #e9e3ef;
+    margin-bottom: 28px;
+}
+
+.formhead-v4 h2 {
+    font-weight: bold;
+}
+
+.formactions-v4 {
+    border-top: 1px solid #e9e3ef;
+    padding-top: 22px;
+    text-align: right;
+}
+
+.diario-main {
+    max-width: 1100px !important;
+}
+
+.diario-v4 .intro {
+    border-left: 4px solid #d46ac5;
+    padding-left: 18px;
+    margin: 28px 0;
+}
+
+.diario-v4 h1 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.diario-v4 .papel,.diario-v4 .historia {
+    background: white;
+    border: 1px solid #e9ebef;
+    border-radius: 14px;
+    padding: 30px;
+    margin-bottom: 24px;
+}
+
+.diario-v4 .titulo,.diario-v4 textarea {
+    width: 100%;
+}
+
+.diario-v4 .humores {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 12px 0 24px;
+}
+
+.diario-v4 .humores label {
+    flex: 1;
+    min-width: 110px;
+}
+
+.diario-v4 .humores input {
+    position: absolute;
+    opacity: 0;
+}
+
+.diario-v4 .humores span {
+    display: block;
+    text-align: center;
+    border: 1px solid #e4dce9;
+    border-radius: 9px;
+    padding: 12px;
+    cursor: pointer;
+}
+
+.diario-v4 .humores input:checked + span {
+    background: #f9e7f5;
+    border-color: #c75bb9;
+}
+
+.diario-v4 .humores input:focus-visible + span {
+    outline: 2px solid #a34cc6;
+}
+
+.humor-icon {
+    width: 27px;
+    height: 27px;
+}
+
+.diario-v4 .linha {
+    display: flex;
+    gap: 24px;
+    border-left: 3px solid #d9b8ed;
+    padding: 18px 0 22px 22px;
+    margin-left: 12px;
+}
+
+.diario-v4 .dia {
+    min-width: 65px;
+    color: #9252b7;
+}
+
+.diario-v4 .dia strong,.diario-v4 .dia small {
+    display: block;
+}
+
+.diario-v4 .dia strong {
+    font-size: 30px;
+}
+
+.diario-v4 .memoria {
+    flex: 1;
+    min-width: 0;
+}
+
+.diario-v4 .topo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.diario-v4 .descricao {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.diario-v4 .busca-data {
+    margin: 20px 0;
+}
+
+.diario-v4 .busca-data button {
+    background: #a34cc6;
+    color: white;
+    border: 0;
+    padding: 12px;
+    border-radius: 9px;
+}
+
+.diario-v4 .privado {
+    color: #85758e;
+    margin-top: 16px;
+}
+
+body.visual-v4.bg-color-escuro {
+    background: #24212b;
+    color: #eee;
+}
+
+.bg-color-escuro .compose-v4,.bg-color-escuro .welcome-v4,.bg-color-escuro .amis-post,.bg-color-escuro .papel,.bg-color-escuro .historia {
+    background-color: #302b38;
+    color: #eee;
+    border-color: #48404e;
+}
+
+.bg-color-escuro.visual-v4 .form-control,.bg-color-escuro.visual-v4 .form-select,.bg-color-escuro.diario-v4 input:not([type=radio]),.bg-color-escuro.diario-v4 textarea {
+    background: #302b38;
+    color: #eee;
+}
+
+@media (max-width:767px) {
+    .visual-v4 .amis-menu {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .visual-v4 .amis-form-post .amis-painel {
+        padding: 22px !important;
+    }
+
+    .formhead-v4 {
+        padding-right: 50px;
+    }
+
+    .compose-v4 {
+        flex-wrap: wrap;
+    }
+
+    .banner-v4 {
+        padding: 30px 20px;
+    }
+
+    .diario-v4 .papel,.diario-v4 .historia {
+        padding: 18px;
+    }
+}

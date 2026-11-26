@@ -11,13 +11,30 @@
           href="${pageContext.request.contextPath}/css/perfil.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/amis-visual.css">
-    </head>
-    <body class="bg-color-claro amis-organizado amis-tela">
-        <div class="container mt-5">
-            <div class="amis-painel" style="max-width:620px;margin:auto">
-                <h2>Editar perfil</h2>
-                <a href="${pageContext.request.contextPath}/pages/senha.jsp">Alterar senha</a>
-                <p>Atualize seu nome, username, foto e bio.</p>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/visual-v4.css"><link rel="stylesheet" href="${pageContext.request.contextPath}/css/perfis-v4.css"></head>
+    <body class="bg-color-claro amis-organizado amis-tela visual-v4 perfil-v4"><header class="amis-topo">
+    <div class="amis-menu container">
+        <a href="${pageContext.request.contextPath}/find-all-postagens"><img class="logo-nova" src="${pageContext.request.contextPath}/img/visual/logo.png" alt="amis."></a>
+        <nav class="amis-links">
+            <a class="" href="${pageContext.request.contextPath}/find-all-postagens">▦ Feed</a>
+            <a class="" href="${pageContext.request.contextPath}/journal">▤ Diário</a>
+        </nav>
+        <div class="amis-direita">
+            <button type="button" id="botao-tema" class="amis-tema" onclick="mudarTema()" aria-label="Alternar tema">☾</button>
+            <details class="perfil-menu">
+                <summary><img class="avatar-novo" src="${pageContext.request.contextPath}/img/visual/pessoa.png" alt=""> <c:out value="${sessionScope.loggedUser}"/></summary>
+                <a href="${pageContext.request.contextPath}/find-all-usuarios?pagina=perfil">Perfil</a>
+                <c:if test="${sessionScope.admin eq 1}"><a href="${pageContext.request.contextPath}/admin.jsp">Admin</a></c:if>
+                <a href="${pageContext.request.contextPath}/logout">Sair</a>
+            </details>
+        </div>
+    </div>
+</header>
+        <div class="perfil-edicao"><a class="perfil-voltar" href="${pageContext.request.contextPath}/find-all-usuarios?pagina=perfil">← Voltar ao perfil</a>
+            <div class="amis-painel">
+                <div class="perfil-form-head"><span class="perfil-form-icon">✎</span><div><h2>Editar perfil</h2><p>Atualize suas informações pessoais.</p></div></div>
+                <a href="${pageContext.request.contextPath}/pages/senha.jsp" class="perfil-senha-link">Alterar senha</a>
+
                 <form action="${pageContext.request.contextPath}/create-usuario"
               method="post">
                     <input type="hidden" name="origem" value="perfil">
@@ -46,13 +63,13 @@
                         <textarea name="bio"
                           class="form-control"><c:out value="${param.bio}" /></textarea>
                     </div>
-                    <button type="submit" class="btn btn-roxo">Salvar alterações</button>
+                    <div class="perfil-form-actions"><button type="submit" class="btn btn-roxo">Salvar alterações</button>
                     <a href="${pageContext.request.contextPath}/find-all-usuarios?pagina=perfil"
-               class="btn btn-secondary">
+               class="perfil-secundario">
                         Voltar
                     </a>
-                </form>
+                </div></form>
             </div>
         </div>
-    </body>
+    <script src="${pageContext.request.contextPath}/js/tema.js"></script></body>
 </html>

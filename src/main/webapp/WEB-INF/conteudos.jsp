@@ -6,16 +6,16 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>AMIS</title>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/inicio.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin.css">
     </head>
-    <body>
-        <header>
-            <span class="logo">amis.</span>
+    <body class="admin-area">
+        <header class="admin-navbar admin-conteudo-nav">
+            <img class="admin-marca" src="${pageContext.request.contextPath}/img/visual/logo.png" alt="amis.">
             <a href="${pageContext.request.contextPath}/admin.jsp">Voltar ao administrativo</a>
         </header>
-        <main class="edicao">
+        <main class="admin-container admin-conteudos">
             <h1>Conteúdos da página inicial</h1>
-            <form method="post" action="${pageContext.request.contextPath}/admin/conteudos">
+            <form class="admin-bloco" method="post" action="${pageContext.request.contextPath}/admin/conteudos">
                 <h2>Banner inicial</h2>
                 <input type="hidden" name="acao" value="banner">
                 <label>
@@ -34,9 +34,9 @@
                     Link da imagem
                     <input name="imagem" value="<c:out value='${banner.imagem}'/>" required>
                 </label>
-                <button class="botao">Salvar alterações</button>
+                <button class="btn btn-primary">Salvar alterações</button>
             </form>
-            <form method="post" action="${pageContext.request.contextPath}/admin/conteudos">
+            <form class="admin-bloco" method="post" action="${pageContext.request.contextPath}/admin/conteudos">
                 <h2>Nossa essência</h2>
                 <input type="hidden" name="acao" value="sobre">
                 <label>
@@ -47,10 +47,10 @@
                     Texto
                     <textarea name="texto" rows="4" required><c:out value='${sobre.texto}'/></textarea>
                 </label>
-                <button class="botao">Salvar alterações</button>
+                <button class="btn btn-primary">Salvar alterações</button>
             </form>
             <c:forEach items="${servicos}" var="servico">
-                <form method="post" action="${pageContext.request.contextPath}/admin/conteudos">
+                <form class="admin-bloco" method="post" action="${pageContext.request.contextPath}/admin/conteudos">
                     <h2>
                         <c:out value="${servico.nome}"/>
                     </h2>
@@ -72,10 +72,10 @@
                         Link da imagem
                         <input name="imagem" value="<c:out value='${servico.imagem}'/>" required>
                     </label>
-                    <button class="botao">Salvar alterações</button>
+                    <button class="btn btn-primary">Salvar alterações</button>
                 </form>
             </c:forEach>
-            <form method="post" action="${pageContext.request.contextPath}/admin/conteudos">
+            <form class="admin-bloco" method="post" action="${pageContext.request.contextPath}/admin/conteudos">
                 <h2>Logo e contato</h2>
                 <input type="hidden" name="acao" value="configuracao">
                 <label>
@@ -86,7 +86,7 @@
                     E-mail
                     <input name="email" value="<c:out value='${configuracao.email}'/>" required>
                 </label>
-                <button class="botao">Salvar alterações</button>
+                <button class="btn btn-primary">Salvar alterações</button>
             </form>
             <a href="${pageContext.request.contextPath}/inicio">Ver página inicial</a>
         </main>

@@ -7,34 +7,29 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Journal - AMIS</title>
-    </head>
-    <body>
-        <main>
-            <header>
-                <a class="logo" href="${pageContext.request.contextPath}/find-all-postagens">amis.</a>
-                <nav>
-                    <a href="${pageContext.request.contextPath}/find-all-postagens">Feed</a>
-                    <a href="${pageContext.request.contextPath}/journal" class="ativo">Journal</a>
-                    <a href="${pageContext.request.contextPath}/find-all-usuarios?pagina=perfil">Perfil</a>
-                </nav>
-            </header>
-            <section class="intro">
-                <small>UM ESPAÇO SÓ SEU</small>
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/prototipo-v4.css">
+</head>
+    <body class="bg-color-claro">
+        <header><nav><a class="logo" href="${pageContext.request.contextPath}/find-all-postagens"><img src="${pageContext.request.contextPath}/img/visual/logo.png" alt="amis." style="width:110px;height:auto;display:block;"></a><div class="menu"><a  href="${pageContext.request.contextPath}/find-all-postagens">▦ &nbsp; Feed</a><a class="active" href="${pageContext.request.contextPath}/journal">▤ &nbsp; Diário</a></div><div class="profile"><button id="botao-tema" onclick="mudarTema()" aria-label="Mudar tema">☾</button><details><summary><img class="avatar" src="${pageContext.request.contextPath}/img/visual/pessoa.png" alt=""><strong><c:out value="${sessionScope.loggedUser}"/></strong></summary><div class="dropdown"><a href="${pageContext.request.contextPath}/find-all-usuarios?pagina=perfil">Perfil</a><c:if test="${sessionScope.admin eq 1}"><a href="${pageContext.request.contextPath}/admin.jsp">Admin</a></c:if><a href="${pageContext.request.contextPath}/logout">Sair</a></div></details></div></nav></header>
+        <main><section id="diario" class="page">
+            <section class="diaryhead">
+
                 <h1>A vida que acontece em mim.</h1>
-                <p>Nem todos os dias precisam ser extraordinários para merecerem ser lembrados.</p>
+                <p class="muted">Registre seus pensamentos, sentimentos e reflexões do dia.</p>
             </section>
             <c:if test="${param.resultado eq 'erro'}">
                 <p role="alert">Não foi possível guardar o registro. Confira os campos.</p>
             </c:if>
-            <section class="papel">
-                <small>MEU JOURNAL</small>
+            <section class="card">
+
                 <h2>
                     <c:choose>
                         <c:when test="${not empty registroEditar}">
                             Revisitando uma memória
                         </c:when>
                         <c:otherwise>
-                            Como foi o seu dia?
+                            Nova entrada no Diário
                         </c:otherwise>
                     </c:choose>
                 </h2>
@@ -45,40 +40,40 @@
                     </c:if>
                     <label for="data">Data</label>
                     <input id="data" type="date" name="data" value="<c:out value='${registroEditar.data}'/>" required>
-                    <p class="rotulo">Nesse dia, eu me senti...</p>
-                    <div class="humores">
+                    <label>Como você se sentiu hoje?</label>
+                    <div class="moods">
                         <label>
                             <input type="radio" name="humor" value="Feliz" ${registroEditar.humor eq 'Feliz' ? 'checked' : ''} required>
                             <span>
-                                <b>😊</b>
+                                <b><img class="humor-icon" src="${pageContext.request.contextPath}/img/visual/arte-6.svg" alt=""></b>
                                 Feliz
                             </span>
                         </label>
                         <label>
                             <input type="radio" name="humor" value="Tranquila" ${registroEditar.humor eq 'Tranquila' ? 'checked' : ''} required>
                             <span>
-                                <b>😌</b>
+                                <b><img class="humor-icon" src="${pageContext.request.contextPath}/img/visual/arte-7.svg" alt=""></b>
                                 Tranquila
                             </span>
                         </label>
                         <label>
                             <input type="radio" name="humor" value="Normal" ${registroEditar.humor eq 'Normal' ? 'checked' : ''} required>
                             <span>
-                                <b>😐</b>
+                                <b><img class="humor-icon" src="${pageContext.request.contextPath}/img/visual/arte-8.svg" alt=""></b>
                                 Normal
                             </span>
                         </label>
                         <label>
                             <input type="radio" name="humor" value="Triste" ${registroEditar.humor eq 'Triste' ? 'checked' : ''} required>
                             <span>
-                                <b>😔</b>
+                                <b><img class="humor-icon" src="${pageContext.request.contextPath}/img/visual/arte-9.svg" alt=""></b>
                                 Triste
                             </span>
                         </label>
                         <label>
                             <input type="radio" name="humor" value="Difícil" ${registroEditar.humor eq 'Difícil' ? 'checked' : ''} required>
                             <span>
-                                <b>😣</b>
+                                <b><img class="humor-icon" src="${pageContext.request.contextPath}/img/visual/arte-10.svg" alt=""></b>
                                 Difícil
                             </span>
                         </label>
@@ -91,37 +86,35 @@
                             </label>
                         </c:if>
                     </div>
-                    <p>
+                    <label>Título</label><p>
                         <input class="titulo" name="titulo" aria-label="Título" placeholder="Um título para esse momento..." maxlength="150" value="<c:out value='${registroEditar.titulo}'/>" required>
                     </p>
-                    <p>
-                        <textarea name="descricao" aria-label="Seu registro" rows="6" maxlength="4000" placeholder="Querido diário, hoje..." required><c:out value="${registroEditar.descricao}"/></textarea>
+                    <label>Sua reflexão</label><p>
+                        <textarea name="descricao" aria-label="Seu registro" rows="6" maxlength="4000" placeholder="Escreva sobre seu dia, sentimentos e aprendizados..." required><c:out value="${registroEditar.descricao}"/></textarea>
                     </p>
-                    <button class="guardar" type="submit">
+                    <div class="formactions"><button class="primary" type="submit">
                         <c:choose>
                             <c:when test="${not empty registroEditar}">
                                 Salvar alterações
                             </c:when>
                             <c:otherwise>
-                                Guardar este momento
+                                Salvar entrada
                             </c:otherwise>
                         </c:choose>
                     </button>
                     <c:if test="${not empty registroEditar}">
                         <a href="${pageContext.request.contextPath}/journal">Cancelar edição</a>
                     </c:if>
-                    <p class="privado">♡ Entre você e suas memórias.</p>
+                    </div>
                 </form>
             </section>
-            <section class="historia">
-                <h2>Páginas da minha história</h2>
-                <p>Pequenos momentos que fazem parte de quem eu sou.</p>
+            <section class="card">
+                <div class="history-head"><h2>Meus registros</h2>
                 <form class="busca-data" action="${pageContext.request.contextPath}/journal" method="get">
-                    <label for="buscaData">Pesquisar por data</label>
-                    <input id="buscaData" type="date" name="buscaData" value="<c:out value='${param.buscaData}'/>" required>
-                    <button type="submit">Pesquisar</button>
-                    <a href="${pageContext.request.contextPath}/journal">Limpar</a>
-                </form>
+
+                    <input id="buscaData" type="date" name="buscaData" value="<c:out value='${param.buscaData}'/>" onchange="this.form.submit()">
+                    <a class="clear" href="${pageContext.request.contextPath}/journal">Limpar</a>
+                </form></div>
                 <c:if test="${empty registros}">
                     <p class="papel">
                         <c:choose>
@@ -135,54 +128,23 @@
                     </p>
                 </c:if>
                 <c:forEach var="registro" items="${registros}">
-                    <div class="linha">
-                        <div class="dia">
-                            <strong>${registro.dia}</strong>
-                            <small>${fn:substring(registro.data, 5, 7)}/${fn:substring(registro.data, 0, 4)}</small>
-                        </div>
-                        <article class="memoria">
-                            <div class="topo">
-                                <small>
-                                    <c:choose>
-                                        <c:when test="${registro.humor eq 'Feliz'}">
-                                            😊
-                                        </c:when>
-                                        <c:when test="${registro.humor eq 'Tranquila'}">
-                                            😌
-                                        </c:when>
-                                        <c:when test="${registro.humor eq 'Normal'}">
-                                            😐
-                                        </c:when>
-                                        <c:when test="${registro.humor eq 'Triste'}">
-                                            😔
-                                        </c:when>
-                                        <c:when test="${registro.humor eq 'Difícil'}">
-                                            😣
-                                        </c:when>
-                                    </c:choose>
-                                    <c:out value="${registro.humor}"/>
-                                </small>
-                                <details>
-                                    <summary aria-label="Opções">•••</summary>
+                    <article class="entry journal-record">
+                            <div class="entry-tools">
                                     <a href="${pageContext.request.contextPath}/journal?editar=${registro.idRegistro}">Editar</a>
                                     <form action="${pageContext.request.contextPath}/journal" method="post" onsubmit="return confirm('Deseja excluir esta lembrança?')">
                                         <input type="hidden" name="acao" value="excluir">
                                         <input type="hidden" name="idRegistro" value="${registro.idRegistro}">
                                         <button type="submit" class="excluir">Excluir</button>
                                     </form>
-                                </details>
-                            </div>
-                            <h3>
+                                </div><div class="record-meta"><span class="muted">${fn:substring(registro.data, 8, 10)}/${fn:substring(registro.data, 5, 7)}/${fn:substring(registro.data, 0, 4)}</span><span class="record-mood" data-humor="<c:out value='${registro.humor}'/>"><c:choose><c:when test="${registro.humor eq 'Feliz'}"><img src="${pageContext.request.contextPath}/img/visual/arte-6.svg" alt=""></c:when><c:when test="${registro.humor eq 'Tranquila'}"><img src="${pageContext.request.contextPath}/img/visual/arte-7.svg" alt=""></c:when><c:when test="${registro.humor eq 'Normal'}"><img src="${pageContext.request.contextPath}/img/visual/arte-8.svg" alt=""></c:when><c:when test="${registro.humor eq 'Triste'}"><img src="${pageContext.request.contextPath}/img/visual/arte-9.svg" alt=""></c:when><c:when test="${registro.humor eq 'Difícil'}"><img src="${pageContext.request.contextPath}/img/visual/arte-10.svg" alt=""></c:when></c:choose><c:out value="${registro.humor}"/></span></div>
+                            <h2>
                                 <c:out value="${registro.titulo}"/>
-                            </h3>
-                            <p class="descricao">
-                                <c:out value="${registro.descricao}"/>
-                            </p>
+                            </h2>
+                            <p class="descricao"><c:out value="${registro.descricao}"/></p>
                         </article>
-                    </div>
-                    <hr>
                 </c:forEach>
             </section>
-        </main>
+        </section></main>
+    <script src="${pageContext.request.contextPath}/js/tema.js"></script>
     </body>
 </html>

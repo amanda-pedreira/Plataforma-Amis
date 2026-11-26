@@ -6,17 +6,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>AMIS - Criar Conta</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/usuario.css">
-        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     </head>
     <body>
+        <header class="auth-top">
+            <nav class="auth-nav">
+                <a class="logo-topo" href="${pageContext.request.contextPath}/"><img src="${pageContext.request.contextPath}/img/visual/logo.png" alt="AMIS"></a>
+                <div class="auth-nav-actions">
+                    <a href="${pageContext.request.contextPath}/">Voltar ao início</a>
+                    <button type="button" id="botao-tema" onclick="mudarTema()" aria-label="Alternar tema">☾</button>
+                </div>
+            </nav>
+        </header>
         <div class="auth-container-wrapper">
-            <div class="logo-topo">
-                AMIS
-            </div>
             <div class="auth-card">
                 <div class="auth-banner">
                     <div class="banner-conteudo">
-                        <h2>AMIS</h2>
+                        <h2>amis.</h2>
                         <h3>Já faz parte da comunidade?</h3>
                         <p>Entre com seu apelido e continue de onde parou.</p>
                         <a href="${pageContext.request.contextPath}/login"
@@ -109,5 +114,6 @@
         <% if ("1".equals(request.getParameter("erro"))) { %>
         <script>alert("Não foi possível realizar o cadastro.");</script>
         <% } %>
+        <script src="${pageContext.request.contextPath}/js/tema.js"></script>
     </body>
 </html>

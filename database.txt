@@ -1,16 +1,29 @@
 DROP TABLE IF EXISTS ITEM_SALVO;
+
 DROP TABLE IF EXISTS PAGINA_SEGUIDA;
+
 DROP TABLE IF EXISTS PESSOA_SALVA;
+
 DROP TABLE IF EXISTS COMENTARIO;
+
 DROP TABLE IF EXISTS DIARIO;
+
 DROP TABLE IF EXISTS POSTAGEM;
+
 DROP TABLE IF EXISTS FUNCIONARIO;
+
 DROP TABLE IF EXISTS CATEGORIA;
+
 DROP TABLE IF EXISTS FLAG;
+
 DROP TABLE IF EXISTS USUARIO;
+
 DROP TABLE IF EXISTS BANNER;
+
 DROP TABLE IF EXISTS SOBRE;
+
 DROP TABLE IF EXISTS SERVICO;
+
 DROP TABLE IF EXISTS CONFIGURACAO;
 
 CREATE TABLE IF NOT EXISTS USUARIO (
@@ -29,21 +42,15 @@ CREATE TABLE IF NOT EXISTS USUARIO (
     SENHA VARCHAR(255)
 );
 
-
-
 CREATE TABLE IF NOT EXISTS CATEGORIA (
     ID_CATEGORIA INT PRIMARY KEY AUTO_INCREMENT,
     NOME VARCHAR(100) NOT NULL UNIQUE
 );
 
-
-
 CREATE TABLE IF NOT EXISTS FLAG (
     ID_FLAG INT PRIMARY KEY AUTO_INCREMENT,
     NOME VARCHAR(100) NOT NULL UNIQUE
 );
-
-
 
 CREATE TABLE IF NOT EXISTS POSTAGEM (
     ID_POSTAGEM INT PRIMARY KEY AUTO_INCREMENT,
@@ -60,79 +67,6 @@ CREATE TABLE IF NOT EXISTS POSTAGEM (
     FOREIGN KEY (ID_FLAG) REFERENCES FLAG(ID_FLAG)
 );
 
-
-
-INSERT INTO USUARIO (TIPO, FOTO, BIO, USERNAME, NOME, EMAIL, SENHA) VALUES
-('PESSOAL', '', 'Vivendo e aprendendo.', 'amanda', 'Amanda', 'amanda@amis.com', '123'),
-('PESSOAL', '', 'Um dia de cada vez.', 'emilly', 'Emilly', 'emilly@amis.com', '123'),
-('PESSOAL', '', 'Tudo no seu tempo.', 'isabele', 'Isabele', 'isabele@amis.com', '123'),
-('PAGINA', '', 'Sobre carreira e trabalho.', 'carreira.amis', 'Carreira AMIS', 'carreira@amis.com', '123'),
-('PAGINA', '', 'Beleza e autocuidado.', 'beleza.amis', 'Beleza AMIS', 'beleza@amis.com', '123'),
-('PAGINA', '', 'Conversas e apoio.', 'apoio.amis', 'Apoio AMIS', 'apoio@amis.com', '123');
-
-INSERT INTO CATEGORIA (NOME) VALUES ('Carreira');
-INSERT INTO CATEGORIA (NOME) VALUES ('Beleza');
-INSERT INTO CATEGORIA (NOME) VALUES ('Autoajuda');
-
-
-
-INSERT INTO FLAG (NOME) VALUES ('Só desabafo');
-INSERT INTO FLAG (NOME) VALUES ('Quero conselhos');
-
-
-
-
-INSERT INTO POSTAGEM
-    (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS)
-VALUES
-    (1, 1, 2,
-    'Tenho medo de mudar de carreira',
-    'Estou pensando em mudar de área, mas tenho medo de começar do zero. Alguém já passou por isso? Como vocês decidiram seguir em frente?',
-    'PUBLICADO');
-
-INSERT INTO POSTAGEM
-    (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS)
-VALUES
-    (1, 2, 1,
-    'Aprendendo a gostar de mim',
-    'Durante muito tempo fiquei tentando alcançar padrão de beleza e aos poucos estou aprendendo a cuidar de mim.....',
-    'PUBLICADO');
-
-INSERT INTO POSTAGEM
-    (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS)
-VALUES
-    (1, 3, 2,
-    'Como parar de me comparar?',
-    'Às vezes olho para a vida de outras pessoas nas redes sociais e sinto que estou atrasada......',
-    'PUBLICADO');
-
-INSERT INTO POSTAGEM
-    (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS)
-VALUES
-    (1, 1, 1,
-    'Hoje foi um dia difícil no trabalho',
-    'Hoje me esforcei muito e mesmo assim senti que nada foi suficiente. Só queria colocar isso para fora....',
-    'PUBLICADO');
-
-INSERT INTO POSTAGEM
-    (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS)
-VALUES
-    (1, 3, 1,
-    'Acabou a criatividade',
-    'Muita coisa pra pensar nossa............................',
-    'PUBLICADO');
-
-INSERT INTO POSTAGEM (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS) VALUES (2, 2, 1, 'Aprendendo a gostar de mim', 'Durante muito tempo fiquei tentando alcançar padrão de beleza e aos poucos estou aprendendo a cuidar de mim.....', 'PUBLICADO');
-INSERT INTO POSTAGEM (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS) VALUES (2, 3, 2, 'Como parar de me comparar?', 'Às vezes olho para a vida de outras pessoas nas redes sociais e sinto que estou atrasada......', 'PUBLICADO');
-INSERT INTO POSTAGEM (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS) VALUES (3, 1, 1, 'Hoje foi um dia difícil no trabalho', 'Hoje me esforcei muito e mesmo assim senti que nada foi suficiente. Só queria colocar isso para fora....', 'PUBLICADO');
-INSERT INTO POSTAGEM (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS) VALUES (3, 3, 1, 'Acabou a criatividade', 'Muita coisa pra pensar nossa............................', 'PUBLICADO');
-INSERT INTO POSTAGEM (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS) VALUES (4, 1, 2, 'Tenho medo de mudar de carreira', 'Estou pensando em mudar de área, mas tenho medo de começar do zero. Alguém já passou por isso? Como vocês decidiram seguir em frente?', 'PUBLICADO');
-INSERT INTO POSTAGEM (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS) VALUES (4, 1, 1, 'Hoje foi um dia difícil no trabalho', 'Hoje me esforcei muito e mesmo assim senti que nada foi suficiente. Só queria colocar isso para fora....', 'PUBLICADO');
-INSERT INTO POSTAGEM (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS) VALUES (5, 2, 1, 'Aprendendo a gostar de mim', 'Durante muito tempo fiquei tentando alcançar padrão de beleza e aos poucos estou aprendendo a cuidar de mim.....', 'PUBLICADO');
-INSERT INTO POSTAGEM (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS) VALUES (5, 3, 2, 'Como parar de me comparar?', 'Às vezes olho para a vida de outras pessoas nas redes sociais e sinto que estou atrasada......', 'PUBLICADO');
-INSERT INTO POSTAGEM (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS) VALUES (6, 3, 2, 'Como parar de me comparar?', 'Às vezes olho para a vida de outras pessoas nas redes sociais e sinto que estou atrasada......', 'PUBLICADO');
-INSERT INTO POSTAGEM (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS) VALUES (6, 3, 1, 'Acabou a criatividade', 'Muita coisa pra pensar nossa............................', 'PUBLICADO');
-
 CREATE TABLE IF NOT EXISTS COMENTARIO (
     ID_COMENTARIO INT PRIMARY KEY AUTO_INCREMENT,
     ID_POSTAGEM INT NOT NULL,
@@ -142,7 +76,6 @@ CREATE TABLE IF NOT EXISTS COMENTARIO (
     FOREIGN KEY (ID_POSTAGEM) REFERENCES POSTAGEM(ID_POSTAGEM) ON DELETE CASCADE,
     FOREIGN KEY (ID_USUARIO) REFERENCES USUARIO(ID_USUARIO) ON DELETE CASCADE
 );
-
 
 CREATE TABLE IF NOT EXISTS PESSOA_SALVA (
     ID_USUARIO INT NOT NULL,
@@ -160,7 +93,6 @@ CREATE TABLE IF NOT EXISTS PAGINA_SEGUIDA (
     FOREIGN KEY (ID_PAGINA) REFERENCES USUARIO(ID_USUARIO) ON DELETE CASCADE
 );
 
-
 CREATE TABLE IF NOT EXISTS ITEM_SALVO (
     ID_USUARIO INT NOT NULL,
     ID_POSTAGEM INT NOT NULL,
@@ -168,9 +100,6 @@ CREATE TABLE IF NOT EXISTS ITEM_SALVO (
     FOREIGN KEY (ID_USUARIO) REFERENCES USUARIO(ID_USUARIO) ON DELETE CASCADE,
     FOREIGN KEY (ID_POSTAGEM) REFERENCES POSTAGEM(ID_POSTAGEM) ON DELETE CASCADE
 );
-
-
-
 
 CREATE TABLE IF NOT EXISTS DIARIO (
     ID_REGISTRO INT PRIMARY KEY AUTO_INCREMENT,
@@ -182,37 +111,99 @@ CREATE TABLE IF NOT EXISTS DIARIO (
     FOREIGN KEY (ID_USUARIO) REFERENCES USUARIO(ID_USUARIO) ON DELETE CASCADE
 );
 
-
-INSERT INTO PESSOA_SALVA (ID_USUARIO, ID_PESSOA) VALUES
-(1, 2), (1, 3), (2, 1), (2, 3), (3, 1), (3, 2);
-
-INSERT INTO PAGINA_SEGUIDA (ID_USUARIO, ID_PAGINA) VALUES
-(1, 4), (1, 5), (1, 6), (2, 4), (2, 6), (3, 5), (3, 6);
-
-INSERT INTO ITEM_SALVO (ID_USUARIO, ID_POSTAGEM) VALUES
-(1, 6), (1, 8), (1, 11), (2, 1), (2, 5), (2, 12), (3, 2), (3, 7), (3, 13);
-
-INSERT INTO DIARIO (ID_USUARIO, DATA, HUMOR, DESCRICAO) VALUES
-(1, '2026-07-30', 'Feliz', 'Dia bom'),
-(1, '2026-08-12', 'Neutra', 'Dia tranquilo'),
-(1, '2026-09-10', 'Feliz', 'Saí com minhas amigas'),
-(2, '2026-07-22', 'Feliz', 'Nesse dia fui divertida'),
-(2, '2026-08-03', 'Triste', 'Dia cansativo'),
-(2, '2026-09-15', 'Feliz', 'Gostei de hoje'),
-(3, '2026-07-18', 'Neutra', 'Fiquei em casa'),
-(3, '2026-08-21', 'Feliz', 'Dia bom'),
-(3, '2026-09-27', 'Feliz', 'Foi muito legal');
-
-INSERT INTO USUARIO (TIPO, USERNAME, NOME, EMAIL, SENHA, ADMIN, CARGO, PERMISSAO) VALUES ('FUNCIONARIO', 'admin', 'Administrador', 'admin@amis.com', '123', 1, 'Administrador Geral', '3');
-
 CREATE TABLE IF NOT EXISTS BANNER (ID_BANNER INT PRIMARY KEY, SUBTITULO VARCHAR(150), TITULO VARCHAR(150), TEXTO VARCHAR(2000), IMAGEM VARCHAR(1000));
+
 CREATE TABLE IF NOT EXISTS SOBRE (ID_SOBRE INT PRIMARY KEY, TITULO VARCHAR(150), TEXTO VARCHAR(2000));
+
 CREATE TABLE IF NOT EXISTS SERVICO (ID_SERVICO INT PRIMARY KEY, NOME VARCHAR(150), TITULO VARCHAR(150), TEXTO VARCHAR(2000), IMAGEM VARCHAR(1000));
+
 CREATE TABLE IF NOT EXISTS CONFIGURACAO (ID_CONFIGURACAO INT PRIMARY KEY, LOGO VARCHAR(1000), EMAIL VARCHAR(255));
 
-INSERT INTO BANNER VALUES (1, 'De mulher para mulher', 'Há tanto de nós para compartilhar.', 'Faça descobertas, desabafe, peça conselhos, conte histórias e registre momentos. Um espaço de acolhimento e troca criado para mulheres.', 'img/banner.svg');
-INSERT INTO SOBRE VALUES (1, 'Sobre a AMIS', 'A AMIS nasceu da ideia de criar um espaço onde mulheres pudessem compartilhar experiências, sentimentos e interesses sem que a popularidade determinasse o alcance de suas histórias. Por isso, escolhemos não trabalhar com curtidas ou contadores de seguidores, valorizando as conversas e as conexões entre pessoas.');
-INSERT INTO SERVICO VALUES (1, 'Perfil pessoal', 'Sua história merece ser ouvida.', 'Compartilhe experiências, peça conselhos e converse com outras mulheres.', 'img/perfil.svg');
-INSERT INTO SERVICO VALUES (2, 'Journal', 'Dias que merecem ser lembrados.', 'Registre sentimentos e acontecimentos em um diário privado, só seu.', 'img/journal.svg');
-INSERT INTO SERVICO VALUES (3, 'Páginas', 'Compartilhe aquilo que você ama.', 'Crie páginas sobre livros, filmes, estudos e outros interesses.', 'img/paginas.svg');
-INSERT INTO CONFIGURACAO VALUES (1, 'img/logo.svg', 'contato@amis.example');
+INSERT INTO USUARIO (TIPO, FOTO, BIO, USERNAME, NOME, EMAIL, SENHA) VALUES
+    ('PESSOAL', '', 'Café, livros e uma vontade enorme de conhecer lugares novos.', 'marina', 'Marina', 'marina@amis.com', '123'),
+    ('PESSOAL', '', 'Tentando equilibrar faculdade, trabalho e tempo para mim.', 'bia', 'Beatriz', 'bia@amis.com', '123'),
+    ('PESSOAL', '', 'Gosto de fotografar detalhes que quase ninguém percebe.', 'luiza', 'Luiza', 'luiza@amis.com', '123'),
+    ('PESSOAL', '', 'Música no fone e mil ideias na cabeça.', 'nina', 'Nina', 'nina@amis.com', '123'),
+    ('PESSOAL', '', 'Entre receitas, plantas e conversas demoradas.', 'clara', 'Clara', 'clara@amis.com', '123'),
+    ('PESSOAL', '', 'Um espaço para compartilhar histórias, descobertas e pequenos momentos.', 'amis', 'AMIS', 'amis@amis.com', '123'),
+    ('PAGINA', '', 'Livros que ficam com a gente depois da última página.', 'entre.paginas', 'Entre Páginas', 'entre.paginas@amis.com', '123'),
+    ('PAGINA', '', 'Filmes, séries e conversas depois dos créditos.', 'cine.clube', 'Cine Clube', 'cine.clube@amis.com', '123'),
+    ('PAGINA', '', 'Beleza e autocuidado sem complicação.', 'pele.real', 'Pele Real', 'pele.real@amis.com', '123'),
+    ('PAGINA', '', 'Estudos, trabalho e primeiros passos profissionais.', 'carreira.delas', 'Carreira Delas', 'carreira.delas@amis.com', '123'),
+    ('PAGINA', '', 'Receitas simples para dias comuns.', 'mesa.afetiva', 'Mesa Afetiva', 'mesa.afetiva@amis.com', '123'),
+    ('PAGINA', '', 'Passeios, viagens e descobertas pela cidade.', 'fora.da.rotina', 'Fora da Rotina', 'fora.da.rotina@amis.com', '123'),
+    ('PAGINA', '', 'Música para todas as fases da vida.', 'som.de.domingo', 'Som de Domingo', 'som.de.domingo@amis.com', '123'),
+    ('PAGINA', '', 'Plantas, decoração e pequenos cantinhos felizes.', 'casa.verde', 'Casa Verde', 'casa.verde@amis.com', '123');
+
+INSERT INTO USUARIO (TIPO, USERNAME, NOME, EMAIL, SENHA, ADMIN, CARGO, PERMISSAO) VALUES
+    ('FUNCIONARIO', 'admin', 'Administrador', 'admin@amis.com', '123', 1, 'Administrador Geral', '3'),
+    ('FUNCIONARIO', 'marketing', 'Mariana', 'marketing@amis.com', '123', 1, 'Marketing', '1'),
+    ('FUNCIONARIO', 'moderacao', 'Camila', 'moderacao@amis.com', '123', 1, 'Moderação', '2');
+
+INSERT INTO CATEGORIA (NOME) VALUES
+    ('Cotidiano'),
+    ('Carreira'),
+    ('Estudos'),
+    ('Beleza'),
+    ('Bem-estar'),
+    ('Relacionamentos'),
+    ('Amizades'),
+    ('Livros'),
+    ('Filmes e séries'),
+    ('Música'),
+    ('Viagens'),
+    ('Culinária'),
+    ('Casa e decoração'),
+    ('Tecnologia'),
+    ('Outros');
+
+INSERT INTO FLAG (NOME) VALUES
+    ('Só desabafo'),
+    ('Quero conselhos'),
+    ('Só comentando'),
+    ('Preciso de ajuda'),
+    ('Aleatório'),
+    ('Recomendação'),
+    ('Compartilhando uma conquista'),
+    ('Pergunta'),
+    ('Reflexão');
+
+INSERT INTO POSTAGEM (ID_USUARIO, ID_CATEGORIA, ID_FLAG, TITULO, TEXTO, STATUS) VALUES
+    (1, 8, 6, 'Um livro que me surpreendeu', 'Comecei A Biblioteca da Meia-Noite sem esperar muita coisa e terminei pensando em todas as escolhas que já fiz. Alguém mais leu?', 'PUBLICADO'),
+    (2, 3, 4, 'Como vocês organizam a semana de provas?', 'Tenho três provas na mesma semana e estou perdida. Vocês estudam uma matéria por dia ou dividem o tempo entre todas?', 'PUBLICADO'),
+    (3, 1, 3, 'O céu de hoje', 'Saí do trabalho e o céu estava completamente rosa. Fiquei uns minutos parada olhando. Que coisa bonita.', 'PUBLICADO'),
+    (4, 10, 8, 'Músicas para ouvir no ônibus', 'Quero renovar minha playlist. Aceito de tudo, principalmente músicas brasileiras.', 'PUBLICADO'),
+    (5, 12, 5, 'Inventei um bolo', 'Fui fazer bolo de banana e coloquei canela demais. A casa ficou cheirosa e o bolo ficou surpreendentemente bom.', 'PUBLICADO'),
+    (1, 7, 2, 'Amizades depois da faculdade', 'Tenho medo de perder contato com minhas amigas quando a faculdade acabar. Como vocês mantêm amizades mesmo com rotinas diferentes?', 'PUBLICADO'),
+    (2, 2, 7, 'Consegui minha primeira entrevista!', 'Depois de mandar vários currículos, finalmente me chamaram para uma entrevista. Estou nervosa, mas muito feliz.', 'PUBLICADO'),
+    (3, 4, 8, 'Protetor solar sem pesar', 'Vocês conhecem algum protetor que não deixe a pele oleosa? Queria algo confortável para usar todos os dias.', 'PUBLICADO'),
+    (4, 5, 1, 'Uma semana cansativa', 'Parece que toda vez que termino uma tarefa aparecem outras três. Hoje só quero chegar em casa e ficar quietinha.', 'PUBLICADO'),
+    (5, 13, 2, 'Minha primeira planta', 'Comprei uma jiboia e não sei muito bem onde colocar. Perto da janela, sem sol direto, funciona?', 'PUBLICADO'),
+    (7, 8, 6, 'Para ler em um fim de semana', 'A Hora da Estrela é curtinho, mas rende muitas reflexões. Uma boa escolha para quem quer retomar o hábito de leitura.', 'PUBLICADO'),
+    (7, 8, 8, 'Qual livro vocês releriam?', 'Tem algum livro que vocês gostariam de esquecer só para poder ler pela primeira vez novamente?', 'PUBLICADO'),
+    (8, 9, 6, 'Sessão da tarde em casa', 'Curtindo a Vida Adoidado é uma ótima pedida para um sábado sem planos. Prepare a pipoca!', 'PUBLICADO'),
+    (8, 9, 8, 'Filmes que parecem um abraço', 'Queremos montar uma lista de filmes de conforto. Qual não pode faltar?', 'PUBLICADO'),
+    (9, 4, 6, 'O básico também funciona', 'Uma rotina de cuidados não precisa ter dez produtos. Limpeza suave, hidratação e proteção solar já são um bom começo.', 'PUBLICADO'),
+    (9, 4, 3, 'Maquiagem no calor', 'Nos dias quentes, gosto de usar menos produtos e levar um lencinho para tirar o excesso de oleosidade.', 'PUBLICADO'),
+    (10, 2, 6, 'Antes da entrevista', 'Vale separar alguns exemplos de projetos que você fez e pensar em como explicar suas contribuições. Não precisa decorar respostas.', 'PUBLICADO'),
+    (10, 14, 8, 'Mulheres na tecnologia', 'Qual foi a primeira linguagem de programação que vocês aprenderam? Queremos conhecer histórias de quem está começando.', 'PUBLICADO'),
+    (11, 12, 6, 'Panqueca de banana', 'Amasse uma banana, misture com um ovo e duas colheres de aveia. Doure dos dois lados em fogo baixo. Ótima para o café da manhã.', 'PUBLICADO'),
+    (11, 12, 8, 'Receitas de família', 'Qual receita lembra a casa de vocês? Aqui, arroz doce com canela sempre traz boas memórias.', 'PUBLICADO'),
+    (12, 11, 6, 'Um passeio diferente', 'Que tal visitar uma biblioteca ou um centro cultural da sua cidade neste fim de semana? Às vezes há muita coisa perto de casa.', 'PUBLICADO'),
+    (12, 11, 8, 'Viagem de amigas', 'Praia ou cidade histórica? Estamos reunindo ideias de destinos para um fim de semana.', 'PUBLICADO'),
+    (13, 10, 6, 'Domingo com MPB', 'Hoje a sugestão é ouvir Clube da Esquina com calma, do começo ao fim.', 'PUBLICADO'),
+    (14, 13, 6, 'Um cantinho de leitura', 'Uma luminária, uma almofada e uma pequena mesa já podem transformar aquele canto vazio do quarto.', 'PUBLICADO'),
+    (14, 13, 3, 'Propagando jiboias', 'Coloquei uma muda na água há algumas semanas e finalmente apareceram raízes. Muito gostoso acompanhar esse processo.', 'PUBLICADO'),
+    (6, 1, 3, 'Pequenas coisas que fazem o dia', 'Hoje consegui tomar café sem pressa e caminhar um pouco antes de começar minhas tarefas. Quero lembrar de reservar mais momentos assim.', 'PUBLICADO'),
+    (6, 7, 8, 'O que vocês gostam de compartilhar?', 'Adoro descobrir livros, músicas e histórias através de outras pessoas. Qual foi a última recomendação que fez diferença no dia de vocês?', 'PUBLICADO');
+
+INSERT INTO DIARIO (ID_USUARIO, DATA, HUMOR, TITULO, DESCRICAO) VALUES
+    (6, '2026-11-23', 'Tranquila', 'Uma tarde sem pressa', 'Fiquei em casa, organizei meu quarto e terminei alguns capítulos do livro que estava lendo. Foi bom ter um tempo só para mim.'),
+    (6, '2026-11-25', 'Feliz', 'Um encontro que fez bem', 'Encontrei minhas amigas depois de uma semana corrida. Conversamos sobre tanta coisa que nem percebi a hora passar.');
+
+INSERT INTO BANNER VALUES (1, '', 'Há tanto de nós para compartilhar.', 'Entre histórias, descobertas e pequenas coisas do cotidiano, existem muitas maneiras de nos conectar. A AMIS é uma comunidade criada para mulheres que desejam conversar, trocar experiências e guardar momentos que fazem parte de suas vidas.', 'img/banner.svg');
+INSERT INTO SOBRE VALUES (1, 'Conexões que vão além dos números.', 'Nem toda história precisa de uma plateia. Na AMIS, não existem curtidas nem contadores públicos de seguidores. A proposta é valorizar o que compartilhamos, as conversas que surgem e as experiências que nos aproximam, sem transformar a participação em uma competição por popularidade.');
+INSERT INTO SERVICO VALUES (1, 'Perfil pessoal', 'Sua história merece ser ouvida.', 'Compartilhe ideias, faça perguntas, conte sobre suas descobertas ou converse sobre aquilo que está vivendo. Explore assuntos que despertam sua curiosidade e encontre outras perspectivas através das publicações e dos comentários.', 'img/perfil-real.png');
+INSERT INTO SERVICO VALUES (2, 'Journal', 'Dias que merecem ser lembrados.', 'Nem todos os momentos precisam ser compartilhados. No seu diário privado, você pode registrar sentimentos, pequenas conquistas e reflexões, revisitar suas memórias e acompanhar as diferentes fases da sua própria história.', 'img/journal-real.png');
+INSERT INTO SERVICO VALUES (3, 'Páginas', 'Compartilhe aquilo que você ama.', 'De livros e beleza a carreira, cultura e bem-estar, as páginas são espaços para reunir interesses, compartilhar conhecimentos e descobrir novos assuntos. Siga as páginas que fazem sentido para você e guarde publicações para revisitar quando quiser.', 'img/paginas-real.png');
+INSERT INTO CONFIGURACAO VALUES (1, 'img/visual/logo.png', 'contato@amis.example');

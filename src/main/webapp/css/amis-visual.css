@@ -126,10 +126,12 @@ body.amis-tela {
     margin: 0 0 4px;
     font-size: 24px;
 }
+
 .amis-perfil-usuario {
     color: #7a8392;
     margin: 0 0 8px;
 }
+
 .amis-perfil-bio {
     margin: 0;
     color: #5c6574;
@@ -147,11 +149,13 @@ body.amis-tela {
 .amis-estatisticas div {
     text-align: center;
 }
+
 .amis-estatisticas strong {
     display: block;
     font-size: 19px;
     color: #283044;
 }
+
 .amis-estatisticas span {
     font-size: 12px;
     color: #798291;
@@ -178,43 +182,53 @@ body.amis-tela {
     background: #fce9f4;
     color: #d53b97;
 }
+
 .amis-registro {
     padding: 17px 0;
     border-bottom: 1px solid #edf0f2;
 }
+
 .amis-registro:last-child {
     border-bottom: 0;
 }
+
 .amis-registro p {
     margin: 8px 0;
 }
+
 .amis-vazio {
     text-align: center;
     padding: 35px 12px;
     color: #8a93a1;
 }
+
 .amis-feed-titulo {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
+
 .amis-feed-titulo h2 {
     font-size: 25px;
     margin: 0;
 }
+
 .amis-feed .card {
     border: 1px solid #e8ebef;
     border-radius: 15px;
     margin-bottom: 20px;
 }
+
 .amis-feed .card-body {
     padding: 23px;
 }
+
 .amis-form-post {
     max-width: 790px;
     margin: auto;
 }
+
 .amis-form-post h2 {
     font-size: 25px;
     margin-bottom: 20px;
@@ -224,36 +238,44 @@ body.amis-tela.bg-color-escuro {
     background: #171b25;
     color: #eef0f6;
 }
+
 .bg-color-escuro .amis-topo, .bg-color-escuro .amis-painel,
 .bg-color-escuro .amis-abas a, .bg-color-escuro .amis-feed .card {
     background: #242a37;
     border-color: #3a4251;
     color: #eef0f6;
 }
+
 .bg-color-escuro .amis-painel h2, .bg-color-escuro .amis-painel h3,
 .bg-color-escuro .amis-estatisticas strong, .bg-color-escuro .amis-perfil-nome {
     color: #f4f5f8;
 }
+
 .bg-color-escuro .amis-perfil-bio, .bg-color-escuro .amis-perfil-usuario,
 .bg-color-escuro .amis-estatisticas span, .bg-color-escuro .amis-abas a {
     color: #c2c9d5;
 }
+
 .bg-color-escuro .amis-links a, .bg-color-escuro .amis-tema {
     color: #d5d9e2;
 }
+
 .bg-color-escuro .amis-links a:hover {
     background: #473044;
     color: #ffb5de;
 }
+
 .bg-color-escuro .form-control, .bg-color-escuro .form-select,
 .bg-color-escuro textarea {
     background: #303747;
     color: #fff;
     border-color: #4c5565;
 }
+
 .bg-color-escuro .form-control::placeholder {
     color: #b6bdca;
 }
+
 .bg-color-escuro .amis-registro {
     border-color: #3a4251;
 }
@@ -577,25 +599,30 @@ body.amis-tela.bg-color-escuro {
     flex-wrap: wrap;
     gap: 10px;
 }
+
 .amis-opcao {
     cursor: pointer;
     position: relative;
 }
+
 .amis-opcao input {
     position: absolute;
     opacity: 0;
 }
+
 .amis-opcao span {
     display: block;
     padding: 12px 18px;
     border: 1px solid #d7c5d0;
     border-radius: 8px;
 }
+
 .amis-opcao input:checked + span {
     background: #f3d8e9;
     color: #773b60;
     border-color: #a75a89;
 }
+
 .amis-opcao input:focus + span {
     outline: 2px solid #a75a89;
     outline-offset: 2px;
@@ -604,28 +631,34 @@ body.amis-tela.bg-color-escuro {
 .perfil-social {
     overflow: hidden;
 }
+
 .perfil-capa {
     height: 100px;
     background: #efc9df;
     border-radius: 12px;
     margin-bottom: 20px;
 }
+
 .perfil-social .amis-perfil-bio {
     margin-top: 12px;
 }
+
 .perfil-social .amis-perfil-desde {
     font-size: 13px;
     margin-top: 15px;
 }
+
 .amis-abas a.aba-ativa {
     background: #fce9f4;
     color: #a45183;
     border-color: #e6b5d3;
 }
+
 .perfil-opcoes {
     display: inline-block;
     margin-left: 12px;
 }
+
 .perfil-opcoes summary {
     cursor: pointer;
     font-size: 24px;

@@ -1,4 +1,3 @@
-
 ![Protótipo Amis](imagens/prototipo-Amis.PNG)
 
 # Plataforma AMIS
@@ -48,7 +47,6 @@ Também é possível:
 
 No **Journal**, a usuária escolhe uma emoção e escreve uma breve descrição para uma data específica, formando um calendário pessoal de lembranças e conquistas.
 
-
 ## Principais funcionalidades
 
 * Login e cadastro
@@ -61,8 +59,6 @@ No **Journal**, a usuária escolhe uma emoção e escreve uma breve descrição 
 * Journal (diário privado)
 * Registro de emoção por data
 * Pesquisa e filtragem de temas das postagens
-
-
 
 ## Imagens referencia:
 
@@ -81,20 +77,3 @@ No **Journal**, a usuária escolhe uma emoção e escreve uma breve descrição 
 ![Tela prototipo-Amis](imagens/prototipo-Amis.PNG)
 
 ![Tela 9](imagens/9.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

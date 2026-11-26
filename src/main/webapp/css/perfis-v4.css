@@ -1,0 +1,611 @@
+.perfil-v4 .amis-perfil-pagina {
+    max-width: 1000px !important;
+}
+
+.perfil-v4 .perfil-social {
+    position: relative;
+}
+
+.perfil-v4 .perfil-capa {
+    height: 125px;
+    background: linear-gradient(110deg, #f6dce9, #e6def7);
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+
+.perfil-v4 .perfil-foto {
+    width: 86px;
+    height: 86px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.perfil-v4 .amis-perfil-cabecalho {
+    padding-right: 44px;
+}
+
+.perfil-v4 .amis-perfil-desde {
+    color: #82798e;
+    font-size: 13px;
+    margin-top: 14px;
+}
+
+.perfil-v4 .amis-perfil-acoes {
+    position: absolute;
+    right: 32px;
+    top: 174px;
+    margin: 0;
+}
+
+.perfil-v4 .perfil-opcoes {
+    position: relative;
+}
+
+.perfil-v4 .perfil-opcoes summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 8px 12px;
+    border: 1px solid #e7e1ed;
+    border-radius: 9px;
+}
+
+.perfil-v4 .perfil-opcoes-lista, .perfil-v4 .perfil-menu[open] {
+    z-index: 10;
+}
+
+.perfil-v4 .perfil-opcoes-lista {
+    position: absolute;
+    right: 0;
+    top: 42px;
+    width: 180px;
+    padding: 8px;
+    background: white;
+    border: 1px solid #e7e1ed;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px #24132f18;
+}
+
+.perfil-v4 .perfil-opcoes-lista a, .perfil-v4 .perfil-opcoes-lista button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+    border: 0;
+    text-decoration: none;
+    font-size: 14px;
+    background: transparent;
+}
+
+.perfil-v4 .perfil-opcoes-lista a {
+    color: #633a86;
+}
+
+.perfil-v4 .perfil-opcoes-lista button {
+    color: #b52d49;
+}
+
+.perfil-v4 .amis-abas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 20px 0;
+}
+
+.perfil-v4 .amis-abas a {
+    padding: 12px 16px;
+    border-radius: 9px;
+    text-decoration: none;
+}
+
+.perfil-v4 .amis-abas .aba-ativa {
+    background: #eee3fa;
+    color: #773ca5;
+}
+
+.perfil-v4 .amis-painel h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+.perfil-v4 .amis-registro, .perfil-v4 .perfil-relacao {
+    background: #faf9fc;
+    border: 1px solid #eae6ef;
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 12px;
+}
+
+.perfil-v4 .amis-registro a, .perfil-v4 .perfil-relacao a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.perfil-v4 .amis-registro a:hover, .perfil-v4 .perfil-relacao a:hover {
+    color: #a34cc6;
+}
+
+.perfil-v4 .amis-registro small {
+    display: block;
+    color: #82798e;
+    margin: 5px 0 10px;
+}
+
+.perfil-v4 .amis-registro p {
+    margin: 8px 0;
+    overflow-wrap: anywhere;
+}
+
+.perfil-v4 .perfil-relacao {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.perfil-v4 .perfil-relacao form {
+    margin-left: auto;
+}
+
+.perfil-v4 .amis-registro .btn-outline-danger, .perfil-v4 .perfil-relacao .btn-outline-danger {
+    border-color: #ded4e8;
+    color: #87569f;
+    border-radius: 8px;
+}
+
+.perfil-v4.bg-color-escuro .amis-registro, .perfil-v4.bg-color-escuro .perfil-relacao, .perfil-v4.bg-color-escuro .perfil-opcoes-lista {
+    background: #302b38;
+    border-color: #48404e;
+    color: #eee;
+}
+
+.perfil-v4.bg-color-escuro .perfil-opcoes-lista a {
+    color: #e1c4fa;
+}
+
+@media (max-width: 600px) {
+    .perfil-v4 .perfil-foto {
+        width: 64px;
+        height: 64px;
+    }
+
+    .perfil-v4 .amis-perfil-acoes {
+        right: 24px;
+    }
+
+    .perfil-v4 .amis-abas a {
+        padding: 9px;
+    }
+}
+
+.perfil-v4 {
+    --perfil-accent: #a34cc6;
+    --perfil-muted: #756b82;
+    --perfil-border: #e8e2ed;
+    --perfil-surface: #faf8fc;
+    --perfil-card: #fff;
+}
+
+.perfil-v4.bg-color-escuro {
+    --perfil-muted: #bdb0ca;
+    --perfil-border: #48404e;
+    --perfil-surface: #292530;
+    --perfil-card: #302b38;
+}
+
+.perfil-v4 .perfil-social {
+    padding: 24px !important;
+    margin-bottom: 20px;
+    border: 1px solid var(--perfil-border);
+    border-radius: 16px;
+}
+
+.perfil-v4 .perfil-capa {
+    height: 150px;
+    background: linear-gradient(115deg,#f8d9eb,#e5d8f6);
+    margin-bottom: 0;
+}
+
+.perfil-v4 .amis-perfil-cabecalho {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 0 58px 0 14px;
+    margin-top: -25px;
+    position: relative;
+}
+
+.perfil-v4 .perfil-foto {
+    width: 108px;
+    height: 108px;
+    border: 5px solid var(--perfil-card);
+    box-shadow: 0 3px 12px #48205d16;
+    background: #f8dcec;
+}
+
+.perfil-v4 .amis-perfil-cabecalho>div {
+    padding-top: 40px;
+    flex: 1;
+}
+
+.perfil-v4 .amis-perfil-cabecalho h2 {
+    font-size: 26px;
+    font-weight: 750;
+    line-height: 1.2;
+    margin: 0 0 5px;
+    overflow-wrap: anywhere;
+}
+
+.perfil-v4 .amis-perfil-usuario {
+    font-size: 14px;
+    color: var(--perfil-accent);
+    margin: 0 0 12px !important;
+}
+
+.perfil-v4 .amis-perfil-bio {
+    font-size: 15px;
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+    white-space: pre-line;
+}
+
+.perfil-v4 .amis-perfil-desde {
+    font-size: 12px;
+    color: var(--perfil-muted);
+    margin: 12px 0 0 14px;
+}
+
+.perfil-v4 .amis-perfil-cabecalho .amis-perfil-desde {
+    margin-left: 0;
+}
+
+.perfil-v4 .amis-perfil-acoes {
+    top: 190px;
+    right: 30px;
+}
+
+.perfil-v4 .perfil-opcoes summary {
+    color: var(--perfil-accent);
+    background: var(--perfil-surface);
+    border-color: var(--perfil-border);
+}
+
+.perfil-v4 .perfil-opcoes-lista {
+    width: 205px;
+    background: var(--perfil-card);
+    border-color: var(--perfil-border);
+}
+
+.perfil-v4 .perfil-opcoes-lista form {
+    display: block !important;
+}
+
+.perfil-v4 .perfil-opcoes-lista a:hover,.perfil-v4 .perfil-opcoes-lista button:hover {
+    background: var(--perfil-surface);
+    border-radius: 7px;
+}
+
+.perfil-v4 .amis-abas {
+    padding: 6px;
+    background: var(--perfil-card);
+    border: 1px solid var(--perfil-border);
+    border-radius: 12px;
+    gap: 4px;
+}
+
+.perfil-v4 .amis-abas a,.perfil-v4 .amis-abas a:first-child {
+    flex: 1;
+    text-align: center;
+    background: transparent;
+    color: var(--perfil-muted);
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.perfil-v4 .amis-abas a.aba-ativa {
+    background: #f3e4f8;
+    color: #9343b7;
+}
+
+.perfil-v4 .amis-lista-perfil {
+    border: 1px solid var(--perfil-border);
+    border-radius: 16px;
+}
+
+.perfil-v4 .amis-lista-perfil h3 {
+    font-size: 19px;
+    margin: 0 0 20px;
+}
+
+.perfil-v4 .amis-registro {
+    background: var(--perfil-surface);
+    border: 1px solid var(--perfil-border);
+    padding: 20px 22px;
+    border-radius: 12px;
+}
+
+.perfil-v4 .amis-registro strong a {
+    font-size: 17px;
+    color: inherit;
+}
+
+.perfil-v4 .amis-registro p {
+    white-space: pre-line;
+    line-height: 1.65;
+    margin: 10px 0 0;
+}
+
+.perfil-v4 .amis-registro form {
+    margin-top: 15px;
+    text-align: right;
+}
+
+.perfil-v4 .perfil-relacao {
+    background: var(--perfil-surface);
+    border-color: var(--perfil-border);
+    gap: 14px;
+    padding: 16px 18px;
+}
+
+.perfil-v4 .perfil-relacao .avatar-novo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.perfil-v4 .perfil-relacao-info {
+    flex: 1;
+    min-width: 120px;
+    overflow-wrap: anywhere;
+}
+
+.perfil-v4 .perfil-relacao-info small {
+    display: block;
+    color: var(--perfil-muted);
+    margin-top: 4px;
+}
+
+.perfil-v4 .btn-roxo {
+    background: #a34cc6 !important;
+    color: white !important;
+    border: 0;
+    border-radius: 9px;
+    padding: 11px 18px;
+    font-weight: 600;
+}
+
+.perfil-v4 .amis-form-relacao {
+    margin: 18px 0 0;
+    max-width: none;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.perfil-v4 .perfil-edicao {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 18px;
+}
+
+.perfil-v4 .perfil-edicao .amis-painel {
+    padding: 36px 44px !important;
+    border: 1px solid var(--perfil-border);
+    border-radius: 16px;
+}
+
+.perfil-v4 .perfil-voltar {
+    display: inline-block;
+    color: var(--perfil-muted);
+    text-decoration: none;
+    margin-bottom: 18px;
+    font-size: 14px;
+}
+
+.perfil-v4 .perfil-form-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid var(--perfil-border);
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+}
+
+.perfil-v4 .perfil-form-head h2 {
+    font-size: 25px;
+    font-weight: 700;
+    margin: 0 0 5px;
+}
+
+.perfil-v4 .perfil-form-head p {
+    color: var(--perfil-muted);
+    margin: 0;
+}
+
+.perfil-v4 .perfil-form-icon {
+    background: #f5e3f3;
+    color: #a34cc6;
+    border-radius: 12px;
+    padding: 13px;
+    font-size: 25px;
+    line-height: 1;
+}
+
+.perfil-v4 .perfil-senha-link {
+    display: inline-block;
+    color: var(--perfil-accent);
+    margin-bottom: 20px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.perfil-v4 .perfil-edicao .form-label {
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0 0 7px;
+}
+
+.perfil-v4 .perfil-edicao .form-control {
+    margin-bottom: 18px;
+    background: var(--perfil-card);
+    border-color: var(--perfil-border);
+    min-height: 44px;
+}
+
+.perfil-v4 .perfil-edicao textarea {
+    min-height: 110px;
+}
+
+.perfil-v4 .perfil-form-actions {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid var(--perfil-border);
+    padding-top: 22px;
+    margin-top: 24px;
+}
+
+.perfil-v4 .perfil-secundario {
+    color: var(--perfil-accent);
+    border: 1px solid var(--perfil-border);
+    border-radius: 9px;
+    padding: 10px 18px;
+    text-decoration: none;
+}
+
+.perfil-v4 .perfil-menu[open] {
+    background: var(--perfil-card);
+    border: 1px solid var(--perfil-border);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px #24132f18;
+}
+
+.perfil-v4 .perfil-menu a {
+    padding: 10px 14px;
+    text-decoration: none;
+    color: var(--perfil-accent);
+}
+
+.perfil-v4 .perfil-menu summary::-webkit-details-marker {
+    display: none;
+}
+
+.perfil-v4.bg-color-escuro .amis-registro strong {
+    color: #eee;
+}
+
+@media (max-width:600px) {
+    .perfil-v4 .perfil-foto {
+        width: 76px;
+        height: 76px;
+    }
+
+    .perfil-v4 .amis-perfil-cabecalho {
+        gap: 12px;
+        padding-left: 0;
+    }
+
+    .perfil-v4 .amis-perfil-cabecalho h2 {
+        font-size: 21px;
+    }
+
+    .perfil-v4 .amis-perfil-acoes {
+        right: 24px;
+    }
+
+    .perfil-v4 .perfil-edicao .amis-painel {
+        padding: 22px !important;
+    }
+
+    .perfil-v4 .amis-abas a {
+        flex: 1 1 42%;
+    }
+}
+
+.perfil-v4 .amis-perfil-bio {
+    margin: 16px 0 20px !important;
+    white-space: pre-wrap;
+    text-align: left;
+}
+
+.perfil-v4 .amis-perfil-desde {
+    margin-top: 18px !important;
+}
+
+.perfil-v4 .perfil-seguir {
+    color: #9844bd;
+    border: 1px solid #b77bd1;
+    background: transparent;
+    border-radius: 9px;
+    padding: 11px 18px;
+    font-weight: 600;
+}
+
+.perfil-v4 .perfil-seguir:hover {
+    background: #f3e4f8;
+    color: #8434a6;
+}
+
+.perfil-v4 .perfil-post {
+    background: var(--perfil-card);
+    padding: 24px;
+    margin-bottom: 16px;
+}
+
+.perfil-v4 .perfil-post-autor {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.perfil-v4 .perfil-post-autor .avatar-novo {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.perfil-v4 .perfil-post-autor small {
+    margin: 3px 0 0;
+}
+
+.perfil-v4 .perfil-post-categoria {
+    color: var(--perfil-accent);
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.perfil-v4 .perfil-post .perfil-post-texto {
+    white-space: pre-wrap;
+    text-align: left;
+    text-indent: 0;
+    padding: 0;
+    margin: 12px 0;
+    line-height: 1.65;
+}
+
+.perfil-v4 .perfil-post-flag {
+    display: inline-block;
+    background: #f9e3f0;
+    color: #a52b78;
+    padding: 5px 9px;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+.perfil-v4 .perfil-post form {
+    border-top: 1px solid var(--perfil-border);
+    padding-top: 14px;
+}
+
+.perfil-v4 .perfil-post strong a {
+    display: block;
+    font-size: 18px;
+}
