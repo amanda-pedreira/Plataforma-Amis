@@ -16,7 +16,7 @@ public class ListCategoriaServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
 
         List<Categoria> categorias = new CategoriaDAO().findAllCategorias();
 

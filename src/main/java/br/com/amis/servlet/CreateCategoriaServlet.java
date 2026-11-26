@@ -14,7 +14,7 @@ public class CreateCategoriaServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws IOException {
+    throws IOException {
 
         String id = req.getParameter("id");
         String nome = req.getParameter("categoria-nome");

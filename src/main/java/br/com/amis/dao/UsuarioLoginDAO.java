@@ -1,4 +1,3 @@
-
 package br.com.amis.dao;
 
 import br.com.amis.model.User;
@@ -32,7 +31,11 @@ public class UsuarioLoginDAO {
 
                 if (senha.equals(user.getPassword())) {
 
-                    idUsuario = resultSet.getInt("ID_USUARIO");
+                    if ("INATIVO".equals(resultSet.getString("STATUS"))) {
+                        idUsuario = -1;
+                    } else {
+                        idUsuario = resultSet.getInt("ID_USUARIO");
+                    }
 
                 }
 

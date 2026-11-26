@@ -17,11 +17,31 @@ public class Journal {
         this.titulo = titulo;
     }
 
-    public int getIdRegistro() { return idRegistro; }
-    public int getIdUsuario() { return idUsuario; }
-    public String getData() { return data; }
-    public String getHumor() { return humor; }
-    public String getTitulo() { return titulo; }
-    public String getDia() { return data.substring(8, 10); }
-    public String getDescricao() { return descricao; }
+    public int getIdRegistro() {
+        return idRegistro;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public String getHumor() {
+        return humor;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getDia() {
+        return data.substring(8, 10);
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
 }

@@ -36,6 +36,7 @@ public class CategoriaDAO {
             System.out.println(e.getMessage());
         }
     }
+
     public List<Categoria> findAllCategorias() {
 
         String SQL = "SELECT * FROM CATEGORIA";
@@ -72,6 +73,7 @@ public class CategoriaDAO {
             return Collections.emptyList();
         }
     }
+
     public void deleteCategoriaById(String id) {
 
         String SQL = "DELETE FROM CATEGORIA WHERE ID_CATEGORIA = ?";
@@ -93,6 +95,7 @@ public class CategoriaDAO {
             System.out.println(e.getMessage());
         }
     }
+
     public void updateCategoria(Categoria categoria) {
 
         String SQL = "UPDATE CATEGORIA SET NOME = ? WHERE ID_CATEGORIA = ?";

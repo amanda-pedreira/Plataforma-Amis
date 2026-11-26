@@ -36,6 +36,7 @@ public class FlagDAO {
             System.out.println(e.getMessage());
         }
     }
+
     public List<Flag> findAllFlags() {
 
         String SQL = "SELECT * FROM FLAG";
@@ -72,6 +73,7 @@ public class FlagDAO {
             return Collections.emptyList();
         }
     }
+
     public void deleteFlagById(String id) {
 
         String SQL = "DELETE FROM FLAG WHERE ID_FLAG = ?";
@@ -93,6 +95,7 @@ public class FlagDAO {
             System.out.println(e.getMessage());
         }
     }
+
     public void updateFlag(Flag flag) {
 
         String SQL = "UPDATE FLAG SET NOME = ? WHERE ID_FLAG = ?";

@@ -1,4 +1,3 @@
-
 package br.com.amis.servlet;
 
 import br.com.amis.dao.PostagemDAO;
@@ -18,7 +17,7 @@ public class CreatePostagemServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         if (req.getSession().getAttribute("idUsuario") == null) {
             resp.sendRedirect(req.getContextPath() + "/login");
             return;
@@ -30,7 +29,7 @@ public class CreatePostagemServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
 
         req.setCharacterEncoding("UTF-8");
 

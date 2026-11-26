@@ -13,7 +13,7 @@ public class JournalDAO {
     public boolean cadastrar(Journal journal) {
         String sql = "INSERT INTO DIARIO (ID_USUARIO, DATA, HUMOR, DESCRICAO, TITULO) VALUES (?, ?, ?, ?, ?)";
         try (Connection conexao = ConnectionPoolConfig.getConnection();
-             PreparedStatement ps = conexao.prepareStatement(sql)) {
+        PreparedStatement ps = conexao.prepareStatement(sql)) {
             ps.setInt(1, journal.getIdUsuario());
             ps.setDate(2, java.sql.Date.valueOf(journal.getData()));
             ps.setString(3, journal.getHumor());
@@ -27,15 +27,23 @@ public class JournalDAO {
     }
 
     public List<Journal> listar(int idUsuario) {
+        return listar(idUsuario, null);
+    }
+
+    public List<Journal> listar(int idUsuario, String data) {
         List<Journal> registros = new ArrayList<>();
-        String sql = "SELECT * FROM DIARIO WHERE ID_USUARIO = ? ORDER BY DATA DESC, ID_REGISTRO DESC";
+        boolean filtrar = data != null && !data.isEmpty();
+        String sql = "SELECT * FROM DIARIO WHERE ID_USUARIO = ?";
+        if (filtrar) sql += " AND DATA = ?";
+        sql += " ORDER BY DATA DESC, ID_REGISTRO DESC";
         try (Connection conexao = ConnectionPoolConfig.getConnection();
-             PreparedStatement ps = conexao.prepareStatement(sql)) {
+        PreparedStatement ps = conexao.prepareStatement(sql)) {
             ps.setInt(1, idUsuario);
+            if (filtrar) ps.setDate(2, java.sql.Date.valueOf(data));
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 registros.add(new Journal(rs.getInt("ID_REGISTRO"), rs.getInt("ID_USUARIO"),
-                        rs.getDate("DATA").toString(), rs.getString("HUMOR"), rs.getString("DESCRICAO"), rs.getString("TITULO")));
+                rs.getDate("DATA").toString(), rs.getString("HUMOR"), rs.getString("DESCRICAO"), rs.getString("TITULO")));
             }
         } catch (Exception e) {
             System.out.println("Erro ao listar diario: " + e.getMessage());
@@ -46,7 +54,7 @@ public class JournalDAO {
     public Journal buscar(int idRegistro, int idUsuario) {
         String sql = "SELECT * FROM DIARIO WHERE ID_REGISTRO = ? AND ID_USUARIO = ?";
         try (Connection conexao = ConnectionPoolConfig.getConnection();
-             PreparedStatement ps = conexao.prepareStatement(sql)) {
+        PreparedStatement ps = conexao.prepareStatement(sql)) {
             ps.setInt(1, idRegistro);
             ps.setInt(2, idUsuario);
             ResultSet rs = ps.executeQuery();
@@ -63,7 +71,7 @@ public class JournalDAO {
     public boolean editar(Journal journal) {
         String sql = "UPDATE DIARIO SET DATA = ?, HUMOR = ?, DESCRICAO = ?, TITULO = ? WHERE ID_REGISTRO = ? AND ID_USUARIO = ?";
         try (Connection conexao = ConnectionPoolConfig.getConnection();
-             PreparedStatement ps = conexao.prepareStatement(sql)) {
+        PreparedStatement ps = conexao.prepareStatement(sql)) {
             ps.setDate(1, java.sql.Date.valueOf(journal.getData()));
             ps.setString(2, journal.getHumor());
             ps.setString(3, journal.getDescricao());
@@ -80,7 +88,7 @@ public class JournalDAO {
     public boolean excluir(int idRegistro, int idUsuario) {
         String sql = "DELETE FROM DIARIO WHERE ID_REGISTRO = ? AND ID_USUARIO = ?";
         try (Connection conexao = ConnectionPoolConfig.getConnection();
-             PreparedStatement ps = conexao.prepareStatement(sql)) {
+        PreparedStatement ps = conexao.prepareStatement(sql)) {
             ps.setInt(1, idRegistro);
             ps.setInt(2, idUsuario);
             return ps.executeUpdate() > 0;

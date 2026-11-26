@@ -1,4 +1,3 @@
-
 package br.com.amis.dao;
 
 import br.com.amis.servlet.config.ConnectionPoolConfig;
@@ -17,14 +16,14 @@ public class UsuarioDAO {
     public boolean createUsuario(Usuario usuario) {
 
         String SQL = "INSERT INTO USUARIO " +
-                "(TIPO, FOTO, USERNAME, NOME, EMAIL, SENHA) " +
-                "VALUES (?, ?, ?, ?, ?, ?)";
+        "(TIPO, FOTO, USERNAME, NOME, EMAIL, SENHA, ADMIN) " +
+        "VALUES (?, ?, ?, ?, ?, ?, 0)";
 
         try {
             Connection connection = ConnectionPoolConfig.getConnection();
 
             PreparedStatement preparedStatement =
-                    connection.prepareStatement(SQL);
+            connection.prepareStatement(SQL);
 
             preparedStatement.setString(1, usuario.getTipo());
             preparedStatement.setString(2, usuario.getFoto());
@@ -46,34 +45,40 @@ public class UsuarioDAO {
 
     public List<Usuario> findAllUsuarios() {
 
-        List<Usuario> usuarios = new ArrayList<>();
+        return pesquisarUsuarios("");
+    }
 
-        String SQL = "SELECT * FROM USUARIO ORDER BY ID_USUARIO";
+    public List<Usuario> pesquisarUsuarios(String pesquisa) {
+        List<Usuario> usuarios = new ArrayList<>();
+        String SQL = "SELECT * FROM USUARIO WHERE ADMIN = 0 AND (LOWER(NOME) LIKE ? OR LOWER(USERNAME) LIKE ?) ORDER BY ID_USUARIO";
 
         try {
             Connection connection = ConnectionPoolConfig.getConnection();
 
             PreparedStatement preparedStatement =
-                    connection.prepareStatement(SQL);
+            connection.prepareStatement(SQL);
+
+            preparedStatement.setString(1, "%" + pesquisa.toLowerCase() + "%");
+            preparedStatement.setString(2, "%" + pesquisa.toLowerCase() + "%");
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
 
                 Usuario usuario = new Usuario(
-                        resultSet.getString("TIPO"),
-                        resultSet.getString("FOTO"),
-                        resultSet.getString("USERNAME"),
-                        resultSet.getString("NOME"),
-                        resultSet.getString("EMAIL"),
-                        null
+                resultSet.getString("TIPO"),
+                resultSet.getString("FOTO"),
+                resultSet.getString("USERNAME"),
+                resultSet.getString("NOME"),
+                resultSet.getString("EMAIL"),
+                null
                 );
 
                 usuario.setIdUsuario(resultSet.getInt("ID_USUARIO"));
                 usuario.setBio(resultSet.getString("BIO"));
                 usuario.setStatus(resultSet.getString("STATUS"));
                 usuario.setDataCriacao(
-                        resultSet.getDate("DATA_CRIACAO")
+                resultSet.getDate("DATA_CRIACAO")
                 );
 
                 usuarios.add(usuario);
@@ -90,13 +95,13 @@ public class UsuarioDAO {
 
     public Usuario findUsuarioById(int id) {
 
-        String SQL = "SELECT * FROM USUARIO WHERE ID_USUARIO = ?";
+        String SQL = "SELECT * FROM USUARIO WHERE ID_USUARIO = ? AND ADMIN = 0";
 
         try {
             Connection connection = ConnectionPoolConfig.getConnection();
 
             PreparedStatement preparedStatement =
-                    connection.prepareStatement(SQL);
+            connection.prepareStatement(SQL);
 
             preparedStatement.setInt(1, id);
 
@@ -105,19 +110,19 @@ public class UsuarioDAO {
             if (resultSet.next()) {
 
                 Usuario usuario = new Usuario(
-                        resultSet.getString("TIPO"),
-                        resultSet.getString("FOTO"),
-                        resultSet.getString("USERNAME"),
-                        resultSet.getString("NOME"),
-                        resultSet.getString("EMAIL"),
-                        null
+                resultSet.getString("TIPO"),
+                resultSet.getString("FOTO"),
+                resultSet.getString("USERNAME"),
+                resultSet.getString("NOME"),
+                resultSet.getString("EMAIL"),
+                null
                 );
 
                 usuario.setIdUsuario(resultSet.getInt("ID_USUARIO"));
                 usuario.setBio(resultSet.getString("BIO"));
                 usuario.setStatus(resultSet.getString("STATUS"));
                 usuario.setDataCriacao(
-                        resultSet.getDate("DATA_CRIACAO")
+                resultSet.getDate("DATA_CRIACAO")
                 );
 
                 connection.close();
@@ -136,14 +141,14 @@ public class UsuarioDAO {
     public boolean updateUsuario(Usuario usuario) {
 
         String SQL = "UPDATE USUARIO SET TIPO = ?, FOTO = ?, " +
-                "USERNAME = ?, NOME = ?, EMAIL = ?, BIO = ?, " +
-                "STATUS = ? WHERE ID_USUARIO = ?";
+        "USERNAME = ?, NOME = ?, EMAIL = ?, BIO = ?, " +
+        "STATUS = ? WHERE ID_USUARIO = ?";
 
         try {
             Connection connection = ConnectionPoolConfig.getConnection();
 
             PreparedStatement preparedStatement =
-                    connection.prepareStatement(SQL);
+            connection.prepareStatement(SQL);
 
             preparedStatement.setString(1, usuario.getTipo());
             preparedStatement.setString(2, usuario.getFoto());
@@ -173,7 +178,7 @@ public class UsuarioDAO {
             Connection connection = ConnectionPoolConfig.getConnection();
 
             PreparedStatement preparedStatement =
-                    connection.prepareStatement(SQL);
+            connection.prepareStatement(SQL);
 
             preparedStatement.setInt(1, id);
 
@@ -184,6 +189,43 @@ public class UsuarioDAO {
 
         } catch (Exception e) {
             System.out.println("Erro ao excluir usuario: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean isAdmin(int id) {
+        String SQL = "SELECT * FROM USUARIO WHERE ID_USUARIO = ? AND ADMIN = 1 AND STATUS = 'ATIVO'";
+        try (Connection connection = ConnectionPoolConfig.getConnection();
+        PreparedStatement ps = connection.prepareStatement(SQL)) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public void alterarStatus(int id, String status) {
+        String SQL = "UPDATE USUARIO SET STATUS = ? WHERE ID_USUARIO = ? AND ADMIN = 0";
+        try (Connection connection = ConnectionPoolConfig.getConnection();
+        PreparedStatement ps = connection.prepareStatement(SQL)) {
+            ps.setString(1, status);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public boolean alterarSenha(int id, String atual, String nova) {
+        String SQL = "UPDATE USUARIO SET SENHA = ? WHERE ID_USUARIO = ? AND SENHA = ?";
+        try (Connection connection = ConnectionPoolConfig.getConnection();
+        PreparedStatement ps = connection.prepareStatement(SQL)) {
+            ps.setString(1, nova);
+            ps.setInt(2, id);
+            ps.setString(3, atual);
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
             return false;
         }
     }

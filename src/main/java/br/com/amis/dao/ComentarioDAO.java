@@ -35,8 +35,8 @@ public class ComentarioDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 comentarios.add(new Comentario(resultSet.getInt("ID_COMENTARIO"),
-                        resultSet.getInt("ID_POSTAGEM"), resultSet.getInt("ID_USUARIO"),
-                        resultSet.getString("TEXTO")));
+                resultSet.getInt("ID_POSTAGEM"), resultSet.getInt("ID_USUARIO"),
+                resultSet.getString("TEXTO")));
             }
             connection.close();
         } catch (Exception e) {

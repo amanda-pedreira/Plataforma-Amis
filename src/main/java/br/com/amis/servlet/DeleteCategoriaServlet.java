@@ -13,7 +13,7 @@ public class DeleteCategoriaServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws IOException {
+    throws IOException {
 
         String id = req.getParameter("id");
 

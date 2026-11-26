@@ -1,4 +1,3 @@
-
 package br.com.amis.servlet;
 
 import br.com.amis.dao.UsuarioLoginDAO;
@@ -16,7 +15,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
 
         req.getRequestDispatcher("/pages/login.jsp").forward(req, resp);
 
@@ -24,7 +23,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
 
         String username = req.getParameter("username");
         String password = req.getParameter("password");
@@ -33,16 +32,28 @@ public class LoginServlet extends HttpServlet {
 
         int idUsuario = new UsuarioLoginDAO().verifyCredentials(user);
 
-        if (idUsuario != 0) {
+        if (idUsuario > 0) {
 
             req.getSession().setAttribute("loggedUser", username);
             req.getSession().setAttribute("idUsuario", idUsuario);
 
-            resp.sendRedirect(req.getContextPath() + "/find-all-postagens");
+            int admin = new br.com.amis.dao.UsuarioDAO().isAdmin(idUsuario) ? 1 : 0;
+            req.getSession().setAttribute("admin", admin);
+
+            if (admin == 1) {
+                resp.sendRedirect(req.getContextPath() + "/admin.jsp");
+            } else {
+                resp.sendRedirect(req.getContextPath() + "/find-all-postagens");
+            }
 
         } else {
 
-            req.setAttribute("message", "Usuário ou senha inválidos!");
+            if (idUsuario == -1) {
+                req.setAttribute("inativo", true);
+                req.setAttribute("message", "Sua conta está inativa. Entre em contato com a administração da AMIS.");
+            } else {
+                req.setAttribute("message", "Usuário ou senha inválidos!");
+            }
 
             req.getRequestDispatcher("/pages/login.jsp").forward(req, resp);
 

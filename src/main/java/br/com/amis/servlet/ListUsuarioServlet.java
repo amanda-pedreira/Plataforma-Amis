@@ -1,4 +1,3 @@
-
 package br.com.amis.servlet;
 
 import br.com.amis.dao.UsuarioDAO;
@@ -20,7 +19,7 @@ public class ListUsuarioServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
 
         UsuarioDAO dao = new UsuarioDAO();
 
@@ -56,8 +55,9 @@ public class ListUsuarioServlet extends HttpServlet {
             req.getRequestDispatcher("/pages/perfil.jsp").forward(req, resp);
 
         } else {
-
-            List<Usuario> usuarios = dao.findAllUsuarios();
+            String pesquisa = req.getParameter("pesquisa");
+            if (pesquisa == null) pesquisa = "";
+            List<Usuario> usuarios = dao.pesquisarUsuarios(pesquisa);
 
             req.setAttribute("usuarios", usuarios);
 

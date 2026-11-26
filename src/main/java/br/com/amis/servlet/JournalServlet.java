@@ -20,7 +20,7 @@ public class JournalServlet extends HttpServlet {
             return;
         }
         int idUsuario = (Integer) req.getSession().getAttribute("idUsuario");
-        req.setAttribute("registros", dao.listar(idUsuario));
+        req.setAttribute("registros", dao.listar(idUsuario, req.getParameter("buscaData")));
         String editar = req.getParameter("editar");
         if (editar != null) {
             req.setAttribute("registroEditar", dao.buscar(Integer.parseInt(editar), idUsuario));

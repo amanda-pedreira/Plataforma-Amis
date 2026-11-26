@@ -1,4 +1,3 @@
-
 package br.com.amis.model;
 
 public class Postagem {
@@ -7,13 +6,23 @@ public class Postagem {
     private int idUsuario;
     private int idCategoria;
     private int idFlag;
+    private String dataPostagem;
+
+    public String getDataPostagem() {
+        return dataPostagem;
+    }
+
+    public void setDataPostagem(String dataPostagem) {
+        this.dataPostagem = dataPostagem;
+    }
+
     private String titulo;
     private String texto;
     private String categoria;
     private String flag;
 
     public Postagem(int idPostagem, String titulo, String texto,
-                    String categoria, String flag) {
+    String categoria, String flag) {
         this.idPostagem = idPostagem;
         this.titulo = titulo;
         this.texto = texto;

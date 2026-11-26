@@ -13,8 +13,19 @@ public class Comentario {
         this.texto = texto;
     }
 
-    public int getIdComentario() { return idComentario; }
-    public int getIdPostagem() { return idPostagem; }
-    public int getIdUsuario() { return idUsuario; }
-    public String getTexto() { return texto; }
+    public int getIdComentario() {
+        return idComentario;
+    }
+
+    public int getIdPostagem() {
+        return idPostagem;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public String getTexto() {
+        return texto;
+    }
 }

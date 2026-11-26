@@ -1,4 +1,3 @@
-
 package br.com.amis.model;
 
 import java.sql.Date;
@@ -17,7 +16,7 @@ public class Usuario {
     private String status;
 
     public Usuario(String tipo, String foto, String username,
-                   String nome, String email, String senha) {
+    String nome, String email, String senha) {
         this.tipo = tipo;
         this.foto = foto;
         this.username = username;

@@ -13,7 +13,7 @@ import java.io.IOException;
 public class CreateComentarioServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         int idPostagem = Integer.parseInt(req.getParameter("idPostagem"));
         if (req.getSession().getAttribute("idUsuario") == null) {

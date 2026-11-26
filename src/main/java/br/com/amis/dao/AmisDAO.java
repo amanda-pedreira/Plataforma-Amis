@@ -1,4 +1,5 @@
 package br.com.amis.dao;
+
 import br.com.amis.servlet.config.ConnectionPoolConfig;
 
 import br.com.amis.model.Amis;
@@ -18,8 +19,6 @@ public class AmisDAO {
         String SQL = "INSERT INTO AMIS (NAME) VALUES (?)";
 
         try {
-
-
 
             Connection connection = ConnectionPoolConfig.getConnection();
 

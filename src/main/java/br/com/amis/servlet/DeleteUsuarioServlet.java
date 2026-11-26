@@ -1,4 +1,3 @@
-
 package br.com.amis.servlet;
 
 import br.com.amis.dao.UsuarioDAO;
@@ -15,7 +14,7 @@ public class DeleteUsuarioServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
 
         if (req.getSession().getAttribute("idUsuario") == null) {
             resp.sendRedirect(req.getContextPath() + "/login");
@@ -36,8 +35,8 @@ public class DeleteUsuarioServlet extends HttpServlet {
         }
 
         resp.sendRedirect(
-                req.getContextPath() +
-                        "/find-all-usuarios?pagina=perfil&erro=1"
+        req.getContextPath() +
+        "/find-all-usuarios?pagina=perfil&erro=1"
         );
     }
 }

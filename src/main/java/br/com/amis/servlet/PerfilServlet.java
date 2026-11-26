@@ -1,0 +1,54 @@
+package br.com.amis.servlet;
+
+import br.com.amis.dao.UsuarioDAO;
+import br.com.amis.dao.RelacionamentoDAO;
+import br.com.amis.dao.ItemSalvoDAO;
+import br.com.amis.dao.PostagemDAO;
+import br.com.amis.model.Usuario;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
+
+@WebServlet("/perfil")
+public class PerfilServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+    throws ServletException, IOException {
+
+        UsuarioDAO dao = new UsuarioDAO();
+
+        if (req.getSession().getAttribute("idUsuario") == null) {
+
+            resp.sendRedirect(req.getContextPath() + "/login");
+            return;
+
+        }
+
+        int id = (Integer) req.getSession().getAttribute("idUsuario");
+
+        List<Usuario> usuarios = dao.findAllUsuarios();
+
+        req.setAttribute("usuarios", usuarios);
+
+        RelacionamentoDAO relacao = new RelacionamentoDAO();
+
+        req.setAttribute("pessoasSalvas", relacao.listar("PESSOA_SALVA", "ID_PESSOA", id));
+
+        req.setAttribute("paginasSeguidas", relacao.listar("PAGINA_SEGUIDA", "ID_PAGINA", id));
+
+        req.setAttribute("itensSalvos", new ItemSalvoDAO().listar(id));
+
+        req.setAttribute("registrosDiario", new br.com.amis.dao.JournalDAO().listar(id));
+
+        req.setAttribute("minhasPostagens", new PostagemDAO().findPostagensByUsuario(id));
+
+        req.getRequestDispatcher("/pages/perfil.jsp").forward(req, resp);
+
+    }
+}

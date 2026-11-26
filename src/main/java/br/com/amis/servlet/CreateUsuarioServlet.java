@@ -1,4 +1,3 @@
-
 package br.com.amis.servlet;
 
 import br.com.amis.dao.UsuarioDAO;
@@ -16,7 +15,7 @@ public class CreateUsuarioServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
 
         req.setCharacterEncoding("UTF-8");
 
@@ -33,7 +32,7 @@ public class CreateUsuarioServlet extends HttpServlet {
         UsuarioDAO dao = new UsuarioDAO();
 
         Usuario usuario = new Usuario(
-                tipo, foto, username, nome, email, senha
+        tipo, foto, username, nome, email, senha
         );
 
         if ("perfil".equals(origem)) {

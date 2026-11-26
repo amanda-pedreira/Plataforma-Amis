@@ -12,7 +12,7 @@ import java.io.IOException;
 public class ListComentarioServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         req.setAttribute("comentarios", new ComentarioDAO().findAllComentarios());
         req.getRequestDispatcher("/pages/comentarios.jsp").forward(req, resp);
     }

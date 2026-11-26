@@ -13,7 +13,7 @@ import java.io.IOException;
 public class DeleteComentarioServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         if (req.getSession().getAttribute("idUsuario") == null) {
             resp.sendRedirect(req.getContextPath() + "/login");
             return;
@@ -25,6 +25,6 @@ public class DeleteComentarioServlet extends HttpServlet {
                 dao.deleteComentarioById(id);
             }
         }
-        resp.sendRedirect(req.getContextPath() + "/find-all-comentarios");
+        resp.sendRedirect(req.getContextPath() + "/find-all-postagens?comentarios=" + req.getParameter("idPostagem"));
     }
 }
